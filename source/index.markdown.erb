@@ -1,0 +1,51 @@
+### Introduction
+
+Sky is an open source database used for high performance analysis of behavioral data.
+This includes clickstream data, log data, sensor data, etc.
+
+Sky's architecture is designed to address two use cases:
+
+1. Fast analysis of an entire dataset.
+1. Real-time analysis of a single object.
+
+The database works in the context of objects.
+An example of an object is a user of a web site or application.
+Objects can be anything that has state and performs actions over time.
+These actions and state changes are referred to as events within Sky.
+For a given object, Sky can analyze the actions the object performs or how the object's state changes over time.
+
+Operating in the context of a single object at a time has advantages and trade offs.
+It's advantages are speed and simplicity of code: Sky can aggregate nearly **100M** events per second.
+The tradeoff is that Sky is not general purpose.
+It's not relational, it's not good for graph analysis, it isn't mean to store documents.
+That's okay.
+It's not meant to replace those technologies.
+
+
+### Getting Started
+
+To use Sky, you'll need to download the latest version.
+Once it's downloaded, you can execute the following code to be up and running:
+
+    $ tar zxvf sky-0.1.0.tar.gz
+    $ cd sky-0.1.0/
+    $ make all
+    $ sudo make install
+
+Now that it's install you can run the server:
+
+    $ skyd
+
+Sky is built with no external dependencies so it should be fast and easy to compile.
+
+
+### Recent Posts
+
+<% page_articles.each_with_index do |article, i| %>
+##### <%= link_to article.title, article %> <span><%= article.date.strftime('%b %e, %Y') %></span>
+<% end %>
+
+
+### More Information
+
+If you have questions about Sky, feel free to visit the <a href="https://github.com/skydb/sky">Github repository</a>, <a href="mailto:sky@librelist.com">e-mail the mailing list</a> or <a href="https://twitter.com/benbjohnson">find me on Twitter</a>.
