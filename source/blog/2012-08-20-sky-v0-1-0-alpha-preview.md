@@ -1,7 +1,7 @@
 ---
 title: Sky v0.1.0 Alpha Preview
 date: 2012-08-20 00:00 -00:00
-tags:
+layout: blog_layout
 ---
 
 ### Overview

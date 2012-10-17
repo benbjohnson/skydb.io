@@ -1,7 +1,7 @@
 ---
 title: Introduction to Behavioral Databases
 date: 2012-04-30 00:00 -00:00
-tags:
+layout: blog_layout
 ---
 
 ### What is Behavioral Data?

@@ -17,6 +17,8 @@
     <![endif]-->
   </head>
 
+  <% is_blog = !request.path.index(/^blog/).nil? %>
+
   <body class="<%= page_classes %>" onload="prettyPrint()">
     <div class="container">
       <div class="row">
@@ -32,11 +34,11 @@
             <li class="<%= 'active' if request.path == 'index.html' %>">
               <a href="/">Home</a>
             </li>
-            <li class="<%= 'active' if request.path.index(/^blog/) %>">
+            <li class="<%= 'active' if is_blog %>">
               <a href="/blog.html">Blog</a>
             </li>
-            <li><a class="disable" href="https://github.com/skydb/sky/downloads">Download</a></li>
-            <li><a href="/docs">Documentation</a></li>
+            <li><a class="disable" href="https://github.com/downloads/skydb/sky/sky-0.1.0.tar.gz">Download</a></li>
+            <!-- li><a href="/docs">Documentation</a></li -->
             <li><a href="https://github.com/skydb/sky">Repository</a></li>
           </ul>
 
@@ -48,10 +50,39 @@
     <div class="container">
       <div class="row">
         <div class="span8 offset2">
+          <% if data.page.title %>
+            <h2><%= data.page.title %></h2>
+          <% end %>
           <%= yield %>
         </div>
       </div>
     </div><!-- /container -->
+    
+    <% if is_blog %>
+      <div class="container">
+        <div class="row">
+          <div class="span8 offset2">
+            <hr class="soften" style="margin:20px 0px">
+
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'skydb'; // required: replace example with your forum shortname
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                  
+          </div>
+        </div>
+      </div><!-- /container -->
+    <% end %>
     
     <footer>
     </footer>

@@ -1,0 +1,11 @@
+### The Blog
+
+Welcome to the Sky blog.
+You can find out more about the Sky database by perusing the articles below.
+If you have anything you'd like to know about, feel free to send me a message on <a href="https://twitter.com/benbjohnson">Twitter</a> or <a href="mailto:sky@librelist.com">e-mail the mailing list</a>.
+
+### Posts
+
+<% page_articles.each_with_index do |article, i| %>
+##### <%= link_to article.title, article %> <span><%= article.date.strftime('%b %e, %Y') %></span>
+<% end %>

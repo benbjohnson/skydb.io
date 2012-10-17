@@ -57,8 +57,18 @@ page "/*.xml", :layout => false
 
 activate :blog do |blog|
   blog.prefix = "blog"
-  blog.permalink = ":title"
+  blog.permalink = ":title.html"
 end
+
+# Activate sync extension
+#activate :sync do |sync|
+#  sync.fog_provider = 'AWS'
+#  sync.fog_directory = 'skydb.io'
+#  sync.fog_region = 'us-east-1'
+#  sync.aws_access_key_id = ENV['AWS_ACCESS_KEY_ID']
+#  sync.aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+#  sync.existing_remote_files = 'delete'
+#end
 
 # Build-specific configuration
 configure :build do
