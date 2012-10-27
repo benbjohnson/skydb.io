@@ -91,6 +91,7 @@ GEM
       i18n (~> 0.6)
       padrino-core (= 0.10.7)
     rack (1.4.1)
+    rack-google-analytics (0.11.0)
     rack-protection (1.2.0)
       rack
     rack-test (0.6.2)
@@ -130,3 +131,4 @@ DEPENDENCIES
   fog (~> 1.6.0)
   middleman (~> 3.0.5)
   middleman-blog (~> 3.1.1)
+  rack-google-analytics (~> 0.11.0)

@@ -60,6 +60,8 @@ activate :blog do |blog|
   blog.permalink = ":title.html"
 end
 
+use Rack::GoogleAnalytics, :tracker => 'UA-34296486-1'
+
 # Activate sync extension
 #activate :sync do |sync|
 #  sync.fog_provider = 'AWS'

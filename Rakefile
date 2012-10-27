@@ -37,3 +37,4 @@ task :build do
   `bundle exec middleman build`
   puts "DONE"
 end
+
