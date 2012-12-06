@@ -228,7 +228,7 @@ data.map(path, :count++);
 
 &lt;p&gt;Finally, Sky will be adding multicore and multinode distributed processing. A single threaded Sky server can already analyze tens of millions of events per second. However, sometimes you need to analyze billions of events per second.&lt;/p&gt;
 
-&lt;p&gt;Some exciting things are coming. Please visit the &lt;a href='https://github.com/skylandlabs/sky'&gt;Sky GitHub Page&lt;/a&gt; to contribute. Or follow us on Twitter (&lt;a href='https://twitter.com/skylandlabs'&gt;@skylandlabs&lt;/a&gt;) to get updates.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;Some exciting things are coming. Please visit the &lt;a href='https://github.com/skydb/sky'&gt;Sky GitHub project page&lt;/a&gt; to contribute. Or join the mailing list by sending an e-mail to &lt;a href='mailto:sky@librelist.com'&gt;sky@librelist.com&lt;/a&gt; to get updates.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href='http://news.ycombinator.com/item?id=4409506'&gt;Discuss this post on Hacker News&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
@@ -332,7 +332,7 @@ data.map(path, :count++);
 
 &lt;h3 id='sky_the_open_source_behavioral_database'&gt;Sky, The Open Source Behavioral Database&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href='https://github.com/skylandlabs/sky'&gt;Sky&lt;/a&gt; is an in-development implementation of a behavioral database. It has two primary goals. It&amp;#8217;s first goal is to provide high performance insertion and aggregation of evented data. The project is still early in development but it can already aggregate a &lt;a href='http://en.wikipedia.org/wiki/Directed_graph'&gt;directed graph&lt;/a&gt; of events at the rate of &lt;strong&gt;45 million events per second on a single core&lt;/strong&gt;. That&amp;#8217;s snappy.&lt;/p&gt;
+&lt;p&gt;&lt;a href='https://github.com/skydb/sky'&gt;Sky&lt;/a&gt; is an in-development implementation of a behavioral database. It has two primary goals. It&amp;#8217;s first goal is to provide high performance insertion and aggregation of evented data. The project is still early in development but it can already aggregate a &lt;a href='http://en.wikipedia.org/wiki/Directed_graph'&gt;directed graph&lt;/a&gt; of events at the rate of &lt;strong&gt;45 million events per second on a single core&lt;/strong&gt;. That&amp;#8217;s snappy.&lt;/p&gt;
 
 &lt;p&gt;The second goal of the Sky behavioral database is to provide a query language to aggregate and extract knowledge from event paths easily. The language needs to be fast enough to process the millions (or billions) of events that organizations see generated every day. It also needs to be flexible enough to work with events and their relation to other events in order to derive meaningful information. Sky&amp;#8217;s language is called &lt;em&gt;EQL&lt;/em&gt; (Event Query Language) and is currently in development.&lt;/p&gt;
 
@@ -362,6 +362,6 @@ data.map(path, :count++);
 &lt;li&gt;Applications for Behavioral Analysis&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;To see the status of Sky or to contribute to it, please visit the &lt;a href='https://github.com/skylandlabs/sky'&gt;Sky GitHub Page&lt;/a&gt;.&lt;/p&gt;</content>
+&lt;p&gt;To see the status of Sky or to contribute to it, please visit the &lt;a href='https://github.com/skydb/sky'&gt;Sky GitHub project page&lt;/a&gt;.&lt;/p&gt;</content>
   </entry>
 </feed>
