@@ -165,9 +165,8 @@ Finally, Sky will be adding multicore and multinode distributed processing. A
 single threaded Sky server can already analyze tens of millions of events per
 second. However, sometimes you need to analyze billions of events per second.
 
-Some exciting things are coming. Please visit the [Sky GitHub
-Page](https://github.com/skylandlabs/sky) to contribute. Or follow us on
-Twitter ([@skylandlabs](https://twitter.com/skylandlabs)) to get
-updates.<br/><br/>
+Some exciting things are coming.
+Please visit the [Sky GitHub project page](https://github.com/skydb/sky) to contribute.
+Or join the mailing list by sending an e-mail to [sky@librelist.com](mailto:sky@librelist.com) to get updates.<br/><br/>
 
 [Discuss this post on Hacker News](http://news.ycombinator.com/item?id=4409506)

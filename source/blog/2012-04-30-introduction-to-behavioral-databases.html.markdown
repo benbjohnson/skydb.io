@@ -158,7 +158,7 @@ available.
 
 ### Sky, The Open Source Behavioral Database
 
-[Sky](https://github.com/skylandlabs/sky) is an in-development implementation
+[Sky](https://github.com/skydb/sky) is an in-development implementation
 of a behavioral database. It has two primary goals. It's first goal is to
 provide high performance insertion and aggregation of evented data. The project
 is still early in development but it can already aggregate a
@@ -197,5 +197,4 @@ We'll be writing about some interesting topics on Sky in the future including:
 1. Low-Level Implementation Details
 1. Applications for Behavioral Analysis
 
-To see the status of Sky or to contribute to it, please visit the [Sky GitHub
-Page](https://github.com/skylandlabs/sky).
+To see the status of Sky or to contribute to it, please visit the [Sky GitHub project page](https://github.com/skydb/sky).
