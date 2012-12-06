@@ -1,0 +1,24 @@
+digraph {
+  rankdir="LR";
+  pad="0.1";
+  node [style="filled", color="white", fontcolor="#ffffff", fontname="Helvetica", fontsize="11"];
+  
+  a [label="Home Page", fillcolor="#468847"];
+  b [label="Sign Up", fillcolor="#f89406"];
+  c [label="Add to Cart", fillcolor="#b94a48"];
+  d [label="Checkout", fillcolor="#3a87ad"];
+  e [label="Google\nSearch", fillcolor="#3a87ad"];
+  f [label="Contact\nTech Support", fillcolor="#468847"];
+  g [label="Cancel\nAccount", fillcolor="#f89406"];
+  h [label="Share on\nFacebook", fillcolor="#b94a48"];
+  i [label="View Product", fillcolor="#3a87ad"];
+
+  a -> b -> c -> d;
+  e -> a;
+  e -> i;
+  i -> f;
+  f -> g;
+  f -> c;
+  i -> h;
+  i -> c;
+}

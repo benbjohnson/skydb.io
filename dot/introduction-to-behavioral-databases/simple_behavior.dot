@@ -1,0 +1,11 @@
+digraph {
+  rankdir="LR";
+  pad="0.1";
+  node [style="filled", color="white", fontcolor="#ffffff", fontname="Helvetica", fontsize="11"];
+  
+  a [label="Home Page", fillcolor="#468847"];
+  b [label="Sign Up", fillcolor="#f89406"];
+  c [label="Add to Cart", fillcolor="#b94a48"];
+  d [label="Checkout", fillcolor="#3a87ad"];
+  a -> b -> c -> d;
+}

@@ -1,0 +1,24 @@
+digraph G {
+  client [label="Client"];
+  
+  subgraph sky_server {
+    label="Sky Server";
+    shape="box";
+    node [shape="box"];
+    rank=sink; query_compiler; serializer;
+    rank=same; path_iterator; query_engine;
+    
+    query_compiler [label="Query Compiler"];
+    path_iterator [label="Path Iterator"];
+    query_engine [label="Query Engine"];
+    serializer [label="Serializer"];
+
+    query_compiler -> query_engine;
+    path_iterator -> query_engine;
+    query_engine -> path_iterator;
+    path_iterator -> serializer;
+  }
+
+  client -> query_compiler;
+  serializer -> client;
+}

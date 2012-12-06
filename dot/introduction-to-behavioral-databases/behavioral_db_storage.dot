@@ -1,0 +1,61 @@
+digraph structs {
+  process [label="Database\nProcess"];
+    
+    datafile [shape=plaintext, label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+  <TR>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20" BGCOLOR="#3a87ad" PORT="e0"></TD>
+    <TD WIDTH="20" HEIGHT="20" BGCOLOR="#3a87ad" PORT="e1"></TD>
+    <TD WIDTH="20" HEIGHT="20" BGCOLOR="#3a87ad" PORT="e2"></TD>
+    <TD WIDTH="20" HEIGHT="20" BGCOLOR="#3a87ad" PORT="e3"></TD>
+    <TD WIDTH="20" HEIGHT="20" BGCOLOR="#3a87ad" PORT="e4"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+  </TR>
+  <TR>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+    <TD WIDTH="20" HEIGHT="20"></TD>
+  </TR>
+</TABLE>>];
+    
+  process -> datafile:e0;
+  process -> datafile:e1;
+  process -> datafile:e2;
+  process -> datafile:e3;
+  process -> datafile:e4;
+}
