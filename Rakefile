@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'middleman-gh-pages'
 require 'fileutils'
 require 'fog'
 
@@ -23,18 +24,4 @@ namespace :dot do
   end
 end
 
-
-#############################################################################
-#
-# Build
-#
-#############################################################################
-
-task :build do
-  # Build
-  print "Building... "
-  FileUtils.rm_rf("build")
-  `bundle exec middleman build`
-  puts "DONE"
-end
 
