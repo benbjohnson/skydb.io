@@ -362,6 +362,6 @@ data.map(path, :count++);
 &lt;li&gt;Applications for Behavioral Analysis&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;To see the status of Sky or to contribute to it, please visit the &lt;a href='https://github.com/skydb/sky'&gt;Sky GitHub project page&lt;/a&gt;.&lt;/p&gt;</content>
+&lt;p&gt;To see the status of Sky or to contribute to it please visit the &lt;a href='https://github.com/skydb/sky'&gt;Sky GitHub project page&lt;/a&gt;.&lt;/p&gt;</content>
   </entry>
 </feed>
