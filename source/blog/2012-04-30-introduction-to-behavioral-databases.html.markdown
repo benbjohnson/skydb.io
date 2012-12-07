@@ -197,4 +197,4 @@ We'll be writing about some interesting topics on Sky in the future including:
 1. Low-Level Implementation Details
 1. Applications for Behavioral Analysis
 
-To see the status of Sky or to contribute to it, please visit the [Sky GitHub project page](https://github.com/skydb/sky).
+To see the status of Sky or to contribute to it please visit the [Sky GitHub project page](https://github.com/skydb/sky).
