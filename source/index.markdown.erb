@@ -15,7 +15,7 @@ These actions and state changes are referred to as events within Sky.
 For a given object, Sky can analyze the actions the object performs or how the object's state changes over time.
 
 Operating in the context of a single object at a time has advantages and trade offs.
-It's advantages are speed and simplicity of code: Sky can aggregate nearly **100M** events per second.
+It's advantages are speed and simplicity of code: Sky can easily aggregate tens of million of events per second per core.
 The tradeoff is that Sky is not general purpose.
 It's not relational, it's not good for graph analysis, it isn't mean to store documents.
 That's okay.
@@ -24,19 +24,8 @@ It's not meant to replace those technologies.
 
 ### Getting Started
 
-To use Sky, you'll need to download the latest version.
-Once it's downloaded, you can execute the following code to be up and running:
-
-    $ tar zxvf sky-0.1.0.tar.gz
-    $ cd sky-0.1.0/
-    $ make all
-    $ sudo make install
-
-Now that it's install you can run the server:
-
-    $ skyd
-
-Sky is built with no external dependencies so it should be fast and easy to compile.
+The best way to get up and running with Sky is to read through the [Documentation](/docs) and [Getting Started](/docs/getting-started.html) pages.
+Sky only requires ZeroMQ as a dependency so it's easy to get up and running.
 
 
 ### Recent Posts
