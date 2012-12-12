@@ -36,7 +36,7 @@
   
   
 
-  <body class="index">
+  <body class="docs docs_index">
     <div class="container">
       <div class="row">
         <div class="span8 offset2">
@@ -49,10 +49,10 @@
           </header>
 
           <ul class="nav nav-pills">
-            <li class="active">
+            <li class="">
               <a href="/">Home</a>
             </li>
-            <li class="">
+            <li class="active">
               <a href="/docs">
                 <span class="hidden-phone">Documentation</span>
                 <span class="visible-phone">Docs</span>
@@ -79,41 +79,29 @@
       <div class="row">
         <div class="span8 offset2">
           
-          <h3 id='introduction'>Introduction</h3>
+          <h3 id='sky_documentation'>Sky Documentation</h3>
 
-<p>Sky is an open source database used for high performance analysis of <a href='/blog/introduction-to-behavioral-databases.html'>behavioral data</a>. This includes clickstream data, log data, sensor data, etc.</p>
+<p>The Sky database is simple at heart but it can be daunting to get started. This documentation is meant to get you up and running quickly and let you dive into behavioral analytics immediately.</p>
 
-<p>Sky&#8217;s architecture is designed to address two use cases:</p>
+<p>First you can start with the installation instructions, then move on to API integration and finally you&#8217;ll understand how Sky lets you use Lua to provide flexibility when analyzing your data. In no time you&#8217;ll see how you can load up data and build funnel analysis queries or ad-hoc cohort analysis.</p>
+
+<h3 id='table_of_contents'>Table of Contents</h3>
 
 <ol>
-<li>Fast analysis of an entire dataset.</li>
+<li><a href='getting-started.html'>Getting Started</a></li>
 
-<li>Real-time analysis of a single object.</li>
+<li><a href='architecture.html'>The Sky Architecture</a></li>
+
+<li><a href='basics.html'>The Basics</a></li>
+
+<li><a href='lua.html'>Data Processing using Lua</a></li>
 </ol>
 
-<p>The database works in the context of objects. An example of an object is a user of a web site or application. Objects can be anything that has state and performs actions over time. These actions and state changes are referred to as events within Sky. For a given object, Sky can analyze the actions the object performs or how the object&#8217;s state changes over time.</p>
+<h3 id='additional_help'>Additional Help</h3>
 
-<p>Operating in the context of a single object at a time has advantages and trade offs. It&#8217;s advantages are speed and simplicity of code: Sky can easily aggregate tens of million of events per second per core. The tradeoff is that Sky is not general purpose. It&#8217;s not relational, it&#8217;s not good for graph analysis, it isn&#8217;t mean to store documents. That&#8217;s okay. It&#8217;s not meant to replace those technologies.</p>
+<p>The documentation is just one place to find help using Sky. You can also ask a question on the mailing list by sending an e-mail to <a href='mailto:sky@librelist.com'>sky@librelist.com</a>.</p>
 
-<h3 id='getting_started'>Getting Started</h3>
-
-<p>The best way to get up and running with Sky is to read through the <a href='/docs'>Documentation</a> and <a href='/docs/getting-started.html'>Getting Started</a> pages. Sky only requires ZeroMQ as a dependency so it&#8217;s easy to get up and running.</p>
-
-<h3 id='recent_posts'>Recent Posts</h3>
-
-<h5 id='_'><a href='/blog/sky-roadmap-2012.html'>Sky Roadmap 2012</a> <span>Nov 13, 2012</span></h5>
-
-<h5 id='_'><a href='/blog/github-archive-visualizer.html'>GitHub Archive Visualizer</a> <span>Oct 17, 2012</span></h5>
-
-<h5 id='_'><a href='/blog/qip-is-dead.html'>Qip is Dead, Long Live Qip</a> <span>Oct 16, 2012</span></h5>
-
-<h5 id='_'><a href='/blog/sky-v0-1-0-alpha-preview.html'>Sky v0.1.0 Alpha Preview</a> <span>Aug 20, 2012</span></h5>
-
-<h5 id='_'><a href='/blog/introduction-to-behavioral-databases.html'>Introduction to Behavioral Databases</a> <span>Apr 30, 2012</span></h5>
-
-<h3 id='more_information'>More Information</h3>
-
-<p>If you have questions about Sky, feel free to visit the <a href='https://github.com/skydb/sky'>Github repository</a>, <a href='mailto:sky@librelist.com'>e-mail the mailing list</a> or <a href='https://twitter.com/benbjohnson'>find me on Twitter</a>.</p>
+<p>If you find errors in the documentation or some parts aren&#8217;t clear enough, please add a GitHub issue to the <a href='https://github.com/benbjohnson/skydb.io'>skydb.io project page</a>. We&#8217;d really appreciate it!</p>
         </div>
       </div>
     </div><!-- /container -->
