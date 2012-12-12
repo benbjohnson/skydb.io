@@ -42,6 +42,7 @@ On Ubuntu, you'll need to add `/usr/local/lib` to your `ldconfig`.
 
 Download the [latest version of Sky from GitHub](https://github.com/skydb/sky/downloads) and follow these instructions to build it:
 
+    $ wget http://skydb.io/sky-0.2.0.tar.gz
     $ tar zxvf sky-0.2.0.tar.gz
     $ cd sky-0.2.0
     $ make
