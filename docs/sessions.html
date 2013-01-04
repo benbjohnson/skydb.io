@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sky Behavioral Database</title>
+    <title>Aggregating Sessions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description" content="">
@@ -36,7 +36,7 @@
   
   
 
-  <body class="docs docs_index">
+  <body class="docs docs_sessions">
     <div class="container">
       <div class="row">
         <div class="span8 offset2">
@@ -79,31 +79,40 @@
       <div class="row">
         <div class="span8 offset2">
           
-          <h3>Sky Documentation</h3>
+            <h2>Aggregating Sessions</h2>
+          
+          <h3>What are Sessions?</h3>
 
-<p>The Sky database is simple at heart but it can be daunting to get started.
-This documentation is meant to get you up and running quickly and let you dive into behavioral analytics immediately.</p>
+<p>Sessions are a common term in web applications but the idea applies to any kind of behavior analysis.
+We typically want to view how someone acts within a block of time where they are active.
+By constraining our analysis to a block of active time we can see what actions caused someone to stop being active (e.g. leaving your web site).</p>
 
-<p>First you can start with the installation instructions, then move on to API integration and finally you&#39;ll understand how Sky lets you use Lua to provide flexibility when analyzing your data.
-In no time you&#39;ll see how you can load up data and build funnel analysis queries or ad-hoc cohort analysis.</p>
+<h3>How to Use Sessions</h3>
 
-<h3>Table of Contents</h3>
+<p>Session analysis is simple in Sky.
+You just wrap your cursor in an extra loop and that becomes your context.
+Here&#39;s the basic flow of session analysis in Lua:</p>
+<div class="highlight"><pre><span class="k">function</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+  <span class="n">event</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">:</span><span class="n">event</span><span class="p">()</span>
 
-<ol>
-<li><a href="/docs/getting-started.html">Getting Started</a></li>
-<li><a href="/docs/architecture.html">The Sky Architecture</a></li>
-<li><a href="/docs/basics.html">The Basics</a></li>
-<li><a href="/docs/lua.html">Data Processing using Lua</a></li>
-<li><a href="/docs/sessions.html">Aggregating Sessions</a></li>
-</ol>
+  <span class="c1">-- Set up how long a user must be idle (e.g. have no events) </span>
+  <span class="c1">-- before their session is considered done. Let&#39;s set our</span>
+  <span class="c1">-- session for two hours (7,200 seconds).</span>
+  <span class="n">cursor</span><span class="p">:</span><span class="n">set_session_idle</span><span class="p">(</span><span class="mi">7200</span><span class="p">)</span>
 
-<h3>Additional Help</h3>
-
-<p>The documentation is just one place to find help using Sky.
-You can also ask a question on the mailing list by sending an e-mail to <a href="mailto:sky@librelist.com">sky@librelist.com</a>.</p>
-
-<p>If you find errors in the documentation or some parts aren&#39;t clear enough, please add a GitHub issue to the <a href="https://github.com/benbjohnson/skydb.io">skydb.io project page</a>.
-We&#39;d really appreciate it!</p>
+  <span class="c1">-- This outer loop will be executed once for every session.</span>
+  <span class="k">while</span> <span class="n">cursor</span><span class="p">:</span><span class="n">next_session</span><span class="p">()</span> <span class="k">do</span>
+    <span class="c1">-- This inner loop will be executed once for every individual</span>
+    <span class="c1">-- event in the session. It will automatically exit once the</span>
+    <span class="c1">-- session is over.</span>
+    <span class="k">while</span> <span class="n">cursor</span><span class="p">:</span><span class="nb">next</span><span class="p">()</span> <span class="k">do</span>
+      <span class="c1">-- Do something with the current event data.</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<p><br/>
+<a href="lua.html">« Prev <span class="hidden-phone">(Data Processing in Lua)</span></a></p>
 
         </div>
       </div>

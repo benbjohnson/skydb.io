@@ -67,35 +67,36 @@
           
             <h2>Sky v0.2.0 Released</h2>
           
-          <h3 id='whats_new'>What&#8217;s New?</h3>
+          <h3>What&#39;s New?</h3>
 
-<p>Sky version 0.2.0 has been released. You can download it from the main <a href='/'>Sky web site</a>. A lot has gone into this release but there are a few areas that are especially important:</p>
+<p>Sky version 0.2.0 has been released.
+You can download it from the main <a href="/">Sky web site</a>.
+A lot has gone into this release but there are a few areas that are especially important:</p>
 
 <ul>
-<li>
-<p><a href='http://luajit.org/'>LuaJIT</a> has been integrated so you can now run map/reduce across your data on the fly.</p>
-</li>
-
-<li>
-<p><a href='http://code.google.com/p/leveldb/'>LevelDB</a> replaced the previous data store. LevelDB is a solid key-value store that was written by the famous Googlers, Jeff Dean and Sanjay Ghemawat. I originally wrote Sky with a custom in-memory data store for performance. However, after some testing with LevelDB I found that the performance cost could be amortized and Sky is still crunching tens of millions of events per second per core. Not too shabby.</p>
-</li>
-
-<li>
-<p>Sky now compiles without warnings on Ubuntu &amp; GCC. I&#8217;m also working on testing other Linux distributions.</p>
-</li>
-
-<li>
-<p>Stability was a big focus with this release as well.</p>
-</li>
+<li><p><a href="http://luajit.org/">LuaJIT</a> has been integrated so you can now run map/reduce across your data on the fly.</p></li>
+<li><p><a href="http://code.google.com/p/leveldb/">LevelDB</a> replaced the previous data store.
+LevelDB is a solid key-value store that was written by the famous Googlers, Jeff Dean and Sanjay Ghemawat.
+I originally wrote Sky with a custom in-memory data store for performance.
+However, after some testing with LevelDB I found that the performance cost could be amortized and Sky is still crunching tens of millions of events per second per core.
+Not too shabby.</p></li>
+<li><p>Sky now compiles without warnings on Ubuntu &amp; GCC.
+I&#39;m also working on testing other Linux distributions.</p></li>
+<li><p>Stability was a big focus with this release as well.</p></li>
 </ul>
 
-<h3 id='whats_next'>What&#8217;s Next</h3>
+<h3>What&#39;s Next</h3>
 
-<p>For the next month I&#8217;ll be working on an analytics front-end called Skybox. You can watch the <a href='https://github.com/skydb/skybox'>repository on GitHub</a> if you want to follow along. Skybox will be a Sinatra application that gives you a framework for working with behavioral data analysis. It will have some built-in visualizations but also let you easily extend it for your needs.</p>
+<p>For the next month I&#39;ll be working on an analytics front-end called Skybox.
+You can watch the <a href="https://github.com/skydb/skybox">repository on GitHub</a> if you want to follow along.
+Skybox will be a Sinatra application that gives you a framework for working with behavioral data analysis.
+It will have some built-in visualizations but also let you easily extend it for your needs.</p>
 
-<p>Check it out if you&#8217;re interested in seeing some advanced <a href='http://d3js.org/'>D3.js</a> visualization or if you have some behavioral data you want to crunch and understand.</p>
+<p>Check it out if you&#39;re interested in seeing some advanced <a href="http://d3js.org/">D3.js</a> visualization or if you have some behavioral data you want to crunch and understand.</p>
 
-<p>Expect a Sky v0.3.0 release soon after that as well. Skybox will be integrating some machine learning and predictive analytics so I&#8217;ll be adding other workflows and pipelining to the Lua processing besides map/reduce.</p>
+<p>Expect a Sky v0.3.0 release soon after that as well.
+Skybox will be integrating some machine learning and predictive analytics so I&#39;ll be adding other workflows and pipelining to the Lua processing besides map/reduce.</p>
+
         </div>
       </div>
     </div><!-- /container -->

@@ -67,125 +67,198 @@
           
             <h2>Introduction to Behavioral Databases</h2>
           
-          <h3 id='what_is_behavioral_data'>What is Behavioral Data?</h3>
+          <h3>What is Behavioral Data?</h3>
 
-<p>We traditionally think of behavior in terms of actions that people perform but it&#8217;s more than that. It doesn&#8217;t have to be restricted to people &#8211; your dog has behavior and even inanimate objects like your phone behave (or misbehave). The person or thing performing an action is called the Actor.</p>
+<p>We traditionally think of behavior in terms of actions that people perform but
+it&#39;s more than that. It doesn&#39;t have to be restricted to people &ndash; your dog
+has behavior and even inanimate objects like your phone behave (or misbehave).
+The person or thing performing an action is called the Actor.</p>
 
-<p>The definition for behavioral data, in the context of behavioral databases, can be formalized as:</p>
+<p>The definition for behavioral data, in the context of behavioral databases, can
+be formalized as:</p>
 
 <blockquote>
-<p>A series of events related to an actor that describe the actions the actor performed or changes in the actor&#8217;s state across time.</p>
+<p>A series of events related to an actor that describe the actions the actor
+performed or changes in the actor&#39;s state across time.</p>
 </blockquote>
 
-<p>Events are at the heart of behavioral data. An event exists at a specific point in time and can either be an action such as &#8220;Sign Up For Web Site&#8221; or it can be a state change such as &#8220;My hair color is now blue&#8221;.</p>
+<p>Events are at the heart of behavioral data. An event exists at a specific point
+in time and can either be an action such as &ldquo;Sign Up For Web Site&rdquo; or it can
+be a state change such as &ldquo;My hair color is now blue&rdquo;.</p>
 
-<h4 id='visualizing_individual_event_paths'>Visualizing Individual Event Paths</h4>
+<h4>Visualizing Individual Event Paths</h4>
 
-<p>Behavior for a single object can be thought of as events occurring sequentially over time like this e-commerce web site example:</p>
-<center>
-  <img src='/images/introduction-to-behavioral-databases/simple_behavior.png' />
-</center>
-<p>This is simple enough. A person comes to a web site and likes what they see so they sign up. Then they find a product to add to their shopping cart and finally they check out.</p>
+<p>Behavior for a single object can be thought of as events occurring sequentially
+over time like this e-commerce web site example:</p>
 
-<h4 id='visualizing_aggregate_event_paths'>Visualizing Aggregate Event Paths</h4>
+<p><center>
+  <img src="/images/introduction-to-behavioral-databases/simple_behavior.png">
+</center></p>
 
-<p>But looking at one series of events at a time is tedious. Behavioral data is about taking every user&#8217;s series of events and aggregating them to see the big picture. When we aggregate events we produce something called a directed graph that shows the different paths that everyone can take.</p>
-<center>
-  <img src='/images/introduction-to-behavioral-databases/directed_graph.png' />
-</center>
-<p>This graph may look daunting but it tells us some important things about how users behave on this web site. It shows that users coming from a Google search arrive on the home page as well directly land on the product page. We also find that some people that contact tech support will then cancel their account but we also see that contacting tech support can encourage users to eventually buy a product.</p>
+<p>This is simple enough. A person comes to a web site and likes what they see so
+they sign up. Then they find a product to add to their shopping cart and finally
+they check out.</p>
 
-<p>This is a contrived example but gives you an idea of how you can visualize behavior. In a real example, you could find the number of people who performed a series of actions or find the percentage of people who left the site after adding a product to the cart but before checking out.</p>
+<h4>Visualizing Aggregate Event Paths</h4>
 
-<h4 id='applied_behavioral_analysis'>Applied Behavioral Analysis</h4>
+<p>But looking at one series of events at a time is tedious. Behavioral data is
+about taking every user&#39;s series of events and aggregating them to see the big
+picture. When we aggregate events we produce something called a directed graph
+that shows the different paths that everyone can take.</p>
+
+<p><center>
+  <img src="/images/introduction-to-behavioral-databases/directed_graph.png">
+</center></p>
+
+<p>This graph may look daunting but it tells us some important things about how
+users behave on this web site. It shows that users coming from a Google search
+arrive on the home page as well directly land on the product page. We also find
+that some people that contact tech support will then cancel their account but
+we also see that contacting tech support can encourage users to eventually buy
+a product.</p>
+
+<p>This is a contrived example but gives you an idea of how you can visualize
+behavior. In a real example, you could find the number of people who
+performed a series of actions or find the percentage of people who left the
+site after adding a product to the cart but before checking out.</p>
+
+<h4>Applied Behavioral Analysis</h4>
 
 <p>We can also aggregate behavioral data to answer questions such as:</p>
 
 <ol>
 <li>How are people using my web site?</li>
-
 <li>What types of people purchase what products?</li>
-
-<li>How do people&#8217;s behavior change over time?</li>
-
+<li>How do people&#39;s behavior change over time?</li>
 <li>What information can I derive about users based on how they act?</li>
-
 <li>Can I predict what a user will do based on their past actions?</li>
 </ol>
 
-<p>These types of questions are critical to how businesses and organizations make decisions and how they interact with their customers.</p>
+<p>These types of questions are critical to how businesses and organizations make
+decisions and how they interact with their customers.</p>
 
-<h3 id='why_another_database'>Why Another Database?</h3>
+<h3>Why Another Database?</h3>
 
-<p>You may be wondering why you couldn&#8217;t use an existing database technology to store this type of information. Relational databases have been around for years, BigTable implementations are able to scale to use large sets of data, and software like Hadoop is flexible enough to batch process and query any type of data.</p>
+<p>You may be wondering why you couldn&#39;t use an existing database technology to
+store this type of information. Relational databases have been around for years,
+BigTable implementations are able to scale to use large sets of data, and
+software like Hadoop is flexible enough to batch process and query any type of
+data.</p>
 
-<p>These are all options. However, they all suffer from a common problem: <em>they are too general</em>. Behavioral data has some special properties that traditional databases can&#8217;t take advantage of and behavioral data is a common enough use case that it deserves its own database.</p>
+<p>These are all options. However, they all suffer from a common problem: <em>they
+are too general</em>. Behavioral data has some special properties that traditional
+databases can&#39;t take advantage of and behavioral data is a common enough use
+case that it deserves its own database.</p>
 
-<h4 id='transactions__locks__slow'>Transactions &amp; Locks = Slow</h4>
+<h4>Transactions &amp; Locks = Slow</h4>
 
-<p>Relational databases require transactions and locks to ensure that multiple processes don&#8217;t update the same data at the same time. In a sense, a relational database is the data authority for many software systems because data change doesn&#8217;t happen until the database says it does.</p>
+<p>Relational databases require transactions and locks to ensure that multiple
+processes don&#39;t update the same data at the same time. In a sense, a relational
+database is the data authority for many software systems because data change
+doesn&#39;t happen until the database says it does. </p>
 
-<p>Behavioral data is different. Actions stored in the database have already happened which means that events are independent of one another. Because of this, behavioral databases can remove costly transactions and locks.</p>
+<p>Behavioral data is different. Actions stored in the database have already
+happened which means that events are independent of one another. Because of
+this, behavioral databases can remove costly transactions and locks.</p>
 
-<h4 id='optimized_storage'>Optimized Storage</h4>
+<h4>Optimized Storage</h4>
 
-<p>Some NoSQL databases do not require transactions or locks but are slow for behavioral data processing because of something called <a href='http://en.wikipedia.org/wiki/Locality_of_reference'>Spacial Locality</a>. Spacial locality means that related data is stored nearby. It is important because of how computers retrieve data from the hard disk and memory.</p>
+<p>Some NoSQL databases do not require transactions or locks but are slow for 
+behavioral data processing because of something called
+<a href="http://en.wikipedia.org/wiki/Locality_of_reference">Spacial Locality</a>.
+Spacial locality means that related data is stored nearby. It is important
+because of how computers retrieve data from the hard disk and memory.</p>
 
-<p>Below is a diagram of how a traditional database would store multiple events for a single actor on a hard disk.</p>
-<center>
-  <img src='/images/introduction-to-behavioral-databases/traditional_db_storage.png' />
-</center>
-<p>Events are be stored where ever there was room at the time they were added. This means that when you want to query the events for an actor later on, the database has search several places to find all the relevant events.</p>
+<p>Below is a diagram of how a traditional database would store multiple events
+for a single actor on a hard disk.</p>
 
-<p>However, in a behavioral database, events are clustered together so data access is a single lookup:</p>
-<center>
-  <img src='/images/introduction-to-behavioral-databases/behavioral_db_storage.png' />
-</center>
-<h4 id='actions_as_a_first_class_citizen'>Actions as a First Class Citizen</h4>
+<p><center>
+  <img src="/images/introduction-to-behavioral-databases/traditional_db_storage.png">
+</center></p>
 
-<p>Some databases such as Google&#8217;s BigTable do cluster related data together. This makes data access fast but these databases are still only meant to track state change. There is no concept of an action. Because of this, there is no language to describe or query actions and there is no standard way to store an action.</p>
+<p>Events are be stored where ever there was room at the time they were added. This
+means that when you want to query the events for an actor later on, the database
+has search several places to find all the relevant events.</p>
 
-<p>Many people use Hadoop to process log files (which are in a sense just a list of actions). Hadoop is extremely flexible but also requires advanced programming knowledge to write complex behavioral queries or to track actor state over time. A behavioral database, on the other hand, makes it natural to deal with these types of queries and to work with actor state-in-time.</p>
+<p>However, in a behavioral database, events are clustered together so data access
+is a single lookup:</p>
 
-<h4 id='behavioral_data_is_big_business'>Behavioral Data is Big Business</h4>
+<p><center>
+  <img src="/images/introduction-to-behavioral-databases/behavioral_db_storage.png">
+</center></p>
 
-<p>It&#8217;s obvious that there is demand for behavioral analytics. Google Analytics is used by <a href='http://w3techs.com/technologies/overview/traffic_analysis/all'>55.8% of all web sites</a>. Companies pay thousands of dollars to companies like <a href='http://www.omniture.com'>Omniture</a>, <a href='http://mixpanel.com'>MixPanel</a> or <a href='http://kissmetrics.com/'>KISSMetrics</a> to find out what their users are doing.</p>
+<h4>Actions as a First Class Citizen</h4>
 
-<p>But behavioral analytics is still in its infancy. Tools are typically limited to showing basic user flows and some segmentation. Furthermore, while some companies such as <a href='http://mixpanel.com'>MixPanel</a> have built their own data stores for behavioral data, there has not been an open source implementation available.</p>
+<p>Some databases such as Google&#39;s BigTable do cluster related data together. This
+makes data access fast but these databases are still only meant to track state
+change. There is no concept of an action. Because of this, there is no language
+to describe or query actions and there is no standard way to store an action.</p>
 
-<h3 id='sky_the_open_source_behavioral_database'>Sky, The Open Source Behavioral Database</h3>
+<p>Many people use Hadoop to process log files (which are in a sense just a list of
+actions). Hadoop is extremely flexible but also requires advanced programming
+knowledge to write complex behavioral queries or to track actor state over time.
+A behavioral database, on the other hand, makes it natural to deal with these
+types of queries and to work with actor state-in-time.</p>
 
-<p><a href='https://github.com/skydb/sky'>Sky</a> is an in-development implementation of a behavioral database. It has two primary goals. It&#8217;s first goal is to provide high performance insertion and aggregation of evented data. The project is still early in development but it can already aggregate a <a href='http://en.wikipedia.org/wiki/Directed_graph'>directed graph</a> of events at the rate of <strong>45 million events per second on a single core</strong>. That&#8217;s snappy.</p>
+<h4>Behavioral Data is Big Business</h4>
 
-<p>The second goal of the Sky behavioral database is to provide a query language to aggregate and extract knowledge from event paths easily. The language needs to be fast enough to process the millions (or billions) of events that organizations see generated every day. It also needs to be flexible enough to work with events and their relation to other events in order to derive meaningful information. Sky&#8217;s language is called <em>EQL</em> (Event Query Language) and is currently in development.</p>
+<p>It&#39;s obvious that there is demand for behavioral analytics. Google Analytics is
+used by <a href="http://w3techs.com/technologies/overview/traffic_analysis/all">55.8% of all web
+sites</a>. Companies
+pay thousands of dollars to companies like <a href="http://www.omniture.com">Omniture</a>,
+<a href="http://mixpanel.com">MixPanel</a> or <a href="http://kissmetrics.com/">KISSMetrics</a> to
+find out what their users are doing.</p>
 
-<h3 id='next_steps'>Next Steps</h3>
+<p>But behavioral analytics is still in its infancy. Tools are typically limited to
+showing basic user flows and some segmentation. Furthermore, while some
+companies such as <a href="http://mixpanel.com">MixPanel</a> have built their own data
+stores for behavioral data, there has not been an open source implementation
+available.</p>
 
-<p>The Sky database is still an early project but there are exciting things coming. This blog is being maintained as development progresses to allow people to better understand the function of behavioral databases as well as to allow them to contribute their ideas back.</p>
+<h3>Sky, The Open Source Behavioral Database</h3>
 
-<p>An alpha version of the server will be released soon and client libraries will be provided soon after. The EQL language will be implemented next and then multi-core and multi-node distribution will follow.</p>
+<p><a href="https://github.com/skydb/sky">Sky</a> is an in-development implementation
+of a behavioral database. It has two primary goals. It&#39;s first goal is to
+provide high performance insertion and aggregation of evented data. The project
+is still early in development but it can already aggregate a
+<a href="http://en.wikipedia.org/wiki/Directed_graph">directed graph</a> of
+events at the rate of <strong>45 million events per second on a single core</strong>. That&#39;s
+snappy.</p>
 
-<p>We&#8217;ll be writing about some interesting topics on Sky in the future including:</p>
+<p>The second goal of the Sky behavioral database is to provide a query language
+to aggregate and extract knowledge from event paths easily. The language needs
+to be fast enough to process the millions (or billions) of events that
+organizations see generated every day. It also needs to be flexible enough to
+work with events and their relation to other events in order to derive
+meaningful information. Sky&#39;s language is called <em>EQL</em> (Event Query Language) and
+is currently in development.</p>
+
+<h3>Next Steps</h3>
+
+<p>The Sky database is still an early project but there are exciting things coming.
+This blog is being maintained as development progresses to allow people to
+better understand the function of behavioral databases as well as to allow them
+to contribute their ideas back.</p>
+
+<p>An alpha version of the server will be released soon and client libraries will
+be provided soon after. The EQL language will be implemented next and then
+multi-core and multi-node distribution will follow.</p>
+
+<p>We&#39;ll be writing about some interesting topics on Sky in the future including:</p>
 
 <ol>
 <li>Linear Scalability</li>
-
 <li>Query Deltas</li>
-
 <li>Real-time Queries</li>
-
 <li>Implicit Actions &amp; Implicit State</li>
-
 <li>Event Aging</li>
-
 <li>Applying Machine Learning to Behavioral Analysis</li>
-
 <li>Low-Level Implementation Details</li>
-
 <li>Applications for Behavioral Analysis</li>
 </ol>
 
-<p>To see the status of Sky or to contribute to it please visit the <a href='https://github.com/skydb/sky'>Sky GitHub project page</a>.</p>
+<p>To see the status of Sky or to contribute to it please visit the <a href="https://github.com/skydb/sky">Sky GitHub project page</a>.</p>
+
         </div>
       </div>
     </div><!-- /container -->

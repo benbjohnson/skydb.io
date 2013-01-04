@@ -59,9 +59,9 @@
               </a>
             </li>
             <li class="">
-              <a href="/blog.html">Blog</a>
+              <a href="/blog">Blog</a>
             </li>
-            <li><a class="disable hidden-phone" href="/sky-0.2.0.tar.gz">Download</a></li>
+            <li><a class="disable hidden-phone" href="/sky-0.2.1.tar.gz">Download</a></li>
             <li>
               <a href="https://github.com/skydb/sky">
                 <span class="hidden-phone">Repository</span>
@@ -81,96 +81,101 @@
           
             <h2>The Basics</h2>
           
-          <h3 id='collecting_events'>Collecting Events</h3>
+          <h3>Collecting Events</h3>
 
-<p>The Sky client library is simple. You can store events and you can aggregate the events. To store an event using the Ruby library simply call <code>add_event()</code>:</p>
+<p>The Sky client library is simple.
+You can store events and you can aggregate the events.
+To store an event using the Ruby library simply call <code>add_event()</code>:</p>
+<div class="highlight"><pre><span class="no">SkyDB</span><span class="o">.</span><span class="n">table_name</span> <span class="o">=</span> <span class="s1">&#39;customers&#39;</span>
 
-<pre><code>SkyDB.table_name = &#39;customers&#39;
+<span class="no">SkyDB</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span>
+  <span class="kp">new</span> <span class="no">Event</span><span class="p">(</span>
+    <span class="ss">:object_id</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="ss">:timestamp</span> <span class="o">=&gt;</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span>
+    <span class="ss">:action</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">&#39;purchase&#39;</span><span class="p">,</span>
+      <span class="ss">:purchase_amount</span> <span class="o">=&gt;</span> <span class="mi">9</span><span class="o">.</span><span class="mi">95</span><span class="p">,</span>
+      <span class="ss">:referrer_url</span> <span class="o">=&gt;</span> <span class="s1">&#39;google.com&#39;</span>
+    <span class="p">},</span>
+    <span class="ss">:data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="ss">:first_name</span> <span class="o">=&gt;</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+      <span class="ss">:last_name</span> <span class="o">=&gt;</span> <span class="s1">&#39;Doe&#39;</span><span class="p">,</span>
+      <span class="ss">:rewards_member</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+<p>In this example, we&#39;re tracking a purchase just made by <code>John Doe</code> who&#39;s customer id is <code>10</code> in our database.
+The <code>object_id</code> can be any number but typically it is the primary key from your production database table.
+The <code>action</code> object shows that this is a <code>purchase</code> for $9.95 and the customer was referred from Google.
+The <code>name</code> is the only action field required.
+The other action properties will be added automatically if they don&#39;t already exist.</p>
 
-SkyDB.add_event(
-  new Event(
-    :object_id =&gt; 10,
-    :timestamp =&gt; DateTime.now(),
-    :action =&gt; {
-      :name =&gt; &#39;purchase&#39;,
-      :purchase_amount =&gt; 9.95,
-      :referrer_url =&gt; &#39;google.com&#39;
-    },
-    :data =&gt; {
-      :first_name =&gt; &#39;John&#39;,
-      :last_name =&gt; &#39;Doe&#39;,
-      :rewards_member =&gt; true
-    }
-  )
-)</code></pre>
+<p>The <code>data</code> object tracks information specifically about our customer. 
+This customer&#39;s name is <code>John Doe</code> and he is currently a rewards member.
+Sky is smart about saving this data so if Sky already knew that this customer&#39;s name was John Doe at this point in time then it wouldn&#39;t save it again.
+However, if Sky detects that this customer was previously not a rewards member then Sky will store the <code>rewards_member</code> property value for this customer at this point in time.
+Sky only saves the data deltas for object properties.</p>
 
-<p>In this example, we&#8217;re tracking a purchase just made by <code>John Doe</code> who&#8217;s customer id is <code>10</code> in our database. The <code>object_id</code> can be any number but typically it is the primary key from your production database table. The <code>action</code> object shows that this is a <code>purchase</code> for $9.95 and the customer was referred from Google. The <code>name</code> is the only action field required. The other action properties will be added automatically if they don&#8217;t already exist.</p>
+<h3>Property Types</h3>
 
-<p>The <code>data</code> object tracks information specifically about our customer. This customer&#8217;s name is <code>John Doe</code> and he is currently a rewards member. Sky is smart about saving this data so if Sky already knew that this customer&#8217;s name was John Doe at this point in time then it wouldn&#8217;t save it again. However, if Sky detects that this customer was previously not a rewards member then Sky will store the <code>rewards_member</code> property value for this customer at this point in time. Sky only saves the data deltas for object properties.</p>
-
-<h3 id='property_types'>Property Types</h3>
-
-<p>Each property on a table has a data type and is marked as being an action property or an object property. Object properties will maintain their state over time whereas the value of action properties only exist at the time of the action.</p>
+<p>Each property on a table has a data type and is marked as being an action property or an object property.
+Object properties will maintain their state over time whereas the value of action properties only exist at the time of the action.</p>
 
 <p>The following property data types exist:</p>
 
 <ul>
 <li>String</li>
-
 <li>Integer</li>
-
 <li>Double</li>
-
 <li>Boolean</li>
 </ul>
 
-<p>When you add an event with a property that doesn&#8217;t exist, Sky will automatically add it and set it&#8217;s property data type based on the value provided. If you&#8217;d like more control over properties and actions, you can use the <code>add_action()</code> and <code>add_property()</code> methods on the <code>SkyDB</code> object.</p>
+<p>When you add an event with a property that doesn&#39;t exist, Sky will automatically add it and set it&#39;s property data type based on the value provided.
+If you&#39;d like more control over properties and actions, you can use the <code>add_action()</code> and <code>add_property()</code> methods on the <code>SkyDB</code> object.</p>
 
-<h3 id='aggregating_data'>Aggregating Data</h3>
+<h3>Aggregating Data</h3>
 
-<p>Once you have events in your database you can aggregate them using the handy Lua map/reduce framework. <a href='http://www.lua.org/'>Lua</a> is a simple, embeddable language that is compiled and optimized into machine code on the fly making it extremely fast.</p>
+<p>Once you have events in your database you can aggregate them using the handy Lua aggregation framework.
+<a href="http://www.lua.org/">Lua</a> is a simple, embeddable language that is compiled and optimized into machine code on the fly making it extremely fast.</p>
 
-<p>In this example, we&#8217;ll start with something simple. We&#8217;ll aggregate the total number of purchases and the total amount of purchases. We can pass this script into <code>SkyDB.lua_map_reduce()</code> and the result from the <code>reduce()</code> function below will be returned to Ruby:</p>
+<p>In this example, we&#39;ll start with something simple.
+We&#39;ll aggregate the total number of purchases and the total amount of purchases.
+We can pass this script into <code>SkyDB.aggregate()</code> and the contents of the <code>data</code> variable will be passed back to Ruby:</p>
+<div class="highlight"><pre><span class="k">function</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+  <span class="n">event</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">:</span><span class="n">event</span><span class="p">()</span>
+  <span class="n">data</span><span class="p">.</span><span class="n">purchase_amount</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">purchase_amount</span> <span class="ow">or</span> <span class="mi">0</span>
+  <span class="n">data</span><span class="p">.</span><span class="n">purchase_count</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">purchase_count</span> <span class="ow">or</span> <span class="mi">0</span>
 
-<pre><code>function map(cursor, data)
-  data.purchase_amount = data.purchase_amount or 0
-  data.purchase_count = data.purchase_count or 0
+  <span class="k">while</span> <span class="n">cursor</span><span class="p">:</span><span class="nb">next</span><span class="p">()</span> <span class="k">do</span>
+    <span class="c1">-- The &#39;purchase&#39; action id needs to be retrieved before generating the script.</span>
+    <span class="c1">-- Let&#39;s assume that we know it is &#39;2&#39;.</span>
+    <span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="n">action_id</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">then</span>
+      <span class="n">data</span><span class="p">.</span><span class="n">purchase_amount</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">purchase_amount</span> <span class="o">+</span> <span class="n">event</span><span class="p">.</span><span class="n">purchase_amount</span>
+      <span class="n">data</span><span class="p">.</span><span class="n">purchase_count</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">purchase_count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<p>In this example, our <code>aggregate()</code> function will retrieve a <code>cursor</code> for each object in the table.
+The <code>data</code> object passed in is a Lua table that lets us store a hash of data.
+Here we are storing the total purchase amount and the total number of purchases.</p>
 
-  while not cursor:eof() do
-    event = cursor:event()
+<p>Next, we loop over the cursor.
+Each time we loop in the cursor we get the next event for an object so we can process the full history of state and actions for an object.
+In this example, we&#39;re hard coding the action identifier for the <code>purchase</code> action.
+In your application you would typically look this up and insert it into the Lua script.
+If so, we&#39;ll add the purchase amount to the total and we&#39;ll increment our counter on the <code>data</code> object.</p>
 
-    -- The &#39;purchase&#39; action id needs to be retrieved before generating the script.
-    -- Let&#39;s assume that we know it is &#39;2&#39;.
-    if event.action_id == 2 then
-      data.purchase_amount = data.purchase_amount + event.purchase_amount
-      data.purchase_count = data.purchase_count + 1
-    end
+<p>The <code>data</code> variable can be structured however you want.
+The variable will be serialized into MessagePack format so that it can be sent to Ruby in the same format.</p>
 
-    cursor:next()
-  end
-end
+<p>In the next section, we&#39;ll talk more in detail about how Lua integrates with Sky.</p>
 
-function reduce(results, data)
-  result.purchase_amount = result.purchase_amount || 0
-  result.purchase_count = result.purchase_count || 0
-  
-  for k,v in pairs(data) do
-    results.purchase_amount = results.purchase_amount + data.purchase_amount
-    results.purchase_count = results.purchase_count + data.purchase_count
-  end
-  return results
-end</code></pre>
+<p><br/>
+<a href="architecture.html">« Prev <span class="hidden-phone">(The Sky Architecture)</span></a>
+<span class="pull-right"><a href="lua.html">Next <span class="hidden-phone">(Data Processing Using Lua)</span> »</a></span></p>
 
-<p>In this example, our <code>map()</code> function will retrieve a <code>cursor</code> for each object in the table. The <code>data</code> object passed in is a Lua table that lets us store a hash of data. Here we are storing the total purchase amount and the total number of purchases.</p>
-
-<p>Next, we loop over the cursor. Each time we loop in the cursor we get the next event for an object so we can process the full history of state and actions for an object. In this example, we&#8217;re hard coding the action identifier for the <code>purchase</code> action. In your application you would typically look this up and insert it into the Lua script. If so, we&#8217;ll add the purchase amount to the total and we&#8217;ll increment our counter on the <code>data</code> object.</p>
-
-<p>The table is split up into groups and each object is processed independently. The <code>reduce()</code> function takes care of combining all that data together. The <code>results</code> argument keeps a running total across all <code>reduce()</code> calls. The <code>data</code> argument here is the <code>data</code> variable calculated in the <code>map()</code> function. Here we simply sum up all the purchase amounts and counts from the map functions into a final <code>results</code> function.</p>
-
-<p>This <code>results</code> variable is then serialized and sent to the Ruby client. It can be any data structure you want: a hash, an array, a hash of hashes, etc.</p>
-
-<p>In the next section, we&#8217;ll talk more in detail about how Lua integrates with Sky.</p>
-<br /><a href='architecture.html'>« Prev <span class='hidden-phone'>(The Sky Architecture)</span></a><span class='pull-right'><a href='lua.html'>Next <span class='hidden-phone'>(Data Processing Using Lua)</span> »</a></span>
         </div>
       </div>
     </div><!-- /container -->

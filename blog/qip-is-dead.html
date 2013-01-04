@@ -67,33 +67,47 @@
           
             <h2>Qip is Dead, Long Live Qip</h2>
           
-          <h3 id='a_short_history'>A Short History</h3>
+          <h3>A Short History</h3>
 
-<p>When I first started writing Sky I wanted to make a language that was as fast as C but was dynamic and integrated into the data model. So at the beginning of May 2012, I started writing a language called EQL (Event Query Language). As it turns out, there&#8217;s already a language with this name so the name was changed to Qip.</p>
+<p>When I first started writing Sky I wanted to make a language that was as fast as C but was dynamic and integrated into the data model.
+So at the beginning of May 2012, I started writing a language called EQL (Event Query Language).
+As it turns out, there&#39;s already a language with this name so the name was changed to Qip.</p>
 
-<p>After five months of development, Qip turned out to be pretty awesome. By using LLVM it was as fast as C. It used metadata to dynamically generate things like MessagePack serialization methods for classes. And it integrated into Sky pretty nicely by binding structs directly to the underlying data file.</p>
+<p>After five months of development, Qip turned out to be pretty awesome.
+By using LLVM it was as fast as C.
+It used metadata to dynamically generate things like MessagePack serialization methods for classes.
+And it integrated into Sky pretty nicely by binding structs directly to the underlying data file.</p>
 
 <p>But last week I realized that I had to take Qip out of the first release of Sky.</p>
 
-<h3 id='too_much_too_soon'>Too Much, Too Soon</h3>
+<h3>Too Much, Too Soon</h3>
 
 <p>Two things made me realize that Qip need to be removed:</p>
 
 <ol>
 <li>80% of behavioral analysis can be rolled into prebuilt, parameterized functions.</li>
-
 <li>Early releases need to focus on stability, not flexibility.</li>
 </ol>
 
-<p>Behavioral analysis typically centers around understanding what someone is going to do next, how their actions flow over time and segmentation. People do this with DAGs, Sankey diagrams, cohort analysis, etc. These types of analysis are relatively easy to understand and don&#8217;t require a new language to compute. These generic features are being built directly in Sky as parameterized functions.</p>
+<p>Behavioral analysis typically centers around understanding what someone is going to do next, how their actions flow over time and segmentation.
+People do this with DAGs, Sankey diagrams, cohort analysis, etc.
+These types of analysis are relatively easy to understand and don&#39;t require a new language to compute.
+These generic features are being built directly in Sky as parameterized functions.</p>
 
-<p>The other problem with Qip is complexity. Building a database from scratch is complex enough &#8211; you don&#8217;t need to add anymore. Especially not for the initial release.</p>
+<p>The other problem with Qip is complexity.
+Building a database from scratch is complex enough &ndash; you don&#39;t need to add anymore.
+Especially not for the initial release.</p>
 
-<h3 id='the_future_of_qip'>The Future of Qip</h3>
+<h3>The Future of Qip</h3>
 
-<p>Qip is not dead. It&#8217;s just in an indefinite slumber. Once Sky stabilizes more and the module API gets fleshed out then I will reconsider integrating it. Qip is not the only option on the table though. Google&#8217;s V8 JavaScript engine could integrate well and Lua could be used instead.</p>
+<p>Qip is not dead.
+It&#39;s just in an indefinite slumber.
+Once Sky stabilizes more and the module API gets fleshed out then I will reconsider integrating it.
+Qip is not the only option on the table though.
+Google&#39;s V8 JavaScript engine could integrate well and Lua could be used instead.</p>
 
 <p>However, for now, Sky is moving forward with a simpler API and no Qip.</p>
+
         </div>
       </div>
     </div><!-- /container -->

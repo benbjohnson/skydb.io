@@ -5,10 +5,53 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2012-12-12T00:00:00Z</updated>
+  <updated>2013-01-04T00:00:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Sky v0.2.1 Released</title>
+    <link rel="alternate" href="/blog/sky-v0-2-1.html"/>
+    <id>/blog/sky-v0-2-1.html</id>
+    <published>2013-01-04T00:00:00Z</published>
+    <updated>2013-01-04T00:00:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
+
+&lt;p&gt;Sky version 0.2.1 has been released.
+You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
+There are a lot of features that make data analysis easier:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The Lua API has been simplified so you just have to implement an &lt;code&gt;aggregate()&lt;/code&gt; method instead of a &lt;code&gt;map()&lt;/code&gt; and &lt;code&gt;reduce()&lt;/code&gt; method.&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+    <content type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
+
+&lt;p&gt;Sky version 0.2.1 has been released.
+You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
+There are a lot of features that make data analysis easier:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The Lua API has been simplified so you just have to implement an &lt;code&gt;aggregate()&lt;/code&gt; method instead of a &lt;code&gt;map()&lt;/code&gt; and &lt;code&gt;reduce()&lt;/code&gt; method.
+You can see examples of this througout the &lt;a href="/docs"&gt;docs&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Session support has been added!
+Now you can demarcate sessions by idle time so you can do event analysis in the context of a session.
+You can read about it on the &lt;a href="/docs/session.html"&gt;Aggregating Sessions&lt;/a&gt; page.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;a href="https://github.com/benbjohnson/bandicoot"&gt;Bandicoot&lt;/a&gt; crash reporting library has been added to the server.
+If you experience crashes with Sky then please copy and paste the crash report and &lt;a href="https://github.com/skydb/sky/issues"&gt;submit a ticket on GitHub&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Added a &lt;code&gt;SkyDB.ping()&lt;/code&gt; method to the Ruby API to check whether the server is up and running. (Thanks &lt;a href="https://github.com/emiddleton"&gt;@emiddleton&lt;/a&gt;!)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;What&amp;#39;s Next&lt;/h3&gt;
+
+&lt;p&gt;Starting in mid-January I&amp;#39;ll be leaving my job to start a company called Skyland Labs that is devoted to the development of Sky.
+Expect to see a lot more activity on the project going forward.
+2013 will be an exciting year for Sky.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Sky v0.2.0 Released</title>
     <link rel="alternate" href="/blog/sky-v0-2-0.html"/>
@@ -18,42 +61,46 @@
     <author>
       <name>Article Author</name>
     </author>
-    <summary type="html">&lt;h3 id='whats_new'&gt;What&amp;#8217;s New?&lt;/h3&gt;
+    <summary type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
 
-&lt;p&gt;Sky version 0.2.0 has been released. You can download it from the main &lt;a href='/'&gt;Sky web site&lt;/a&gt;. A lot has gone into this release but there are a few areas that are especially important:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;span&gt;LuaJIT&lt;/span&gt; has been integrated so you can now run map/reduce across your data on the fly.&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    <content type="html">&lt;h3 id='whats_new'&gt;What&amp;#8217;s New?&lt;/h3&gt;
-
-&lt;p&gt;Sky version 0.2.0 has been released. You can download it from the main &lt;a href='/'&gt;Sky web site&lt;/a&gt;. A lot has gone into this release but there are a few areas that are especially important:&lt;/p&gt;
+&lt;p&gt;Sky version 0.2.0 has been released.
+You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
+A lot has gone into this release but there are a few areas that are especially important:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href='http://luajit.org/'&gt;LuaJIT&lt;/a&gt; has been integrated so you can now run map/reduce across your data on the fly.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;[LuaJIT][] has been integrated so you can now run map/reduce across your data on the fly.&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+    <content type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
 
-&lt;li&gt;
-&lt;p&gt;&lt;a href='http://code.google.com/p/leveldb/'&gt;LevelDB&lt;/a&gt; replaced the previous data store. LevelDB is a solid key-value store that was written by the famous Googlers, Jeff Dean and Sanjay Ghemawat. I originally wrote Sky with a custom in-memory data store for performance. However, after some testing with LevelDB I found that the performance cost could be amortized and Sky is still crunching tens of millions of events per second per core. Not too shabby.&lt;/p&gt;
-&lt;/li&gt;
+&lt;p&gt;Sky version 0.2.0 has been released.
+You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
+A lot has gone into this release but there are a few areas that are especially important:&lt;/p&gt;
 
-&lt;li&gt;
-&lt;p&gt;Sky now compiles without warnings on Ubuntu &amp;amp; GCC. I&amp;#8217;m also working on testing other Linux distributions.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;Stability was a big focus with this release as well.&lt;/p&gt;
-&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="http://luajit.org/"&gt;LuaJIT&lt;/a&gt; has been integrated so you can now run map/reduce across your data on the fly.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="http://code.google.com/p/leveldb/"&gt;LevelDB&lt;/a&gt; replaced the previous data store.
+LevelDB is a solid key-value store that was written by the famous Googlers, Jeff Dean and Sanjay Ghemawat.
+I originally wrote Sky with a custom in-memory data store for performance.
+However, after some testing with LevelDB I found that the performance cost could be amortized and Sky is still crunching tens of millions of events per second per core.
+Not too shabby.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Sky now compiles without warnings on Ubuntu &amp;amp; GCC.
+I&amp;#39;m also working on testing other Linux distributions.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Stability was a big focus with this release as well.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id='whats_next'&gt;What&amp;#8217;s Next&lt;/h3&gt;
+&lt;h3&gt;What&amp;#39;s Next&lt;/h3&gt;
 
-&lt;p&gt;For the next month I&amp;#8217;ll be working on an analytics front-end called Skybox. You can watch the &lt;a href='https://github.com/skydb/skybox'&gt;repository on GitHub&lt;/a&gt; if you want to follow along. Skybox will be a Sinatra application that gives you a framework for working with behavioral data analysis. It will have some built-in visualizations but also let you easily extend it for your needs.&lt;/p&gt;
+&lt;p&gt;For the next month I&amp;#39;ll be working on an analytics front-end called Skybox.
+You can watch the &lt;a href="https://github.com/skydb/skybox"&gt;repository on GitHub&lt;/a&gt; if you want to follow along.
+Skybox will be a Sinatra application that gives you a framework for working with behavioral data analysis.
+It will have some built-in visualizations but also let you easily extend it for your needs.&lt;/p&gt;
 
-&lt;p&gt;Check it out if you&amp;#8217;re interested in seeing some advanced &lt;a href='http://d3js.org/'&gt;D3.js&lt;/a&gt; visualization or if you have some behavioral data you want to crunch and understand.&lt;/p&gt;
+&lt;p&gt;Check it out if you&amp;#39;re interested in seeing some advanced &lt;a href="http://d3js.org/"&gt;D3.js&lt;/a&gt; visualization or if you have some behavioral data you want to crunch and understand.&lt;/p&gt;
 
-&lt;p&gt;Expect a Sky v0.3.0 release soon after that as well. Skybox will be integrating some machine learning and predictive analytics so I&amp;#8217;ll be adding other workflows and pipelining to the Lua processing besides map/reduce.&lt;/p&gt;</content>
+&lt;p&gt;Expect a Sky v0.3.0 release soon after that as well.
+Skybox will be integrating some machine learning and predictive analytics so I&amp;#39;ll be adding other workflows and pipelining to the Lua processing besides map/reduce.&lt;/p&gt;
+</content>
   </entry>
   <entry>
     <title>Sky Roadmap 2012</title>
@@ -64,26 +111,52 @@
     <author>
       <name>Article Author</name>
     </author>
-    <summary type="html">&lt;h3 id='project_status'&gt;Project Status&lt;/h3&gt;
+    <summary type="html">&lt;h3&gt;Project Status&lt;/h3&gt;
 
-&lt;p&gt;Sky has come a long way this past year: It saw its first official v0.1.0 release. A custom query language called Qip was written for it (and then removed). And finally, multicore distribution was added to allow linear scalability on each core.&lt;/p&gt;</summary>
-    <content type="html">&lt;h3 id='project_status'&gt;Project Status&lt;/h3&gt;
+&lt;p&gt;Sky has come a long way this past year: It saw its first official v0.1.0
+release. A custom query language called Qip was written for it (and then
+removed). And finally, multicore distribution was added to allow linear
+scalability on each core.&lt;/p&gt;
+</summary>
+    <content type="html">&lt;h3&gt;Project Status&lt;/h3&gt;
 
-&lt;p&gt;Sky has come a long way this past year: It saw its first official v0.1.0 release. A custom query language called Qip was written for it (and then removed). And finally, multicore distribution was added to allow linear scalability on each core.&lt;/p&gt;
+&lt;p&gt;Sky has come a long way this past year: It saw its first official v0.1.0
+release. A custom query language called Qip was written for it (and then
+removed). And finally, multicore distribution was added to allow linear
+scalability on each core.&lt;/p&gt;
 
 &lt;p&gt;But that begs the question, what’s next for Sky?&lt;/p&gt;
 
-&lt;h3 id='the_rest_of_the_year'&gt;The Rest of the Year&lt;/h3&gt;
+&lt;h3&gt;The Rest of the Year&lt;/h3&gt;
 
-&lt;p&gt;Sky is still an early project so I’m not making projections too far out. However, there are still some awesome features coming down the pipe for the rest of the year.&lt;/p&gt;
+&lt;p&gt;Sky is still an early project so I’m not making projections too far out.
+However, there are still some awesome features coming down the pipe for
+the rest of the year.&lt;/p&gt;
 
-&lt;p&gt;First, Sky will be adding Lua support via the &lt;a href='http://luajit.org/'&gt;LuaJIT&lt;/a&gt; project. LuaJIT is an awesome project that allows for dynamic scripting that is compiled down to machine code at runtime. It’s widely recognized as one of the fastest dynamic languages available and allows for direct interface with C code and data.&lt;/p&gt;
+&lt;p&gt;First, Sky will be adding Lua support via the &lt;a href="http://luajit.org/"&gt;LuaJIT&lt;/a&gt; project. LuaJIT
+is an awesome project that allows for dynamic scripting that is compiled
+down to machine code at runtime. It’s widely recognized as one of the
+fastest dynamic languages available and allows for direct interface with
+C code and data.&lt;/p&gt;
 
-&lt;p&gt;Second, I’m going to be starting an open source analytics project using Rails that is backed by Sky. You can think of it as an open source version of &lt;a href='http://www.google.com/analytics/'&gt;Google Analytics&lt;/a&gt; or &lt;a href='https://mixpanel.com/'&gt;MixPanel&lt;/a&gt;. Those are both awesome products but unfortunately you give up a lot of flexibility and ownership of your data when you use them. There are some open source tools available such as &lt;a href='http://piwik.org/'&gt;Piwik&lt;/a&gt; but they only provide basic hit counters for your pages. With the speed and flexibility of Sky, I believe you can do powerful analytics like funnel analysis, cohort analysis and more.&lt;/p&gt;
+&lt;p&gt;Second, I’m going to be starting an open source analytics project using
+Rails that is backed by Sky. You can think of it as an open source
+version of &lt;a href="http://www.google.com/analytics/"&gt;Google Analytics&lt;/a&gt; or &lt;a href="https://mixpanel.com/"&gt;MixPanel&lt;/a&gt;. Those are both awesome
+products but unfortunately you give up a lot of flexibility and
+ownership of your data when you use them. There are some open source
+tools available such as &lt;a href="http://piwik.org/"&gt;Piwik&lt;/a&gt; but they only provide basic hit
+counters for your pages. With the speed and flexibility of Sky, I
+believe you can do powerful analytics like funnel analysis, cohort
+analysis and more.&lt;/p&gt;
 
-&lt;h3 id='suggestions'&gt;Suggestions&lt;/h3&gt;
+&lt;h3&gt;Suggestions&lt;/h3&gt;
 
-&lt;p&gt;I’d love to hear some suggestions as to what other features you’d like to see in Sky or the new Sky analytics tool. There are also tentative plans for &lt;a href='http://code.google.com/p/v8/'&gt;V8&lt;/a&gt; to query using JavaScript and &lt;a href='http://julialang.org/'&gt;Julia&lt;/a&gt; to query using statistical computing. Feel free to add a comment below or e-mail the mailing list at &lt;a href='mailto:sky@librelist.com'&gt;sky@librelist.com&lt;/a&gt;.&lt;/p&gt;</content>
+&lt;p&gt;I’d love to hear some suggestions as to what other features you’d like
+to see in Sky or the new Sky analytics tool. There are also tentative
+plans for &lt;a href="http://code.google.com/p/v8/"&gt;V8&lt;/a&gt; to query using JavaScript and &lt;a href="http://julialang.org/"&gt;Julia&lt;/a&gt; to query using
+statistical computing. Feel free to add a comment below or e-mail the
+mailing list at &lt;a href="mailto:sky@librelist.com"&gt;sky@librelist.com&lt;/a&gt;.&lt;/p&gt;
+</content>
   </entry>
   <entry>
     <title>GitHub Archive Visualizer</title>
@@ -94,55 +167,76 @@
     <author>
       <name>Article Author</name>
     </author>
-    <summary type="html">&lt;h3 id='overview'&gt;Overview&lt;/h3&gt;
+    <summary type="html">&lt;h3&gt;Overview&lt;/h3&gt;
 
-&lt;p&gt;Today I&amp;#8217;m releasing code and a video for the first &lt;a href='/'&gt;Sky&lt;/a&gt; demo app. Sky is built to aggregate user actions and state over time so I wanted to find a data set and a visualization that fellow developers would relate to. And so was born: &lt;strong&gt;The GitHub Archive Visualizer!&lt;/strong&gt;&lt;/p&gt;</summary>
-    <content type="html">&lt;h3 id='overview'&gt;Overview&lt;/h3&gt;
+&lt;p&gt;Today I&amp;#39;m releasing code and a video for the first &lt;a href="/"&gt;Sky&lt;/a&gt; demo app.
+Sky is built to aggregate user actions and state over time so I wanted to find a data set and a visualization that fellow developers would relate to.
+And so was born: &lt;strong&gt;The GitHub Archive Visualizer!&lt;/strong&gt;&lt;/p&gt;
+</summary>
+    <content type="html">&lt;h3&gt;Overview&lt;/h3&gt;
 
-&lt;p&gt;Today I&amp;#8217;m releasing code and a video for the first &lt;a href='/'&gt;Sky&lt;/a&gt; demo app. Sky is built to aggregate user actions and state over time so I wanted to find a data set and a visualization that fellow developers would relate to. And so was born: &lt;strong&gt;The GitHub Archive Visualizer!&lt;/strong&gt;&lt;/p&gt;
-&lt;div class='row'&gt;
-  &lt;div class='span4'&gt;
+&lt;p&gt;Today I&amp;#39;m releasing code and a video for the first &lt;a href="/"&gt;Sky&lt;/a&gt; demo app.
+Sky is built to aggregate user actions and state over time so I wanted to find a data set and a visualization that fellow developers would relate to.
+And so was born: &lt;strong&gt;The GitHub Archive Visualizer!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="span4"&gt;
     The visualizer uses Sky to step through aggregate paths of user actions.
     So you can walk through and see what users do immediately following an action such as &lt;code&gt;Create Repository&lt;/code&gt;.
-    The &lt;a href='http://en.wikipedia.org/wiki/Sankey_diagram'&gt;Sankey diagram&lt;/a&gt; shows the total number of users who performed each particular path.
-    It's also interactive so you can drill down to as many levels deep as you want.
+    The &lt;a href="http://en.wikipedia.org/wiki/Sankey_diagram"&gt;Sankey diagram&lt;/a&gt; shows the total number of users who performed each particular path.
+    It&amp;rsquo;s also interactive so you can drill down to as many levels deep as you want.
   &lt;/div&gt;
   
-  &lt;div class='span4' style='margin:10px 0px'&gt;
-    &lt;a class='thumbnail' href='/images/github-archive-visualizer/githubarchiveviz.png'&gt;
-      &lt;img src='/images/github-archive-visualizer/githubarchiveviz_thumb.png' /&gt;
+  &lt;div class="span4" style="margin:10px 0px"&gt;
+    &lt;a class="thumbnail" href="/images/github-archive-visualizer/githubarchiveviz.png"&gt;
+      &lt;img src="/images/github-archive-visualizer/githubarchiveviz_thumb.png"&gt;
     &lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;It&amp;#8217;s important to note that all the results are computed in real-time. There&amp;#8217;s no aggregation happening. Every click on the UI recomputes the entire dataset. In the demo, Sky maxes out at about &lt;strong&gt;60MM events per second&lt;/strong&gt;. That&amp;#8217;s fast enough to crunch through the &lt;a href='http://highscalability.com/blog/2011/3/3/stack-overflow-architecture-update-now-at-95-million-page-vi.html'&gt;monthly pages views of StackOverflow&lt;/a&gt; in about a second and a half. On my laptop. On a single thread.&lt;/p&gt;
 
-&lt;h3 id='video_walkthrough'&gt;Video Walkthrough&lt;/h3&gt;
+&lt;p&gt;It&amp;#39;s important to note that all the results are computed in real-time.
+There&amp;#39;s no aggregation happening.
+Every click on the UI recomputes the entire dataset.
+In the demo, Sky maxes out at about &lt;strong&gt;60MM events per second&lt;/strong&gt;.
+That&amp;#39;s fast enough to crunch through the &lt;a href="http://highscalability.com/blog/2011/3/3/stack-overflow-architecture-update-now-at-95-million-page-vi.html"&gt;monthly pages views of StackOverflow&lt;/a&gt; in about a second and a half.
+On my laptop.
+On a single thread.&lt;/p&gt;
 
-&lt;p&gt;Sky is built to import a lot of events per second but to only allow a handful of large queries at a time. That&amp;#8217;s typically how analytics are used within organizations. The downside of this is that putting a public demo up and having tens of thousands of people querying tens of millions of events each is just not feasible.&lt;/p&gt;
+&lt;h3&gt;Video Walkthrough&lt;/h3&gt;
+
+&lt;p&gt;Sky is built to import a lot of events per second but to only allow a handful of large queries at a time.
+That&amp;#39;s typically how analytics are used within organizations.
+The downside of this is that putting a public demo up and having tens of thousands of people querying tens of millions of events each is just not feasible.&lt;/p&gt;
 
 &lt;p&gt;So I created a short walkthrough of the demo app that you can view below.&lt;/p&gt;
-&lt;div class='row' style='margin:18px 0'&gt;
-  &lt;div class='span6 offset1'&gt;
-    &lt;a href='https://vimeo.com/51629936' target='_blank'&gt;&lt;img src='/images/github-archive-visualizer/video_thumb.png' /&gt;&lt;/a&gt;
+
+&lt;div class="row" style="margin:18px 0"&gt;
+  &lt;div class="span6 offset1"&gt;
+    &lt;a target="_blank" href="https://vimeo.com/51629936"&gt;&lt;img src="/images/github-archive-visualizer/video_thumb.png"/&gt;&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;The video is six and a half minutes but the first half is a short history on Sky and some information on the dataset. If you don&amp;#8217;t have time to spare, you can skip to 3:20 to actually see the visualizer in action.&lt;/p&gt;
 
-&lt;h3 id='installing_the_demo'&gt;Installing the Demo&lt;/h3&gt;
+&lt;p&gt;The video is six and a half minutes but the first half is a short history on Sky and some information on the dataset.
+If you don&amp;#39;t have time to spare, you can skip to 3:20 to actually see the visualizer in action.&lt;/p&gt;
 
-&lt;p&gt;If the video does satisfy you need for data crunching, you can install the app locally on your machine. The &lt;a href='https://github.com/skydb/sky-d3-demo'&gt;sky-d3-demo project&lt;/a&gt; project on GitHub has details on how to get up and running. If you have any issues getting it installed, feel free to add an &lt;a href='https://github.com/skydb/sky-d3-demo/issues'&gt;issue on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Installing the Demo&lt;/h3&gt;
 
-&lt;p&gt;I&amp;#8217;ll be adding more demos in the future. If you have any suggestions for behavioral analytics you&amp;#8217;d like to see (like &lt;em&gt;dynamic cohort analysis&lt;/em&gt; or &lt;em&gt;predictive behavioral analytics&lt;/em&gt;), add a comment below to suggest it.&lt;/p&gt;
+&lt;p&gt;If the video does satisfy you need for data crunching, you can install the app locally on your machine.
+The &lt;a href="https://github.com/skydb/sky-d3-demo"&gt;sky-d3-demo project&lt;/a&gt; project on GitHub has details on how to get up and running.
+If you have any issues getting it installed, feel free to add an &lt;a href="https://github.com/skydb/sky-d3-demo/issues"&gt;issue on GitHub&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id='special_thanks'&gt;Special Thanks&lt;/h3&gt;
+&lt;p&gt;I&amp;#39;ll be adding more demos in the future.
+If you have any suggestions for behavioral analytics you&amp;#39;d like to see (like &lt;em&gt;dynamic cohort analysis&lt;/em&gt; or &lt;em&gt;predictive behavioral analytics&lt;/em&gt;), add a comment below to suggest it.&lt;/p&gt;
 
-&lt;p&gt;The demo wouldn&amp;#8217;t be possible without these awesome tools and services:&lt;/p&gt;
+&lt;h3&gt;Special Thanks&lt;/h3&gt;
+
+&lt;p&gt;The demo wouldn&amp;#39;t be possible without these awesome tools and services:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href='http://www.githubarchive.org/'&gt;The GitHub Archive&lt;/a&gt; from &lt;a href='http://www.igvita.com/'&gt;Ilya Grigorik&lt;/a&gt;.&lt;/li&gt;
-
-&lt;li&gt;&lt;a href='http://d3js.org/'&gt;D3.js Visualization Library&lt;/a&gt; from &lt;a href='http://bost.ocks.org/mike/'&gt;Mike Bostock&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;li&gt;&lt;a href="http://www.githubarchive.org/"&gt;The GitHub Archive&lt;/a&gt; from &lt;a href="http://www.igvita.com/"&gt;Ilya Grigorik&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://d3js.org/"&gt;D3.js Visualization Library&lt;/a&gt; from &lt;a href="http://bost.ocks.org/mike/"&gt;Mike Bostock&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
   </entry>
   <entry>
     <title>Qip is Dead, Long Live Qip</title>
@@ -153,36 +247,52 @@
     <author>
       <name>Article Author</name>
     </author>
-    <summary type="html">&lt;h3 id='a_short_history'&gt;A Short History&lt;/h3&gt;
+    <summary type="html">&lt;h3&gt;A Short History&lt;/h3&gt;
 
-&lt;p&gt;When I first started writing Sky I wanted to make a language that was as fast as C but was dynamic and integrated into the data model. So at the beginning of May 2012, I started writing a language called EQL (Event Query Language).&lt;/p&gt;</summary>
-    <content type="html">&lt;h3 id='a_short_history'&gt;A Short History&lt;/h3&gt;
+&lt;p&gt;When I first started writing Sky I wanted to make a language that was as fast as C but was dynamic and integrated into the data model.
+So at the beginning of May 2012, I started writing a language called EQL (Event Query Language).&lt;/p&gt;
+</summary>
+    <content type="html">&lt;h3&gt;A Short History&lt;/h3&gt;
 
-&lt;p&gt;When I first started writing Sky I wanted to make a language that was as fast as C but was dynamic and integrated into the data model. So at the beginning of May 2012, I started writing a language called EQL (Event Query Language). As it turns out, there&amp;#8217;s already a language with this name so the name was changed to Qip.&lt;/p&gt;
+&lt;p&gt;When I first started writing Sky I wanted to make a language that was as fast as C but was dynamic and integrated into the data model.
+So at the beginning of May 2012, I started writing a language called EQL (Event Query Language).
+As it turns out, there&amp;#39;s already a language with this name so the name was changed to Qip.&lt;/p&gt;
 
-&lt;p&gt;After five months of development, Qip turned out to be pretty awesome. By using LLVM it was as fast as C. It used metadata to dynamically generate things like MessagePack serialization methods for classes. And it integrated into Sky pretty nicely by binding structs directly to the underlying data file.&lt;/p&gt;
+&lt;p&gt;After five months of development, Qip turned out to be pretty awesome.
+By using LLVM it was as fast as C.
+It used metadata to dynamically generate things like MessagePack serialization methods for classes.
+And it integrated into Sky pretty nicely by binding structs directly to the underlying data file.&lt;/p&gt;
 
 &lt;p&gt;But last week I realized that I had to take Qip out of the first release of Sky.&lt;/p&gt;
 
-&lt;h3 id='too_much_too_soon'&gt;Too Much, Too Soon&lt;/h3&gt;
+&lt;h3&gt;Too Much, Too Soon&lt;/h3&gt;
 
 &lt;p&gt;Two things made me realize that Qip need to be removed:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;80% of behavioral analysis can be rolled into prebuilt, parameterized functions.&lt;/li&gt;
-
 &lt;li&gt;Early releases need to focus on stability, not flexibility.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Behavioral analysis typically centers around understanding what someone is going to do next, how their actions flow over time and segmentation. People do this with DAGs, Sankey diagrams, cohort analysis, etc. These types of analysis are relatively easy to understand and don&amp;#8217;t require a new language to compute. These generic features are being built directly in Sky as parameterized functions.&lt;/p&gt;
+&lt;p&gt;Behavioral analysis typically centers around understanding what someone is going to do next, how their actions flow over time and segmentation.
+People do this with DAGs, Sankey diagrams, cohort analysis, etc.
+These types of analysis are relatively easy to understand and don&amp;#39;t require a new language to compute.
+These generic features are being built directly in Sky as parameterized functions.&lt;/p&gt;
 
-&lt;p&gt;The other problem with Qip is complexity. Building a database from scratch is complex enough &amp;#8211; you don&amp;#8217;t need to add anymore. Especially not for the initial release.&lt;/p&gt;
+&lt;p&gt;The other problem with Qip is complexity.
+Building a database from scratch is complex enough &amp;ndash; you don&amp;#39;t need to add anymore.
+Especially not for the initial release.&lt;/p&gt;
 
-&lt;h3 id='the_future_of_qip'&gt;The Future of Qip&lt;/h3&gt;
+&lt;h3&gt;The Future of Qip&lt;/h3&gt;
 
-&lt;p&gt;Qip is not dead. It&amp;#8217;s just in an indefinite slumber. Once Sky stabilizes more and the module API gets fleshed out then I will reconsider integrating it. Qip is not the only option on the table though. Google&amp;#8217;s V8 JavaScript engine could integrate well and Lua could be used instead.&lt;/p&gt;
+&lt;p&gt;Qip is not dead.
+It&amp;#39;s just in an indefinite slumber.
+Once Sky stabilizes more and the module API gets fleshed out then I will reconsider integrating it.
+Qip is not the only option on the table though.
+Google&amp;#39;s V8 JavaScript engine could integrate well and Lua could be used instead.&lt;/p&gt;
 
-&lt;p&gt;However, for now, Sky is moving forward with a simpler API and no Qip.&lt;/p&gt;</content>
+&lt;p&gt;However, for now, Sky is moving forward with a simpler API and no Qip.&lt;/p&gt;
+</content>
   </entry>
   <entry>
     <title>Sky v0.1.0 Alpha Preview</title>
@@ -193,43 +303,59 @@
     <author>
       <name>Article Author</name>
     </author>
-    <summary type="html">&lt;h3 id='overview'&gt;Overview&lt;/h3&gt;
+    <summary type="html">&lt;h3&gt;Overview&lt;/h3&gt;
 
-&lt;p&gt;The hardest part about any software project is getting to a minimum viable product. There are many pieces that have to fit together to make even the basics of the program function. However, once the basics work it is easy to iterate quickly and add new features.&lt;/p&gt;</summary>
-    <content type="html">&lt;h3 id='overview'&gt;Overview&lt;/h3&gt;
+&lt;p&gt;The hardest part about any software project is getting to a minimum viable
+product. There are many pieces that have to fit together to make even the
+basics of the program function. However, once the basics work it is easy to
+iterate quickly and add new features.&lt;/p&gt;
+</summary>
+    <content type="html">&lt;h3&gt;Overview&lt;/h3&gt;
 
-&lt;p&gt;The hardest part about any software project is getting to a minimum viable product. There are many pieces that have to fit together to make even the basics of the program function. However, once the basics work it is easy to iterate quickly and add new features.&lt;/p&gt;
+&lt;p&gt;The hardest part about any software project is getting to a minimum viable
+product. There are many pieces that have to fit together to make even the
+basics of the program function. However, once the basics work it is easy to
+iterate quickly and add new features.&lt;/p&gt;
 
-&lt;p&gt;Today the Sky database is being released as an alpha preview. The data store and the language are both working end-to-end and can be used for basic behavioral analytics. I&amp;#8217;d like to give you an overview of where Sky is at now and what the next steps are.&lt;/p&gt;
+&lt;p&gt;Today the Sky database is being released as an alpha preview. The data store
+and the language are both working end-to-end and can be used for basic
+behavioral analytics.  I&amp;#39;d like to give you an overview of where Sky is at now
+and what the next steps are.&lt;/p&gt;
 
-&lt;h3 id='where_its_at'&gt;Where It&amp;#8217;s At&lt;/h3&gt;
+&lt;h3&gt;Where It&amp;#39;s At&lt;/h3&gt;
 
-&lt;p&gt;At the heart of Sky is a simple idea: give people the ability to understand how things behave and then make decisions based on that understanding. The database stores actions and state about things. That&amp;#8217;s all. Simplicity is a basic principle of Sky. Too many other databases try to do too much.&lt;/p&gt;
+&lt;p&gt;At the heart of Sky is a simple idea: give people the ability to understand
+how things behave and then make decisions based on that understanding. The
+database stores actions and state about things. That&amp;#39;s all. Simplicity is a
+basic principle of Sky. Too many other databases try to do too much.&lt;/p&gt;
 
-&lt;p&gt;Simplicity may sound limiting though. There are many ways to analyze data so Sky is built with a flexible processing language called Qip (pronounced &amp;#8216;quip&amp;#8217;). Qip allows you to perform complex analytics but is run next to the data it analyzes so it is blazingly fast.&lt;/p&gt;
+&lt;p&gt;Simplicity may sound limiting though. There are many ways to analyze data so
+Sky is built with a flexible processing language called Qip (pronounced
+&amp;#39;quip&amp;#39;). Qip allows you to perform complex analytics but is run next to the
+data it analyzes so it is blazingly fast.&lt;/p&gt;
 
-&lt;h3 id='intro_to_qip'&gt;Intro to Qip&lt;/h3&gt;
+&lt;h3&gt;Intro to Qip&lt;/h3&gt;
 
-&lt;p&gt;I&amp;#8217;ll be adding documentation for the Qip language as it formalizes but I wanted to give you a short introduction. Here&amp;#8217;s a quick list of high level features:&lt;/p&gt;
+&lt;p&gt;I&amp;#39;ll be adding documentation for the Qip language as it formalizes but I
+wanted to give you a short introduction. Here&amp;#39;s a quick list of high level
+features:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Qip looks like Java but feels like C.&lt;/li&gt;
-
 &lt;li&gt;Strongly typed, class-based language (but has no inheritance).&lt;/li&gt;
-
 &lt;li&gt;It works entirely on stack-based memory to keep it extremely fast.&lt;/li&gt;
-
 &lt;li&gt;LLVM-backed so it runs at C speed.&lt;/li&gt;
-
 &lt;li&gt;JIT compiled at runtime.&lt;/li&gt;
-
 &lt;li&gt;Explicit support for interfacing with C libraries.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id='example_source'&gt;Example Source&lt;/h4&gt;
+&lt;h4&gt;Example Source&lt;/h4&gt;
 
-&lt;p&gt;It&amp;#8217;s probably best to give you a short example of how you might use Qip to analyze something like clickstream data. Here&amp;#8217;s a short example of analyzing the number of hits each page on your web site received:&lt;/p&gt;
-&lt;pre class='prettyprint' style='margin-bottom:9px;'&gt;
+&lt;p&gt;It&amp;#39;s probably best to give you a short example of how you might use Qip to
+analyze something like clickstream data. Here&amp;#39;s a short example of analyzing
+the number of hits each page on your web site received:&lt;/p&gt;
+
+&lt;pre class="prettyprint" style="margin-bottom:9px;"&gt;
 [Hashable("actionId")]
 class Result {
   public Int actionId;
@@ -242,40 +368,59 @@ for each(Event event in cursor) {
   result.count = result.count + 1;
 }
 &lt;/pre&gt;
-&lt;h4 id='example_walkthrough'&gt;Example Walkthrough&lt;/h4&gt;
 
-&lt;p&gt;Let&amp;#8217;s take this example step by step:&lt;/p&gt;
+&lt;h4&gt;Example Walkthrough&lt;/h4&gt;
+
+&lt;p&gt;Let&amp;#39;s take this example step by step:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;We declare a class called &lt;code&gt;Result&lt;/code&gt; that will store our data. We mark it as &lt;code&gt;Hashable&lt;/code&gt; so that we can store it in a hash map. The class contains an &lt;code&gt;actionId&lt;/code&gt; which stores which action we&amp;#8217;re storing a hit count for and a &lt;code&gt;count&lt;/code&gt; property which stores the actual hit count.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;Qip programs are executed within the context of a single path of events. A path is simply a list of ordered events that occur for, in our case, a user on our web site. The &lt;code&gt;path&lt;/code&gt; variable is passed to our program each time it executes and the program will execute once for each user on our web site. The result data is carried over across each iteration so we can maintain our hit count.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;Once we have the &lt;code&gt;cursor&lt;/code&gt; we can use it to loop over the events in our &lt;code&gt;path&lt;/code&gt;. For each event in our cursor we grab a &lt;code&gt;Result&lt;/code&gt; from our hash map called &lt;code&gt;data&lt;/code&gt;. The &lt;code&gt;data&lt;/code&gt; variable is similar to &lt;code&gt;path&lt;/code&gt; in that it is passed in implicitly. The variable is of type &lt;code&gt;Map&amp;lt;Int,Result&amp;gt;&lt;/code&gt; meaning that it is a hash map with an integer key (we use &lt;code&gt;actionId&lt;/code&gt;) matching a &lt;code&gt;Result&lt;/code&gt; value. The Qip hash map will retrieve an existing &lt;code&gt;Result&lt;/code&gt; object if one already exists or will build a new one if it doesn&amp;#8217;t.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;Finally we simple increment the &lt;code&gt;count&lt;/code&gt; for each &lt;code&gt;actionId&lt;/code&gt; found.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;We declare a class called &lt;code&gt;Result&lt;/code&gt; that will store our data. We mark it as
+&lt;code&gt;Hashable&lt;/code&gt; so that we can store it in a hash map. The class contains an
+&lt;code&gt;actionId&lt;/code&gt; which stores which action we&amp;#39;re storing a hit count for and a
+&lt;code&gt;count&lt;/code&gt; property which stores the actual hit count.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Qip programs are executed within the context of a single path of events. A
+path is simply a list of ordered events that occur for, in our case, a user on
+our web site. The &lt;code&gt;path&lt;/code&gt; variable is passed to our program each time it
+executes and the program will execute once for each user on our web site. The
+result data is carried over across each iteration so we can maintain our hit
+count.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Once we have the &lt;code&gt;cursor&lt;/code&gt; we can use it to loop over the events in our
+&lt;code&gt;path&lt;/code&gt;. For each event in our cursor we grab a &lt;code&gt;Result&lt;/code&gt; from our hash map
+called &lt;code&gt;data&lt;/code&gt;. The &lt;code&gt;data&lt;/code&gt; variable is similar to &lt;code&gt;path&lt;/code&gt; in that it is passed
+in implicitly. The variable is of type &lt;code&gt;Map&amp;lt;Int,Result&amp;gt;&lt;/code&gt; meaning that it is a
+hash map with an integer key (we use &lt;code&gt;actionId&lt;/code&gt;) matching a &lt;code&gt;Result&lt;/code&gt; value.
+The Qip hash map will retrieve an existing &lt;code&gt;Result&lt;/code&gt; object if one already
+exists or will build a new one if it doesn&amp;#39;t.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Finally we simple increment the &lt;code&gt;count&lt;/code&gt; for each &lt;code&gt;actionId&lt;/code&gt; found.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id='where_does_the_data_go'&gt;Where Does the Data Go?&lt;/h4&gt;
+&lt;h4&gt;Where Does the Data Go?&lt;/h4&gt;
 
-&lt;p&gt;Below is a diagram of how queries and data flow through Sky. The client starts by sending a query to the server where it gets parsed and compiled by the Query Compiler. Next, the compiled module is passed to the Query Engine where it runs it for each path retrieved from the the Path Iterator. Finally, once all paths are exhausted, the results are passed to the serializer which converts everything to &lt;a href='http://msgpack.org/'&gt;MessagePack&lt;/a&gt; format and the data is returned to the client.&lt;/p&gt;
-&lt;center&gt;
-  &lt;img src='/images/sky-v1.0.0-alpha-preview/qip_flow.png' /&gt;
-&lt;/center&gt;
-&lt;p&gt;This flow allows you to easily integrate with any language that supports MessagePack (C, Java, PHP, JavaScript, Go, etc) and it ensures that you are not limited by any particular data structure provided by Sky.&lt;/p&gt;
+&lt;p&gt;Below is a diagram of how queries and data flow through Sky. The client starts
+by sending a query to the server where it gets parsed and compiled by the
+Query Compiler. Next, the compiled module is passed to the Query Engine where
+it runs it for each path retrieved from the the Path Iterator. Finally, once
+all paths are exhausted, the results are passed to the serializer which
+converts everything to &lt;a href="http://msgpack.org/"&gt;MessagePack&lt;/a&gt; format and the data
+is returned to the client.&lt;/p&gt;
 
-&lt;h4 id='plugin_architecture'&gt;Plugin Architecture&lt;/h4&gt;
+&lt;p&gt;&lt;center&gt;
+  &lt;img src="/images/sky-v1.0.0-alpha-preview/qip_flow.png"&gt;
+&lt;/center&gt;&lt;/p&gt;
 
-&lt;p&gt;Because Qip is a fairly simple language it was an explicit goal to make integration of external code as easy as possible. There are so many great data processing libraries for machine learning and classification that I wanted to be able to pull from. To integrate an external call, simply add an &lt;code&gt;[External]&lt;/code&gt; metadata tag to the class method.&lt;/p&gt;
-&lt;pre class='prettyprint' style='margin-bottom:9px;'&gt;
+&lt;p&gt;This flow allows you to easily integrate with any language that supports
+MessagePack (C, Java, PHP, JavaScript, Go, etc) and it ensures that you are
+not limited by any particular data structure provided by Sky.&lt;/p&gt;
+
+&lt;h4&gt;Plugin Architecture&lt;/h4&gt;
+
+&lt;p&gt;Because Qip is a fairly simple language it was an explicit goal to make
+integration of external code as easy as possible. There are so many great data
+processing libraries for machine learning and classification that I wanted to
+be able to pull from. To integrate an external call, simply add an
+&lt;code&gt;[External]&lt;/code&gt; metadata tag to the class method.&lt;/p&gt;
+
+&lt;pre class="prettyprint" style="margin-bottom:9px;"&gt;
 class SentimentAnalyzer {
   [External(name="my_analyzer_function")]
   public String analyze(String string);
@@ -284,160 +429,47 @@ class SentimentAnalyzer {
 SentimentAnalyzer analyzer;
 analyzer.analyze(some_text);
 &lt;/pre&gt;
+
 &lt;p&gt;This example here will call out to the following C function:&lt;/p&gt;
-&lt;pre class='prettyprint' style='margin-bottom:9px;'&gt;
+
+&lt;pre class="prettyprint" style="margin-bottom:9px;"&gt;
 struct sentiment_analyzer_t {
   ...
 };
 
 char *my_analyzer_function(struct sentiment_analyzer *analyzer, char *string);
 &lt;/pre&gt;
-&lt;h3 id='roadmap'&gt;Roadmap&lt;/h3&gt;
 
-&lt;p&gt;The alpha preview is still a rough cut. The next steps are to stabilize the server, API and the language. After that some additional language features will be added to make queries simpler and easier. A declarative syntax will be layered on top of the Qip procedural form that will change the web page hit query to this:&lt;/p&gt;
-&lt;pre class='prettyprint' style='margin-bottom:9px;'&gt;
+&lt;h3&gt;Roadmap&lt;/h3&gt;
+
+&lt;p&gt;The alpha preview is still a rough cut. The next steps are to stabilize the
+server, API and the language. After that some additional language features
+will be added to make queries simpler and easier. A declarative syntax will be
+layered on top of the Qip procedural form that will change the web page hit
+query to this:&lt;/p&gt;
+
+&lt;pre class="prettyprint" style="margin-bottom:9px;"&gt;
 data.map(path, :count++);
 &lt;/pre&gt;
-&lt;p&gt;I&amp;#8217;ll be writing more about the declarative syntax as it gets finalized.&lt;/p&gt;
 
-&lt;p&gt;After Qip improvements, Sky will be adding real-time queries meaning that you can submit the query above and retrieve not only the results back but also a continuous stream of delta updates as new events come into the server and match your query. This is useful not only in analytics but also can be used for real-time risk analysis or to analyze purchase intent of a customer while they&amp;#8217;re clicking through your web site.&lt;/p&gt;
+&lt;p&gt;I&amp;#39;ll be writing more about the declarative syntax as it gets finalized.&lt;/p&gt;
 
-&lt;p&gt;Finally, Sky will be adding multicore and multinode distributed processing. A single threaded Sky server can already analyze tens of millions of events per second. However, sometimes you need to analyze billions of events per second.&lt;/p&gt;
+&lt;p&gt;After Qip improvements, Sky will be adding real-time queries meaning that you
+can submit the query above and retrieve not only the results back but also a
+continuous stream of delta updates as new events come into the server and
+match your query. This is useful not only in analytics but also can be used
+for real-time risk analysis or to analyze purchase intent of a customer while
+they&amp;#39;re clicking through your web site.&lt;/p&gt;
 
-&lt;p&gt;Some exciting things are coming. Please visit the &lt;a href='https://github.com/skydb/sky'&gt;Sky GitHub project page&lt;/a&gt; to contribute. Or join the mailing list by sending an e-mail to &lt;a href='mailto:sky@librelist.com'&gt;sky@librelist.com&lt;/a&gt; to get updates.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;Finally, Sky will be adding multicore and multinode distributed processing. A
+single threaded Sky server can already analyze tens of millions of events per
+second. However, sometimes you need to analyze billions of events per second.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href='http://news.ycombinator.com/item?id=4409506'&gt;Discuss this post on Hacker News&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Introduction to Behavioral Databases</title>
-    <link rel="alternate" href="/blog/introduction-to-behavioral-databases.html"/>
-    <id>/blog/introduction-to-behavioral-databases.html</id>
-    <published>2012-04-30T00:00:00Z</published>
-    <updated>2012-04-30T00:00:00Z</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <summary type="html">&lt;h3 id='what_is_behavioral_data'&gt;What is Behavioral Data?&lt;/h3&gt;
+&lt;p&gt;Some exciting things are coming.
+Please visit the &lt;a href="https://github.com/skydb/sky"&gt;Sky GitHub project page&lt;/a&gt; to contribute.
+Or join the mailing list by sending an e-mail to &lt;a href="mailto:sky@librelist.com"&gt;sky@librelist.com&lt;/a&gt; to get updates.&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
 
-&lt;p&gt;We traditionally think of behavior in terms of actions that people perform but it&amp;#8217;s more than that. It doesn&amp;#8217;t have to be restricted to people &amp;#8211; your dog has behavior and even inanimate objects like your phone behave (or misbehave).&lt;/p&gt;</summary>
-    <content type="html">&lt;h3 id='what_is_behavioral_data'&gt;What is Behavioral Data?&lt;/h3&gt;
-
-&lt;p&gt;We traditionally think of behavior in terms of actions that people perform but it&amp;#8217;s more than that. It doesn&amp;#8217;t have to be restricted to people &amp;#8211; your dog has behavior and even inanimate objects like your phone behave (or misbehave). The person or thing performing an action is called the Actor.&lt;/p&gt;
-
-&lt;p&gt;The definition for behavioral data, in the context of behavioral databases, can be formalized as:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;A series of events related to an actor that describe the actions the actor performed or changes in the actor&amp;#8217;s state across time.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Events are at the heart of behavioral data. An event exists at a specific point in time and can either be an action such as &amp;#8220;Sign Up For Web Site&amp;#8221; or it can be a state change such as &amp;#8220;My hair color is now blue&amp;#8221;.&lt;/p&gt;
-
-&lt;h4 id='visualizing_individual_event_paths'&gt;Visualizing Individual Event Paths&lt;/h4&gt;
-
-&lt;p&gt;Behavior for a single object can be thought of as events occurring sequentially over time like this e-commerce web site example:&lt;/p&gt;
-&lt;center&gt;
-  &lt;img src='/images/introduction-to-behavioral-databases/simple_behavior.png' /&gt;
-&lt;/center&gt;
-&lt;p&gt;This is simple enough. A person comes to a web site and likes what they see so they sign up. Then they find a product to add to their shopping cart and finally they check out.&lt;/p&gt;
-
-&lt;h4 id='visualizing_aggregate_event_paths'&gt;Visualizing Aggregate Event Paths&lt;/h4&gt;
-
-&lt;p&gt;But looking at one series of events at a time is tedious. Behavioral data is about taking every user&amp;#8217;s series of events and aggregating them to see the big picture. When we aggregate events we produce something called a directed graph that shows the different paths that everyone can take.&lt;/p&gt;
-&lt;center&gt;
-  &lt;img src='/images/introduction-to-behavioral-databases/directed_graph.png' /&gt;
-&lt;/center&gt;
-&lt;p&gt;This graph may look daunting but it tells us some important things about how users behave on this web site. It shows that users coming from a Google search arrive on the home page as well directly land on the product page. We also find that some people that contact tech support will then cancel their account but we also see that contacting tech support can encourage users to eventually buy a product.&lt;/p&gt;
-
-&lt;p&gt;This is a contrived example but gives you an idea of how you can visualize behavior. In a real example, you could find the number of people who performed a series of actions or find the percentage of people who left the site after adding a product to the cart but before checking out.&lt;/p&gt;
-
-&lt;h4 id='applied_behavioral_analysis'&gt;Applied Behavioral Analysis&lt;/h4&gt;
-
-&lt;p&gt;We can also aggregate behavioral data to answer questions such as:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;How are people using my web site?&lt;/li&gt;
-
-&lt;li&gt;What types of people purchase what products?&lt;/li&gt;
-
-&lt;li&gt;How do people&amp;#8217;s behavior change over time?&lt;/li&gt;
-
-&lt;li&gt;What information can I derive about users based on how they act?&lt;/li&gt;
-
-&lt;li&gt;Can I predict what a user will do based on their past actions?&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;These types of questions are critical to how businesses and organizations make decisions and how they interact with their customers.&lt;/p&gt;
-
-&lt;h3 id='why_another_database'&gt;Why Another Database?&lt;/h3&gt;
-
-&lt;p&gt;You may be wondering why you couldn&amp;#8217;t use an existing database technology to store this type of information. Relational databases have been around for years, BigTable implementations are able to scale to use large sets of data, and software like Hadoop is flexible enough to batch process and query any type of data.&lt;/p&gt;
-
-&lt;p&gt;These are all options. However, they all suffer from a common problem: &lt;em&gt;they are too general&lt;/em&gt;. Behavioral data has some special properties that traditional databases can&amp;#8217;t take advantage of and behavioral data is a common enough use case that it deserves its own database.&lt;/p&gt;
-
-&lt;h4 id='transactions__locks__slow'&gt;Transactions &amp;amp; Locks = Slow&lt;/h4&gt;
-
-&lt;p&gt;Relational databases require transactions and locks to ensure that multiple processes don&amp;#8217;t update the same data at the same time. In a sense, a relational database is the data authority for many software systems because data change doesn&amp;#8217;t happen until the database says it does.&lt;/p&gt;
-
-&lt;p&gt;Behavioral data is different. Actions stored in the database have already happened which means that events are independent of one another. Because of this, behavioral databases can remove costly transactions and locks.&lt;/p&gt;
-
-&lt;h4 id='optimized_storage'&gt;Optimized Storage&lt;/h4&gt;
-
-&lt;p&gt;Some NoSQL databases do not require transactions or locks but are slow for behavioral data processing because of something called &lt;a href='http://en.wikipedia.org/wiki/Locality_of_reference'&gt;Spacial Locality&lt;/a&gt;. Spacial locality means that related data is stored nearby. It is important because of how computers retrieve data from the hard disk and memory.&lt;/p&gt;
-
-&lt;p&gt;Below is a diagram of how a traditional database would store multiple events for a single actor on a hard disk.&lt;/p&gt;
-&lt;center&gt;
-  &lt;img src='/images/introduction-to-behavioral-databases/traditional_db_storage.png' /&gt;
-&lt;/center&gt;
-&lt;p&gt;Events are be stored where ever there was room at the time they were added. This means that when you want to query the events for an actor later on, the database has search several places to find all the relevant events.&lt;/p&gt;
-
-&lt;p&gt;However, in a behavioral database, events are clustered together so data access is a single lookup:&lt;/p&gt;
-&lt;center&gt;
-  &lt;img src='/images/introduction-to-behavioral-databases/behavioral_db_storage.png' /&gt;
-&lt;/center&gt;
-&lt;h4 id='actions_as_a_first_class_citizen'&gt;Actions as a First Class Citizen&lt;/h4&gt;
-
-&lt;p&gt;Some databases such as Google&amp;#8217;s BigTable do cluster related data together. This makes data access fast but these databases are still only meant to track state change. There is no concept of an action. Because of this, there is no language to describe or query actions and there is no standard way to store an action.&lt;/p&gt;
-
-&lt;p&gt;Many people use Hadoop to process log files (which are in a sense just a list of actions). Hadoop is extremely flexible but also requires advanced programming knowledge to write complex behavioral queries or to track actor state over time. A behavioral database, on the other hand, makes it natural to deal with these types of queries and to work with actor state-in-time.&lt;/p&gt;
-
-&lt;h4 id='behavioral_data_is_big_business'&gt;Behavioral Data is Big Business&lt;/h4&gt;
-
-&lt;p&gt;It&amp;#8217;s obvious that there is demand for behavioral analytics. Google Analytics is used by &lt;a href='http://w3techs.com/technologies/overview/traffic_analysis/all'&gt;55.8% of all web sites&lt;/a&gt;. Companies pay thousands of dollars to companies like &lt;a href='http://www.omniture.com'&gt;Omniture&lt;/a&gt;, &lt;a href='http://mixpanel.com'&gt;MixPanel&lt;/a&gt; or &lt;a href='http://kissmetrics.com/'&gt;KISSMetrics&lt;/a&gt; to find out what their users are doing.&lt;/p&gt;
-
-&lt;p&gt;But behavioral analytics is still in its infancy. Tools are typically limited to showing basic user flows and some segmentation. Furthermore, while some companies such as &lt;a href='http://mixpanel.com'&gt;MixPanel&lt;/a&gt; have built their own data stores for behavioral data, there has not been an open source implementation available.&lt;/p&gt;
-
-&lt;h3 id='sky_the_open_source_behavioral_database'&gt;Sky, The Open Source Behavioral Database&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href='https://github.com/skydb/sky'&gt;Sky&lt;/a&gt; is an in-development implementation of a behavioral database. It has two primary goals. It&amp;#8217;s first goal is to provide high performance insertion and aggregation of evented data. The project is still early in development but it can already aggregate a &lt;a href='http://en.wikipedia.org/wiki/Directed_graph'&gt;directed graph&lt;/a&gt; of events at the rate of &lt;strong&gt;45 million events per second on a single core&lt;/strong&gt;. That&amp;#8217;s snappy.&lt;/p&gt;
-
-&lt;p&gt;The second goal of the Sky behavioral database is to provide a query language to aggregate and extract knowledge from event paths easily. The language needs to be fast enough to process the millions (or billions) of events that organizations see generated every day. It also needs to be flexible enough to work with events and their relation to other events in order to derive meaningful information. Sky&amp;#8217;s language is called &lt;em&gt;EQL&lt;/em&gt; (Event Query Language) and is currently in development.&lt;/p&gt;
-
-&lt;h3 id='next_steps'&gt;Next Steps&lt;/h3&gt;
-
-&lt;p&gt;The Sky database is still an early project but there are exciting things coming. This blog is being maintained as development progresses to allow people to better understand the function of behavioral databases as well as to allow them to contribute their ideas back.&lt;/p&gt;
-
-&lt;p&gt;An alpha version of the server will be released soon and client libraries will be provided soon after. The EQL language will be implemented next and then multi-core and multi-node distribution will follow.&lt;/p&gt;
-
-&lt;p&gt;We&amp;#8217;ll be writing about some interesting topics on Sky in the future including:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Linear Scalability&lt;/li&gt;
-
-&lt;li&gt;Query Deltas&lt;/li&gt;
-
-&lt;li&gt;Real-time Queries&lt;/li&gt;
-
-&lt;li&gt;Implicit Actions &amp;amp; Implicit State&lt;/li&gt;
-
-&lt;li&gt;Event Aging&lt;/li&gt;
-
-&lt;li&gt;Applying Machine Learning to Behavioral Analysis&lt;/li&gt;
-
-&lt;li&gt;Low-Level Implementation Details&lt;/li&gt;
-
-&lt;li&gt;Applications for Behavioral Analysis&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;To see the status of Sky or to contribute to it please visit the &lt;a href='https://github.com/skydb/sky'&gt;Sky GitHub project page&lt;/a&gt;.&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href="http://news.ycombinator.com/item?id=4409506"&gt;Discuss this post on Hacker News&lt;/a&gt;&lt;/p&gt;
+</content>
   </entry>
 </feed>

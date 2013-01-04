@@ -67,52 +67,70 @@
           
             <h2>GitHub Archive Visualizer</h2>
           
-          <h3 id='overview'>Overview</h3>
+          <h3>Overview</h3>
 
-<p>Today I&#8217;m releasing code and a video for the first <a href='/'>Sky</a> demo app. Sky is built to aggregate user actions and state over time so I wanted to find a data set and a visualization that fellow developers would relate to. And so was born: <strong>The GitHub Archive Visualizer!</strong></p>
-<div class='row'>
-  <div class='span4'>
+<p>Today I&#39;m releasing code and a video for the first <a href="/">Sky</a> demo app.
+Sky is built to aggregate user actions and state over time so I wanted to find a data set and a visualization that fellow developers would relate to.
+And so was born: <strong>The GitHub Archive Visualizer!</strong></p>
+
+<div class="row">
+  <div class="span4">
     The visualizer uses Sky to step through aggregate paths of user actions.
     So you can walk through and see what users do immediately following an action such as <code>Create Repository</code>.
-    The <a href='http://en.wikipedia.org/wiki/Sankey_diagram'>Sankey diagram</a> shows the total number of users who performed each particular path.
-    It's also interactive so you can drill down to as many levels deep as you want.
+    The <a href="http://en.wikipedia.org/wiki/Sankey_diagram">Sankey diagram</a> shows the total number of users who performed each particular path.
+    It&rsquo;s also interactive so you can drill down to as many levels deep as you want.
   </div>
   
-  <div class='span4' style='margin:10px 0px'>
-    <a class='thumbnail' href='/images/github-archive-visualizer/githubarchiveviz.png'>
-      <img src='/images/github-archive-visualizer/githubarchiveviz_thumb.png' />
+  <div class="span4" style="margin:10px 0px">
+    <a class="thumbnail" href="/images/github-archive-visualizer/githubarchiveviz.png">
+      <img src="/images/github-archive-visualizer/githubarchiveviz_thumb.png">
     </a>
   </div>
 </div>
-<p>It&#8217;s important to note that all the results are computed in real-time. There&#8217;s no aggregation happening. Every click on the UI recomputes the entire dataset. In the demo, Sky maxes out at about <strong>60MM events per second</strong>. That&#8217;s fast enough to crunch through the <a href='http://highscalability.com/blog/2011/3/3/stack-overflow-architecture-update-now-at-95-million-page-vi.html'>monthly pages views of StackOverflow</a> in about a second and a half. On my laptop. On a single thread.</p>
 
-<h3 id='video_walkthrough'>Video Walkthrough</h3>
+<p>It&#39;s important to note that all the results are computed in real-time.
+There&#39;s no aggregation happening.
+Every click on the UI recomputes the entire dataset.
+In the demo, Sky maxes out at about <strong>60MM events per second</strong>.
+That&#39;s fast enough to crunch through the <a href="http://highscalability.com/blog/2011/3/3/stack-overflow-architecture-update-now-at-95-million-page-vi.html">monthly pages views of StackOverflow</a> in about a second and a half.
+On my laptop.
+On a single thread.</p>
 
-<p>Sky is built to import a lot of events per second but to only allow a handful of large queries at a time. That&#8217;s typically how analytics are used within organizations. The downside of this is that putting a public demo up and having tens of thousands of people querying tens of millions of events each is just not feasible.</p>
+<h3>Video Walkthrough</h3>
+
+<p>Sky is built to import a lot of events per second but to only allow a handful of large queries at a time.
+That&#39;s typically how analytics are used within organizations.
+The downside of this is that putting a public demo up and having tens of thousands of people querying tens of millions of events each is just not feasible.</p>
 
 <p>So I created a short walkthrough of the demo app that you can view below.</p>
-<div class='row' style='margin:18px 0'>
-  <div class='span6 offset1'>
-    <a href='https://vimeo.com/51629936' target='_blank'><img src='/images/github-archive-visualizer/video_thumb.png' /></a>
+
+<div class="row" style="margin:18px 0">
+  <div class="span6 offset1">
+    <a target="_blank" href="https://vimeo.com/51629936"><img src="/images/github-archive-visualizer/video_thumb.png"/></a>
   </div>
 </div>
-<p>The video is six and a half minutes but the first half is a short history on Sky and some information on the dataset. If you don&#8217;t have time to spare, you can skip to 3:20 to actually see the visualizer in action.</p>
 
-<h3 id='installing_the_demo'>Installing the Demo</h3>
+<p>The video is six and a half minutes but the first half is a short history on Sky and some information on the dataset.
+If you don&#39;t have time to spare, you can skip to 3:20 to actually see the visualizer in action.</p>
 
-<p>If the video does satisfy you need for data crunching, you can install the app locally on your machine. The <a href='https://github.com/skydb/sky-d3-demo'>sky-d3-demo project</a> project on GitHub has details on how to get up and running. If you have any issues getting it installed, feel free to add an <a href='https://github.com/skydb/sky-d3-demo/issues'>issue on GitHub</a>.</p>
+<h3>Installing the Demo</h3>
 
-<p>I&#8217;ll be adding more demos in the future. If you have any suggestions for behavioral analytics you&#8217;d like to see (like <em>dynamic cohort analysis</em> or <em>predictive behavioral analytics</em>), add a comment below to suggest it.</p>
+<p>If the video does satisfy you need for data crunching, you can install the app locally on your machine.
+The <a href="https://github.com/skydb/sky-d3-demo">sky-d3-demo project</a> project on GitHub has details on how to get up and running.
+If you have any issues getting it installed, feel free to add an <a href="https://github.com/skydb/sky-d3-demo/issues">issue on GitHub</a>.</p>
 
-<h3 id='special_thanks'>Special Thanks</h3>
+<p>I&#39;ll be adding more demos in the future.
+If you have any suggestions for behavioral analytics you&#39;d like to see (like <em>dynamic cohort analysis</em> or <em>predictive behavioral analytics</em>), add a comment below to suggest it.</p>
 
-<p>The demo wouldn&#8217;t be possible without these awesome tools and services:</p>
+<h3>Special Thanks</h3>
+
+<p>The demo wouldn&#39;t be possible without these awesome tools and services:</p>
 
 <ul>
-<li><a href='http://www.githubarchive.org/'>The GitHub Archive</a> from <a href='http://www.igvita.com/'>Ilya Grigorik</a>.</li>
-
-<li><a href='http://d3js.org/'>D3.js Visualization Library</a> from <a href='http://bost.ocks.org/mike/'>Mike Bostock</a></li>
+<li><a href="http://www.githubarchive.org/">The GitHub Archive</a> from <a href="http://www.igvita.com/">Ilya Grigorik</a>.</li>
+<li><a href="http://d3js.org/">D3.js Visualization Library</a> from <a href="http://bost.ocks.org/mike/">Mike Bostock</a></li>
 </ul>
+
         </div>
       </div>
     </div><!-- /container -->

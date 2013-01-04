@@ -59,9 +59,9 @@
               </a>
             </li>
             <li class="">
-              <a href="/blog.html">Blog</a>
+              <a href="/blog">Blog</a>
             </li>
-            <li><a class="disable hidden-phone" href="/sky-0.2.0.tar.gz">Download</a></li>
+            <li><a class="disable hidden-phone" href="/sky-0.2.1.tar.gz">Download</a></li>
             <li>
               <a href="https://github.com/skydb/sky">
                 <span class="hidden-phone">Repository</span>
@@ -81,38 +81,55 @@
           
             <h2>The Sky Architecture</h2>
           
-          <h3 id='terminology'>Terminology</h3>
+          <h3>Terminology</h3>
 
-<p>The best way to understand Sky is to think of the parts of speech you learned in school: <em>noun</em>, <em>verb</em>, <em>adjective</em> and <em>adverb</em>. Most databases just store things (nouns) and their state (adjectives). For example, you have a table of customers and each customer has fields such as name, age, &amp; salary.</p>
+<p>The best way to understand Sky is to think of the parts of speech you learned in school: <em>noun</em>, <em>verb</em>, <em>adjective</em> and <em>adverb</em>.
+Most databases just store things (nouns) and their state (adjectives).
+For example, you have a table of customers and each customer has fields such as name, age, &amp; salary.</p>
 
-<p>Sky tracks nouns and adjectives but also keeps track of verbs and adverbs. For example, you may want to track when a customer makes a purchase and the purchase amount. In this case, the purchase is an action (or verb) and the purchase amount describes the action (which makes it the adverb).</p>
+<p>Sky tracks nouns and adjectives but also keeps track of verbs and adverbs.
+For example, you may want to track when a customer makes a purchase and the purchase amount.
+In this case, the purchase is an action (or verb) and the purchase amount describes the action (which makes it the adverb).</p>
 
 <p>So the basic primitives of Sky are:</p>
 
 <ul>
 <li>The object (noun)</li>
-
 <li>Properties (adjective)</li>
-
 <li>Actions (verb)</li>
-
 <li>Action Properties (adverbs)</li>
 </ul>
 
-<p>Every time a property changes or an action is performed it is called an <em>event</em>. Each event is stored with a timestamp so we can track how objects change and act over time.</p>
+<p>Every time a property changes or an action is performed it is called an <em>event</em>.
+Each event is stored with a timestamp so we can track how objects change and act over time.</p>
 
-<h3 id='performance'>Performance</h3>
+<h3>Performance</h3>
 
-<p>While a traditional database could be used to analyze behavioral data, Sky is specifically optimized for it. Most analytics systems are setup to pull data from the database and crunch the numbers in an external program. This causes a lot round trip latency and serialization overhead. Sky embeds processing in the database itself so its processing can be orders of magnitude faster. In addition to local processing, Sky aligns the data so it can be accessed sequentially while processed.</p>
+<p>While a traditional database could be used to analyze behavioral data, Sky is specifically optimized for it.
+Most analytics systems are setup to pull data from the database and crunch the numbers in an external program.
+This causes a lot round trip latency and serialization overhead.
+Sky embeds processing in the database itself so its processing can be orders of magnitude faster.
+In addition to local processing, Sky aligns the data so it can be accessed sequentially while processed.</p>
 
-<p>Most processing models will struggle to crunch through tens of thousands or even hundreds of thousands of rows per second because these issues. Sky is built to easily crunch tens of millions of events per second on a single core. And because Sky isolates processing to a single object at a time, it can scale up linearly across multiple cores.</p>
+<p>Most processing models will struggle to crunch through tens of thousands or even hundreds of thousands of rows per second because these issues.
+Sky is built to easily crunch tens of millions of events per second on a single core.
+And because Sky isolates processing to a single object at a time, it can scale up linearly across multiple cores.</p>
 
-<h3 id='concurrency'>Concurrency</h3>
+<h3>Concurrency</h3>
 
-<p>While per-process speed is important, it doesn&#8217;t mean much if it can&#8217;t scale. Sky takes advantage of an important characteristic of behavioral data: it&#8217;s isolated. Each object&#8217;s timeline can be processed in complete isolation which means that it is an <a href='http://en.wikipedia.org/wiki/Embarrassingly_parallel'>embarrassingly parallel problem</a> that can easily scale. This is intuitive. For example, when you click around on a web site your behavior is not affected by other users on the web site.</p>
+<p>While per-process speed is important, it doesn&#39;t mean much if it can&#39;t scale.
+Sky takes advantage of an important characteristic of behavioral data: it&#39;s isolated.
+Each object&#39;s timeline can be processed in complete isolation which means that it is an <a href="http://en.wikipedia.org/wiki/Embarrassingly_parallel">embarrassingly parallel problem</a> that can easily scale.
+This is intuitive.
+For example, when you click around on a web site your behavior is not affected by other users on the web site.</p>
 
-<p>Sky currently scales linearly across multiple cores on a machine. We&#8217;ll be adding distribution across multiple machines soon.</p>
-<br /><a href='getting-started.html'>« Prev <span class='hidden-phone'>(Getting Started)</span></a><span class='pull-right'><a href='basics.html'>Next <span class='hidden-phone'>(The Basics)</span> »</a></span>
+<p>Sky currently scales linearly across multiple cores on a machine.
+We&#39;ll be adding distribution across multiple machines soon.</p>
+
+<p><br/>
+<a href="getting-started.html">« Prev <span class="hidden-phone">(Getting Started)</span></a>
+<span class="pull-right"><a href="basics.html">Next <span class="hidden-phone">(The Basics)</span> »</a></span></p>
+
         </div>
       </div>
     </div><!-- /container -->

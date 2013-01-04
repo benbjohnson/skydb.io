@@ -67,40 +67,52 @@
           
             <h2>Sky v0.1.0 Alpha Preview</h2>
           
-          <h3 id='overview'>Overview</h3>
+          <h3>Overview</h3>
 
-<p>The hardest part about any software project is getting to a minimum viable product. There are many pieces that have to fit together to make even the basics of the program function. However, once the basics work it is easy to iterate quickly and add new features.</p>
+<p>The hardest part about any software project is getting to a minimum viable
+product. There are many pieces that have to fit together to make even the
+basics of the program function. However, once the basics work it is easy to
+iterate quickly and add new features.</p>
 
-<p>Today the Sky database is being released as an alpha preview. The data store and the language are both working end-to-end and can be used for basic behavioral analytics. I&#8217;d like to give you an overview of where Sky is at now and what the next steps are.</p>
+<p>Today the Sky database is being released as an alpha preview. The data store
+and the language are both working end-to-end and can be used for basic
+behavioral analytics.  I&#39;d like to give you an overview of where Sky is at now
+and what the next steps are.</p>
 
-<h3 id='where_its_at'>Where It&#8217;s At</h3>
+<h3>Where It&#39;s At</h3>
 
-<p>At the heart of Sky is a simple idea: give people the ability to understand how things behave and then make decisions based on that understanding. The database stores actions and state about things. That&#8217;s all. Simplicity is a basic principle of Sky. Too many other databases try to do too much.</p>
+<p>At the heart of Sky is a simple idea: give people the ability to understand
+how things behave and then make decisions based on that understanding. The
+database stores actions and state about things. That&#39;s all. Simplicity is a
+basic principle of Sky. Too many other databases try to do too much.</p>
 
-<p>Simplicity may sound limiting though. There are many ways to analyze data so Sky is built with a flexible processing language called Qip (pronounced &#8216;quip&#8217;). Qip allows you to perform complex analytics but is run next to the data it analyzes so it is blazingly fast.</p>
+<p>Simplicity may sound limiting though. There are many ways to analyze data so
+Sky is built with a flexible processing language called Qip (pronounced
+&#39;quip&#39;). Qip allows you to perform complex analytics but is run next to the
+data it analyzes so it is blazingly fast.</p>
 
-<h3 id='intro_to_qip'>Intro to Qip</h3>
+<h3>Intro to Qip</h3>
 
-<p>I&#8217;ll be adding documentation for the Qip language as it formalizes but I wanted to give you a short introduction. Here&#8217;s a quick list of high level features:</p>
+<p>I&#39;ll be adding documentation for the Qip language as it formalizes but I
+wanted to give you a short introduction. Here&#39;s a quick list of high level
+features:</p>
 
 <ul>
 <li>Qip looks like Java but feels like C.</li>
-
 <li>Strongly typed, class-based language (but has no inheritance).</li>
-
 <li>It works entirely on stack-based memory to keep it extremely fast.</li>
-
 <li>LLVM-backed so it runs at C speed.</li>
-
 <li>JIT compiled at runtime.</li>
-
 <li>Explicit support for interfacing with C libraries.</li>
 </ul>
 
-<h4 id='example_source'>Example Source</h4>
+<h4>Example Source</h4>
 
-<p>It&#8217;s probably best to give you a short example of how you might use Qip to analyze something like clickstream data. Here&#8217;s a short example of analyzing the number of hits each page on your web site received:</p>
-<pre class='prettyprint' style='margin-bottom:9px;'>
+<p>It&#39;s probably best to give you a short example of how you might use Qip to
+analyze something like clickstream data. Here&#39;s a short example of analyzing
+the number of hits each page on your web site received:</p>
+
+<pre class="prettyprint" style="margin-bottom:9px;">
 [Hashable("actionId")]
 class Result {
   public Int actionId;
@@ -113,40 +125,59 @@ for each(Event event in cursor) {
   result.count = result.count + 1;
 }
 </pre>
-<h4 id='example_walkthrough'>Example Walkthrough</h4>
 
-<p>Let&#8217;s take this example step by step:</p>
+<h4>Example Walkthrough</h4>
+
+<p>Let&#39;s take this example step by step:</p>
 
 <ol>
-<li>
-<p>We declare a class called <code>Result</code> that will store our data. We mark it as <code>Hashable</code> so that we can store it in a hash map. The class contains an <code>actionId</code> which stores which action we&#8217;re storing a hit count for and a <code>count</code> property which stores the actual hit count.</p>
-</li>
-
-<li>
-<p>Qip programs are executed within the context of a single path of events. A path is simply a list of ordered events that occur for, in our case, a user on our web site. The <code>path</code> variable is passed to our program each time it executes and the program will execute once for each user on our web site. The result data is carried over across each iteration so we can maintain our hit count.</p>
-</li>
-
-<li>
-<p>Once we have the <code>cursor</code> we can use it to loop over the events in our <code>path</code>. For each event in our cursor we grab a <code>Result</code> from our hash map called <code>data</code>. The <code>data</code> variable is similar to <code>path</code> in that it is passed in implicitly. The variable is of type <code>Map&lt;Int,Result&gt;</code> meaning that it is a hash map with an integer key (we use <code>actionId</code>) matching a <code>Result</code> value. The Qip hash map will retrieve an existing <code>Result</code> object if one already exists or will build a new one if it doesn&#8217;t.</p>
-</li>
-
-<li>
-<p>Finally we simple increment the <code>count</code> for each <code>actionId</code> found.</p>
-</li>
+<li><p>We declare a class called <code>Result</code> that will store our data. We mark it as
+<code>Hashable</code> so that we can store it in a hash map. The class contains an
+<code>actionId</code> which stores which action we&#39;re storing a hit count for and a
+<code>count</code> property which stores the actual hit count.</p></li>
+<li><p>Qip programs are executed within the context of a single path of events. A
+path is simply a list of ordered events that occur for, in our case, a user on
+our web site. The <code>path</code> variable is passed to our program each time it
+executes and the program will execute once for each user on our web site. The
+result data is carried over across each iteration so we can maintain our hit
+count.</p></li>
+<li><p>Once we have the <code>cursor</code> we can use it to loop over the events in our
+<code>path</code>. For each event in our cursor we grab a <code>Result</code> from our hash map
+called <code>data</code>. The <code>data</code> variable is similar to <code>path</code> in that it is passed
+in implicitly. The variable is of type <code>Map&lt;Int,Result&gt;</code> meaning that it is a
+hash map with an integer key (we use <code>actionId</code>) matching a <code>Result</code> value.
+The Qip hash map will retrieve an existing <code>Result</code> object if one already
+exists or will build a new one if it doesn&#39;t.</p></li>
+<li><p>Finally we simple increment the <code>count</code> for each <code>actionId</code> found.</p></li>
 </ol>
 
-<h4 id='where_does_the_data_go'>Where Does the Data Go?</h4>
+<h4>Where Does the Data Go?</h4>
 
-<p>Below is a diagram of how queries and data flow through Sky. The client starts by sending a query to the server where it gets parsed and compiled by the Query Compiler. Next, the compiled module is passed to the Query Engine where it runs it for each path retrieved from the the Path Iterator. Finally, once all paths are exhausted, the results are passed to the serializer which converts everything to <a href='http://msgpack.org/'>MessagePack</a> format and the data is returned to the client.</p>
-<center>
-  <img src='/images/sky-v1.0.0-alpha-preview/qip_flow.png' />
-</center>
-<p>This flow allows you to easily integrate with any language that supports MessagePack (C, Java, PHP, JavaScript, Go, etc) and it ensures that you are not limited by any particular data structure provided by Sky.</p>
+<p>Below is a diagram of how queries and data flow through Sky. The client starts
+by sending a query to the server where it gets parsed and compiled by the
+Query Compiler. Next, the compiled module is passed to the Query Engine where
+it runs it for each path retrieved from the the Path Iterator. Finally, once
+all paths are exhausted, the results are passed to the serializer which
+converts everything to <a href="http://msgpack.org/">MessagePack</a> format and the data
+is returned to the client.</p>
 
-<h4 id='plugin_architecture'>Plugin Architecture</h4>
+<p><center>
+  <img src="/images/sky-v1.0.0-alpha-preview/qip_flow.png">
+</center></p>
 
-<p>Because Qip is a fairly simple language it was an explicit goal to make integration of external code as easy as possible. There are so many great data processing libraries for machine learning and classification that I wanted to be able to pull from. To integrate an external call, simply add an <code>[External]</code> metadata tag to the class method.</p>
-<pre class='prettyprint' style='margin-bottom:9px;'>
+<p>This flow allows you to easily integrate with any language that supports
+MessagePack (C, Java, PHP, JavaScript, Go, etc) and it ensures that you are
+not limited by any particular data structure provided by Sky.</p>
+
+<h4>Plugin Architecture</h4>
+
+<p>Because Qip is a fairly simple language it was an explicit goal to make
+integration of external code as easy as possible. There are so many great data
+processing libraries for machine learning and classification that I wanted to
+be able to pull from. To integrate an external call, simply add an
+<code>[External]</code> metadata tag to the class method.</p>
+
+<pre class="prettyprint" style="margin-bottom:9px;">
 class SentimentAnalyzer {
   [External(name="my_analyzer_function")]
   public String analyze(String string);
@@ -155,29 +186,48 @@ class SentimentAnalyzer {
 SentimentAnalyzer analyzer;
 analyzer.analyze(some_text);
 </pre>
+
 <p>This example here will call out to the following C function:</p>
-<pre class='prettyprint' style='margin-bottom:9px;'>
+
+<pre class="prettyprint" style="margin-bottom:9px;">
 struct sentiment_analyzer_t {
   ...
 };
 
 char *my_analyzer_function(struct sentiment_analyzer *analyzer, char *string);
 </pre>
-<h3 id='roadmap'>Roadmap</h3>
 
-<p>The alpha preview is still a rough cut. The next steps are to stabilize the server, API and the language. After that some additional language features will be added to make queries simpler and easier. A declarative syntax will be layered on top of the Qip procedural form that will change the web page hit query to this:</p>
-<pre class='prettyprint' style='margin-bottom:9px;'>
+<h3>Roadmap</h3>
+
+<p>The alpha preview is still a rough cut. The next steps are to stabilize the
+server, API and the language. After that some additional language features
+will be added to make queries simpler and easier. A declarative syntax will be
+layered on top of the Qip procedural form that will change the web page hit
+query to this:</p>
+
+<pre class="prettyprint" style="margin-bottom:9px;">
 data.map(path, :count++);
 </pre>
-<p>I&#8217;ll be writing more about the declarative syntax as it gets finalized.</p>
 
-<p>After Qip improvements, Sky will be adding real-time queries meaning that you can submit the query above and retrieve not only the results back but also a continuous stream of delta updates as new events come into the server and match your query. This is useful not only in analytics but also can be used for real-time risk analysis or to analyze purchase intent of a customer while they&#8217;re clicking through your web site.</p>
+<p>I&#39;ll be writing more about the declarative syntax as it gets finalized.</p>
 
-<p>Finally, Sky will be adding multicore and multinode distributed processing. A single threaded Sky server can already analyze tens of millions of events per second. However, sometimes you need to analyze billions of events per second.</p>
+<p>After Qip improvements, Sky will be adding real-time queries meaning that you
+can submit the query above and retrieve not only the results back but also a
+continuous stream of delta updates as new events come into the server and
+match your query. This is useful not only in analytics but also can be used
+for real-time risk analysis or to analyze purchase intent of a customer while
+they&#39;re clicking through your web site.</p>
 
-<p>Some exciting things are coming. Please visit the <a href='https://github.com/skydb/sky'>Sky GitHub project page</a> to contribute. Or join the mailing list by sending an e-mail to <a href='mailto:sky@librelist.com'>sky@librelist.com</a> to get updates.<br /><br /></p>
+<p>Finally, Sky will be adding multicore and multinode distributed processing. A
+single threaded Sky server can already analyze tens of millions of events per
+second. However, sometimes you need to analyze billions of events per second.</p>
 
-<p><a href='http://news.ycombinator.com/item?id=4409506'>Discuss this post on Hacker News</a></p>
+<p>Some exciting things are coming.
+Please visit the <a href="https://github.com/skydb/sky">Sky GitHub project page</a> to contribute.
+Or join the mailing list by sending an e-mail to <a href="mailto:sky@librelist.com">sky@librelist.com</a> to get updates.<br/><br/></p>
+
+<p><a href="http://news.ycombinator.com/item?id=4409506">Discuss this post on Hacker News</a></p>
+
         </div>
       </div>
     </div><!-- /container -->

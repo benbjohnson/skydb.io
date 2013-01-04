@@ -59,9 +59,9 @@
               </a>
             </li>
             <li class="">
-              <a href="/blog.html">Blog</a>
+              <a href="/blog">Blog</a>
             </li>
-            <li><a class="disable hidden-phone" href="/sky-0.2.0.tar.gz">Download</a></li>
+            <li><a class="disable hidden-phone" href="/sky-0.2.1.tar.gz">Download</a></li>
             <li>
               <a href="https://github.com/skydb/sky">
                 <span class="hidden-phone">Repository</span>
@@ -81,67 +81,93 @@
           
             <h2>Data Processing Using Lua</h2>
           
-          <h3 id='how_lua_fits_into_sky'>How Lua Fits into Sky</h3>
+          <h3>How Lua Fits into Sky</h3>
 
-<p>In the last section we looked at a simple map/reduce program in Lua that computes our total number of purchases and the total amount spent. In this section we&#8217;ll look at how Sky integrates with Lua at a lower level. Sky is built to be simple. It stores events and reads them back in order. Lua was added to flexibly handle any analytical complexity you want to throw at it.</p>
+<p>In the last section we looked at a simple aggregation program in Lua that computes our total number of purchases and the total amount spent.
+In this section we&#39;ll look at how Sky integrates with Lua at a lower level.
+Sky is built to be simple.
+It stores events and reads them back in order.
+Lua was added to flexibly handle any analytical complexity you want to throw at it.</p>
 
-<p>This documentation won&#8217;t cover how to code in Lua. For an introduction to <a href='http://www.lua.org/'>Lua</a>, you can find resources on the <a href='http://www.lua.org/docs.html'>Lua documentation</a> page. You can also read up on <a href='http://luajit.org/'>LuaJIT</a> to understand how to load and call C functions or to optimize your Lua code.</p>
+<p>This documentation won&#39;t cover how to code in Lua.
+For an introduction to <a href="http://www.lua.org/">Lua</a>, you can find resources on the <a href="http://www.lua.org/docs.html">Lua documentation</a> page.
+You can also read up on <a href="http://luajit.org/">LuaJIT</a> to understand how to load and call C functions or to optimize your Lua code.</p>
 
-<h3 id='the_basic_structure'>The Basic Structure</h3>
+<h3>The Basic Structure</h3>
 
-<p>The basic Lua map/reduce program looks like this:</p>
+<p>The basic Lua aggregation program looks like this:</p>
+<div class="highlight"><pre><span class="k">function</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+  <span class="c1">-- Initialize your own data structures here. Also, grab a reference to</span>
+  <span class="c1">-- the current event state. The event&#39;s property values will change on</span>
+  <span class="c1">-- each iteration below but it&#39;s reference stays the same.</span>
+  <span class="n">event</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">:</span><span class="n">event</span><span class="p">()</span>
 
-<pre><code>function map(cursor, data)
-  -- Initialization for each object belongs here.
-  
-  while not cursor:eof() do
-    event = cursor:event()
+  <span class="c1">-- Loop over every event that occurred with the object.</span>
+  <span class="k">while</span> <span class="n">cursor</span><span class="p">:</span><span class="nb">next</span><span class="p">()</span> <span class="k">do</span>
+    <span class="c1">-- Do something with the current event data.</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+<h3>Breaking It Down</h3>
 
-    -- Do something with the event.
-    
-    cursor:next()
-  end
-end
+<p>It might look complicated at first but it&#39;s fairly intuitive once you dive in.
+The <code>aggregate()</code> function starts by providing you a <code>cursor</code> argument and a <code>data</code> argument.
+This function gets called once for every object in your table.
+The <code>cursor</code> lets you chronologically iterate over each event that belongs to the object.</p>
 
-function reduce(results, data)
-  -- Combine the data argument into the results argument here.
-  return results
-end</code></pre>
+<p>To access the current state of the object, use the <code>event</code> variable.
+You can access object and action properties by name.
+For example, if you had an <code>age</code> property on your table you can access it for the current object within the current event by using <code>event.age</code>.
+The action identifier can be found by using <code>event.action_id</code> and the timestamp of the event is <code>event.timestamp</code>.
+Timestamps are stored as seconds since midnight, January 1, 1970 UTC.</p>
 
-<h3 id='start_with_map'>Start With map()</h3>
+<p>To move to the next event in the object, you just need to call the <code>next()</code> method on the <code>cursor</code>.
+When there are no more events then the loop will stop and the function will exit.</p>
 
-<p>It might look complicated at first but it&#8217;s fairly intuitive once you dive in. The <code>map()</code> function starts by providing you a <code>cursor</code> argument and a <code>data</code> argument. This function gets called once for every object in your table. The <code>cursor</code> lets you chronologically iterate over each event that belongs to the object.</p>
+<p><em>Important Note:</em> Strings are treated differently.
+See the &ldquo;Gotchas&rdquo; section below to learn how to use them.</p>
 
-<p>To access the current state of the object, use the <code>event</code> variable. You can access object and action properties by name. For example, if you had a <code>first_name</code> property on your table you can access it for the current object within the current event by using <code>event.first_name</code>. The action identifier can be found by using <code>event.action_id</code> and the timestamp of the event is <code>event.timestamp</code>. Timestamps are stored as microseconds since midnight, January 1, 1970 UTC.</p>
+<h3>Where The Data Goes</h3>
 
-<p>To move to the next event in the object, you just need to call the <code>next()</code> method on the <code>cursor</code>. When there are no more events then the cursor&#8217;s <code>eof()</code> function will return <code>false</code>.</p>
+<p>Once all the data is aggregated it is returned to Ruby.
+You can structure your Lua data structures however you want and they&#39;ll be encoded in MessagePack so your Ruby structure will look identical.
+So if your Lua data is a hash of hashes then your Ruby data will be a hash of hashes.</p>
 
-<h3 id='finish_with_reduce'>Finish With reduce()</h3>
+<p>One caveat is that Lua doesn&#39;t have a separate concept of hashes and arrays &ndash; Lua just has <em>tables</em>.
+Because of this and because consistency is important, all tables are encoded as hashes.</p>
 
-<p>Finally, the <code>reduce()</code> function will be called to combine groups of <code>map()</code> calls together. The map functions are grouped together in the background for performance reasons so the reduce function only gets called a few times. The <code>results</code> argument is a Lua table that you can combine the map data into. The <code>data</code> argument is the same as the <code>data</code> argument passed to <code>map()</code>.</p>
+<h3>Gotchas</h3>
 
-<p>Once all the data has been reduced, Sky will MessagePack encode the <code>results</code> variable and send it back to the client. That means that you can structure your results in whatever way you want. One caveat is that since Lua doesn&#8217;t have a separate hash and array construct, MessagePack will encode tables with all numeric keys as arrays. You can add a dummy string key to your table to force it to always be a map.</p>
-
-<h3 id='gotchas'>Gotchas</h3>
-
-<p>Processing using Sky and Lua works about how you&#8217;d expect it to. There are some things to remember though:</p>
+<p>Processing using Sky and Lua works about how you&#39;d expect it to.
+There are some things to remember though:</p>
 
 <ol>
-<li>
-<p>Don&#8217;t write to any global variables! The Lua script is executed in multiple contexts so globals won&#8217;t be consistent. One exception is if you have read-only global data. That&#8217;s fine.</p>
-</li>
-
-<li>
-<p>The <code>event</code> object returned by <code>cursor:event()</code> doesn&#8217;t change &#8211; only it&#8217;s properties do. That means that you can copy properties from the <code>event</code> object but you can&#8217;t save a copy of the whole object.</p>
-</li>
+<li><p>Don&#39;t write to any global variables!
+The Lua script is executed in multiple contexts so globals won&#39;t be consistent.
+One exception is if you have read-only global data.
+That&#39;s fine.</p></li>
+<li><p>The <code>event</code> object returned by <code>cursor:event()</code> doesn&#39;t change &ndash; only it&#39;s properties do.
+That means that you can copy properties from the <code>event</code> object but you can&#39;t save a copy of the whole object.</p></li>
+<li><p>String properties are treated differently than integers, booleans and floats.
+To use a string, you need to use a wrapper function.
+That means instead of calling <code>event.first_name</code> you need to use <code>event:first_name()</code>.
+Note the colon instead of a dot and the parentheses at the end.</p></li>
 </ol>
 
-<h3 id='luajit_api'>LuaJIT API</h3>
+<h3>LuaJIT API</h3>
 
-<p>Sky uses LuaJIT to compile Lua into machine code at runtime. It also allows you to extend the Lua language by using C structs for performance and using an FFI interface to work with C libraries. However, use this at your own risk! Sky doesn&#8217;t have any way to catch memory access errors or problems in external libraries. That means that LuaJIT can crash Sky if used improperly.</p>
+<p>Sky uses LuaJIT to compile Lua into machine code at runtime.
+It also allows you to extend the Lua language by using C structs for performance and using an FFI interface to work with C libraries.
+However, use this at your own risk!
+Sky doesn&#39;t have any way to catch memory access errors or problems in external libraries.
+That means that LuaJIT can crash Sky if used improperly.</p>
 
-<p>You can learn more about this technique by referencing the <a href='http://luajit.org/ext_ffi.html'>LuaJIT FFI reference</a>.</p>
-<br /><a href='basics.html'>« Prev <span class='hidden-phone'>(The Basics)</span></a>
+<p>You can learn more about this technique by referencing the <a href="http://luajit.org/ext_ffi.html">LuaJIT FFI reference</a>.</p>
+
+<p><br/>
+<a href="basics.html">« Prev <span class="hidden-phone">(The Basics)</span></a>
+<span class="pull-right"><a href="sessions.html">Next <span class="hidden-phone">(Aggregating Sessions)</span> »</a></span></p>
+
         </div>
       </div>
     </div><!-- /container -->
