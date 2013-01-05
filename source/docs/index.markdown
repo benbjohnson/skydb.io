@@ -12,6 +12,7 @@ In no time you'll see how you can load up data and build funnel analysis queries
 1. [The Sky Architecture](architecture.html)
 1. [The Basics](basics.html)
 1. [Data Processing using Lua](lua.html)
+1. [Aggregating Sessions](sessions.html)
 
 
 ### Additional Help

@@ -1,7 +1,7 @@
 ---
 title: Qip is Dead, Long Live Qip
 date: 2012-10-16 00:00 -00:00
-layout: blog_layout
+layout: blog
 ---
 
 ### A Short History

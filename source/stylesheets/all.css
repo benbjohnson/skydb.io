@@ -1,6 +1,7 @@
 /*
  *= require bootstrap
  *= require bootstrap-responsive
+ *= require pygments
  */
 
 header {
@@ -30,4 +31,12 @@ h3 {
 }
 hr {
     margin:10px 0;
+}
+
+pre {
+  font-size: 12px;
+  font-size: 12px;
+  word-wrap: normal;
+  white-space: pre;
+  overflow-x: scroll;
 }

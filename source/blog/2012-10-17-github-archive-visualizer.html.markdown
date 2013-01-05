@@ -1,7 +1,7 @@
 ---
 title: GitHub Archive Visualizer
 date: 2012-10-17 00:00 -00:00
-layout: blog_layout
+layout: blog
 ---
 
 ### Overview

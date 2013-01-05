@@ -4,7 +4,7 @@ title: Data Processing Using Lua
 
 ### How Lua Fits into Sky
 
-In the last section we looked at a simple map/reduce program in Lua that computes our total number of purchases and the total amount spent.
+In the last section we looked at a simple aggregation program in Lua that computes our total number of purchases and the total amount spent.
 In this section we'll look at how Sky integrates with Lua at a lower level.
 Sky is built to be simple.
 It stores events and reads them back in order.
@@ -17,53 +17,50 @@ You can also read up on [LuaJIT] to understand how to load and call C functions 
 
 ### The Basic Structure
 
-The basic Lua map/reduce program looks like this:
+The basic Lua aggregation program looks like this:
 
-    function map(cursor, data)
-      -- Initialization for each object belongs here.
-      
-      while not cursor:eof() do
-        event = cursor:event()
+```lua
+function aggregate(cursor, data)
+  -- Initialize your own data structures here. Also, grab a reference to
+  -- the current event state. The event's property values will change on
+  -- each iteration below but it's reference stays the same.
+  event = cursor:event()
 
-        -- Do something with the event.
-        
-        cursor:next()
-      end
-    end
-    
-    function reduce(results, data)
-      -- Combine the data argument into the results argument here.
-      return results
-    end
+  -- Loop over every event that occurred with the object.
+  while cursor:next() do
+    -- Do something with the current event data.
+  end
+end
+```
 
-### Start With map()
+### Breaking It Down
 
 It might look complicated at first but it's fairly intuitive once you dive in.
-The `map()` function starts by providing you a `cursor` argument and a `data` argument.
+The `aggregate()` function starts by providing you a `cursor` argument and a `data` argument.
 This function gets called once for every object in your table.
 The `cursor` lets you chronologically iterate over each event that belongs to the object.
 
 To access the current state of the object, use the `event` variable.
 You can access object and action properties by name.
-For example, if you had a `first_name` property on your table you can access it for the current object within the current event by using `event.first_name`.
+For example, if you had an `age` property on your table you can access it for the current object within the current event by using `event.age`.
 The action identifier can be found by using `event.action_id` and the timestamp of the event is `event.timestamp`.
-Timestamps are stored as microseconds since midnight, January 1, 1970 UTC.
+Timestamps are stored as seconds since midnight, January 1, 1970 UTC.
 
 To move to the next event in the object, you just need to call the `next()` method on the `cursor`.
-When there are no more events then the cursor's `eof()` function will return `false`.
+When there are no more events then the loop will stop and the function will exit.
+
+*Important Note:* Strings are treated differently.
+See the "Gotchas" section below to learn how to use them.
 
 
-### Finish With reduce()
+### Where The Data Goes
 
-Finally, the `reduce()` function will be called to combine groups of `map()` calls together.
-The map functions are grouped together in the background for performance reasons so the reduce function only gets called a few times.
-The `results` argument is a Lua table that you can combine the map data into.
-The `data` argument is the same as the `data` argument passed to `map()`.
+Once all the data is aggregated it is returned to Ruby.
+You can structure your Lua data structures however you want and they'll be encoded in MessagePack so your Ruby structure will look identical.
+So if your Lua data is a hash of hashes then your Ruby data will be a hash of hashes.
 
-Once all the data has been reduced, Sky will MessagePack encode the `results` variable and send it back to the client.
-That means that you can structure your results in whatever way you want.
-One caveat is that since Lua doesn't have a separate hash and array construct, MessagePack will encode tables with all numeric keys as arrays.
-You can add a dummy string key to your table to force it to always be a map.
+One caveat is that Lua doesn't have a separate concept of hashes and arrays -- Lua just has *tables*.
+Because of this and because consistency is important, all tables are encoded as hashes.
 
 
 ### Gotchas
@@ -79,6 +76,11 @@ There are some things to remember though:
 1. The `event` object returned by `cursor:event()` doesn't change -- only it's properties do.
    That means that you can copy properties from the `event` object but you can't save a copy of the whole object.
 
+1. String properties are treated differently than integers, booleans and floats.
+   To use a string, you need to use a wrapper function.
+   That means instead of calling `event.first_name` you need to use `event:first_name()`.
+   Note the colon instead of a dot and the parentheses at the end.
+
 
 ### LuaJIT API
 
@@ -92,6 +94,7 @@ You can learn more about this technique by referencing the [LuaJIT FFI reference
 
 <br/>
 <a href="basics.html">« Prev <span class="hidden-phone">(The Basics)</span></a>
+<span class="pull-right"><a href="sessions.html">Next <span class="hidden-phone">(Aggregating Sessions)</span> »</a></span>
 
 
   [Lua]: http://www.lua.org/

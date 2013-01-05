@@ -28,12 +28,14 @@ If you have Sky up and running on a different platform, please [e-mail the maili
 ZeroMQ 3.2.x is the only dependency that needs to be externally compiled.
 You can download it from [zeromq.org](http://www.zeromq.org/).
 
-    $ wget http://download.zeromq.org/zeromq-3.2.2.tar.gz
-    $ tar zxvf zeromq-3.2.2.tar.gz
-    $ cd zeromq-3.2.2
-    $ ./configure
-    $ make
-    $ sudo make install
+```bash
+$ wget http://download.zeromq.org/zeromq-3.2.2.tar.gz
+$ tar zxvf zeromq-3.2.2.tar.gz
+$ cd zeromq-3.2.2
+$ ./configure
+$ make
+$ sudo make install
+```
 
 On Ubuntu, you'll need to add `/usr/local/lib` to your `ldconfig`.
 
@@ -42,27 +44,32 @@ On Ubuntu, you'll need to add `/usr/local/lib` to your `ldconfig`.
 
 Download the [latest version of Sky from GitHub](https://github.com/skydb/sky/downloads) and follow these instructions to build it:
 
-    $ wget http://skydb.io/sky-0.2.0.tar.gz
-    $ tar zxvf sky-0.2.0.tar.gz
-    $ cd sky-0.2.0
-    $ make
-    $ sudo make install
+```bash
+$ wget http://skydb.io/sky-0.2.1.tar.gz
+$ tar zxvf sky-0.2.1.tar.gz
+$ cd sky-0.2.1
+$ make
+$ sudo make install
+```
 
 To run the server, simply run the `skyd` program:
 
-    $ sudo skyd
-    Sky Server v0.2.0
-    Listening on 0.0.0.0:8585, CTRL+C to stop
-
+```bash
+$ sudo skyd
+Sky Server v0.2.1
+Listening on 0.0.0.0:8585, CTRL+C to stop
+```
 
 ### Ruby Client Library
 
 Currently the only Sky client library available is for Ruby.
 You can use RubyGems to install it:
 
-    $ gem install skydb
-    Successfully installed skydb-0.2.0
-    1 gem installed
+```bash
+$ gem install skydb
+Successfully installed skydb-0.2.1
+1 gem installed
+```
 
 You can reference the [API documentation](http://rubydoc.info/gems/skydb/frames) or the [Sky D3.js Demo][] application for examples of how to use the API.
 
@@ -73,25 +80,31 @@ Sky is built to analyze behavior which provides us interesting ways to  aggregat
 Because of this the [Sky D3.js Demo] was created as a test bed for trying out new functionality.
 To get up and running on the demo, pull down the code from GitHub and use Bundler to install the dependencies:
 
-    $ git clone https://github.com/skydb/sky-d3-demo.git
-    $ cd sky-d3-demo
-    $ bundle install
+```bash
+$ git clone https://github.com/skydb/sky-d3-demo.git
+$ cd sky-d3-demo
+$ bundle install
+```
 
 The demo uses the [GitHub Archive][] as its data set so you'll need to import the data first.
 Make sure you have the Sky server running before attempting to import.
 The `import.rb` command takes two arguments: a start date and and end date.
 
-    $ ./import.rb 2012-10-01 2012-10-31
+```bash
+$ ./import.rb 2012-10-01 2012-10-31
+```
 
 This example will pull down the entire month of October 2012 for processing.
 The import is currently a bit slow but we're working on it.
 You can try with a smaller date range if it's taking too long.
 Once the import is complete start up the application server.
 
-    $ rackup
-    >> Thin web server (v1.4.1 codename Chromeo)
-    >> Maximum connections set to 1024
-    >> Listening on 0.0.0.0:9292, CTRL+C to stop
+```bash
+$ rackup
+>> Thin web server (v1.4.1 codename Chromeo)
+>> Maximum connections set to 1024
+>> Listening on 0.0.0.0:9292, CTRL+C to stop
+```
 
 You can now open up [http://localhost:9292](localhost:9292) and view the interactive visualization.
 You can click on different actions to drill in and see how users on GitHub interact with the site.
