@@ -45,9 +45,9 @@ On Ubuntu, you'll need to add `/usr/local/lib` to your `ldconfig`.
 Download the [latest version of Sky from GitHub](https://github.com/skydb/sky/downloads) and follow these instructions to build it:
 
 ```bash
-$ wget http://skydb.io/sky-0.2.1.tar.gz
-$ tar zxvf sky-0.2.1.tar.gz
-$ cd sky-0.2.1
+$ wget http://skydb.io/sky-0.2.2.tar.gz
+$ tar zxvf sky-0.2.2.tar.gz
+$ cd sky-0.2.2
 $ make
 $ sudo make install
 ```
@@ -56,7 +56,7 @@ To run the server, simply run the `skyd` program:
 
 ```bash
 $ sudo skyd
-Sky Server v0.2.1
+Sky Server v0.2.2
 Listening on 0.0.0.0:8585, CTRL+C to stop
 ```
 
@@ -67,7 +67,7 @@ You can use RubyGems to install it:
 
 ```bash
 $ gem install skydb
-Successfully installed skydb-0.2.1
+Successfully installed skydb-0.2.2
 1 gem installed
 ```
 

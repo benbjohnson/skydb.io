@@ -11,8 +11,16 @@ In no time you'll see how you can load up data and build funnel analysis queries
 1. [Getting Started](getting-started.html)
 1. [The Sky Architecture](architecture.html)
 1. [The Basics](basics.html)
-1. [Data Processing using Lua](lua.html)
-1. [Aggregating Sessions](sessions.html)
+1. [Behavioral Query Language](query.html)
+1. [Bulk Importing Data](import.html)
+
+
+### Generated Documentation
+
+You can find the generated documentation for the SkyDB gem on [RubyDoc](http://rubydoc.info/gems/skydb/frames).
+
+The Sky server currently doesn't have generated documentation online right now.
+The source code is heavily commented though so please take a look at it if you have any questions.
 
 
 ### Additional Help
