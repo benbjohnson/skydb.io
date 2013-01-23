@@ -61,7 +61,7 @@
             <li class="">
               <a href="/blog">Blog</a>
             </li>
-            <li><a class="disable hidden-phone" href="/sky-0.2.1.tar.gz">Download</a></li>
+            <li><a class="disable hidden-phone" href="/sky-0.2.2.tar.gz">Download</a></li>
             <li>
               <a href="https://github.com/skydb/sky">
                 <span class="hidden-phone">Repository</span>
@@ -134,47 +134,11 @@ Object properties will maintain their state over time whereas the value of actio
 <p>When you add an event with a property that doesn&#39;t exist, Sky will automatically add it and set it&#39;s property data type based on the value provided.
 If you&#39;d like more control over properties and actions, you can use the <code>add_action()</code> and <code>add_property()</code> methods on the <code>SkyDB</code> object.</p>
 
-<h3>Aggregating Data</h3>
-
-<p>Once you have events in your database you can aggregate them using the handy Lua aggregation framework.
-<a href="http://www.lua.org/">Lua</a> is a simple, embeddable language that is compiled and optimized into machine code on the fly making it extremely fast.</p>
-
-<p>In this example, we&#39;ll start with something simple.
-We&#39;ll aggregate the total number of purchases and the total amount of purchases.
-We can pass this script into <code>SkyDB.aggregate()</code> and the contents of the <code>data</code> variable will be passed back to Ruby:</p>
-<div class="highlight"><pre><span class="k">function</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-  <span class="n">event</span> <span class="o">=</span> <span class="n">cursor</span><span class="p">:</span><span class="n">event</span><span class="p">()</span>
-  <span class="n">data</span><span class="p">.</span><span class="n">purchase_amount</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">purchase_amount</span> <span class="ow">or</span> <span class="mi">0</span>
-  <span class="n">data</span><span class="p">.</span><span class="n">purchase_count</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">purchase_count</span> <span class="ow">or</span> <span class="mi">0</span>
-
-  <span class="k">while</span> <span class="n">cursor</span><span class="p">:</span><span class="nb">next</span><span class="p">()</span> <span class="k">do</span>
-    <span class="c1">-- The &#39;purchase&#39; action id needs to be retrieved before generating the script.</span>
-    <span class="c1">-- Let&#39;s assume that we know it is &#39;2&#39;.</span>
-    <span class="k">if</span> <span class="n">event</span><span class="p">.</span><span class="n">action_id</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">then</span>
-      <span class="n">data</span><span class="p">.</span><span class="n">purchase_amount</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">purchase_amount</span> <span class="o">+</span> <span class="n">event</span><span class="p">.</span><span class="n">purchase_amount</span>
-      <span class="n">data</span><span class="p">.</span><span class="n">purchase_count</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">purchase_count</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</pre></div>
-<p>In this example, our <code>aggregate()</code> function will retrieve a <code>cursor</code> for each object in the table.
-The <code>data</code> object passed in is a Lua table that lets us store a hash of data.
-Here we are storing the total purchase amount and the total number of purchases.</p>
-
-<p>Next, we loop over the cursor.
-Each time we loop in the cursor we get the next event for an object so we can process the full history of state and actions for an object.
-In this example, we&#39;re hard coding the action identifier for the <code>purchase</code> action.
-In your application you would typically look this up and insert it into the Lua script.
-If so, we&#39;ll add the purchase amount to the total and we&#39;ll increment our counter on the <code>data</code> object.</p>
-
-<p>The <code>data</code> variable can be structured however you want.
-The variable will be serialized into MessagePack format so that it can be sent to Ruby in the same format.</p>
-
-<p>In the next section, we&#39;ll talk more in detail about how Lua integrates with Sky.</p>
+<p>In the next section, we&#39;ll talk about how to query the data once it&#39;s in your database.</p>
 
 <p><br/>
 <a href="architecture.html">« Prev <span class="hidden-phone">(The Sky Architecture)</span></a>
-<span class="pull-right"><a href="lua.html">Next <span class="hidden-phone">(Data Processing Using Lua)</span> »</a></span></p>
+<span class="pull-right"><a href="query.html">Next <span class="hidden-phone">(Behavioral Query Language)</span> »</a></span></p>
 
         </div>
       </div>

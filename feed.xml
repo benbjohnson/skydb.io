@@ -5,10 +5,56 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-01-04T00:00:00Z</updated>
+  <updated>2013-01-22T00:00:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Sky v0.2.2 Released</title>
+    <link rel="alternate" href="/blog/sky-v0-2-2.html"/>
+    <id>/blog/sky-v0-2-2.html</id>
+    <published>2013-01-22T00:00:00Z</published>
+    <updated>2013-01-22T00:00:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
+
+&lt;p&gt;Sky version 0.2.2 has been released.
+You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
+We&amp;#39;ve added a command line importer, overhauled the query system and fixed a bunch of bugs!&lt;/p&gt;
+
+&lt;p&gt;Major changes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A new query interface has been added!&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+    <content type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
+
+&lt;p&gt;Sky version 0.2.2 has been released.
+You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
+We&amp;#39;ve added a command line importer, overhauled the query system and fixed a bunch of bugs!&lt;/p&gt;
+
+&lt;p&gt;Major changes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A new query interface has been added!
+The Lua API is still in the server but the preferred way to query for data is using the new ActiveRecord-style query interface in the Ruby gem.
+Check out the &lt;a href="/docs/query.html"&gt;Behavioral Query Language&lt;/a&gt; docs for more information.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A flexible command line data importer has been added.
+It can load CSV and tab-delimited formats into the database using a simple transform definition.
+JSON and server log formats will be added in the near future.
+You can find out more about how to use it by looking at the &lt;a href="/docs/import.html"&gt;Bulk Importing Data&lt;/a&gt; docs.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;What&amp;#39;s Next&lt;/h3&gt;
+
+&lt;p&gt;The next version of Sky will include additional query and importer features.
+Also expect to see the Sky front-end called &lt;strong&gt;Skybox&lt;/strong&gt; being released in the near future.
+It&amp;#39;ll give you the ability to explore the behavior of your users with an easy to use web-based interface.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Sky v0.2.1 Released</title>
     <link rel="alternate" href="/blog/sky-v0-2-1.html"/>
@@ -292,184 +338,6 @@ Qip is not the only option on the table though.
 Google&amp;#39;s V8 JavaScript engine could integrate well and Lua could be used instead.&lt;/p&gt;
 
 &lt;p&gt;However, for now, Sky is moving forward with a simpler API and no Qip.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Sky v0.1.0 Alpha Preview</title>
-    <link rel="alternate" href="/blog/sky-v0-1-0-alpha-preview.html"/>
-    <id>/blog/sky-v0-1-0-alpha-preview.html</id>
-    <published>2012-08-20T00:00:00Z</published>
-    <updated>2012-08-20T00:00:00Z</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <summary type="html">&lt;h3&gt;Overview&lt;/h3&gt;
-
-&lt;p&gt;The hardest part about any software project is getting to a minimum viable
-product. There are many pieces that have to fit together to make even the
-basics of the program function. However, once the basics work it is easy to
-iterate quickly and add new features.&lt;/p&gt;
-</summary>
-    <content type="html">&lt;h3&gt;Overview&lt;/h3&gt;
-
-&lt;p&gt;The hardest part about any software project is getting to a minimum viable
-product. There are many pieces that have to fit together to make even the
-basics of the program function. However, once the basics work it is easy to
-iterate quickly and add new features.&lt;/p&gt;
-
-&lt;p&gt;Today the Sky database is being released as an alpha preview. The data store
-and the language are both working end-to-end and can be used for basic
-behavioral analytics.  I&amp;#39;d like to give you an overview of where Sky is at now
-and what the next steps are.&lt;/p&gt;
-
-&lt;h3&gt;Where It&amp;#39;s At&lt;/h3&gt;
-
-&lt;p&gt;At the heart of Sky is a simple idea: give people the ability to understand
-how things behave and then make decisions based on that understanding. The
-database stores actions and state about things. That&amp;#39;s all. Simplicity is a
-basic principle of Sky. Too many other databases try to do too much.&lt;/p&gt;
-
-&lt;p&gt;Simplicity may sound limiting though. There are many ways to analyze data so
-Sky is built with a flexible processing language called Qip (pronounced
-&amp;#39;quip&amp;#39;). Qip allows you to perform complex analytics but is run next to the
-data it analyzes so it is blazingly fast.&lt;/p&gt;
-
-&lt;h3&gt;Intro to Qip&lt;/h3&gt;
-
-&lt;p&gt;I&amp;#39;ll be adding documentation for the Qip language as it formalizes but I
-wanted to give you a short introduction. Here&amp;#39;s a quick list of high level
-features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Qip looks like Java but feels like C.&lt;/li&gt;
-&lt;li&gt;Strongly typed, class-based language (but has no inheritance).&lt;/li&gt;
-&lt;li&gt;It works entirely on stack-based memory to keep it extremely fast.&lt;/li&gt;
-&lt;li&gt;LLVM-backed so it runs at C speed.&lt;/li&gt;
-&lt;li&gt;JIT compiled at runtime.&lt;/li&gt;
-&lt;li&gt;Explicit support for interfacing with C libraries.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;Example Source&lt;/h4&gt;
-
-&lt;p&gt;It&amp;#39;s probably best to give you a short example of how you might use Qip to
-analyze something like clickstream data. Here&amp;#39;s a short example of analyzing
-the number of hits each page on your web site received:&lt;/p&gt;
-
-&lt;pre class="prettyprint" style="margin-bottom:9px;"&gt;
-[Hashable("actionId")]
-class Result {
-  public Int actionId;
-  public Int count;
-}
-
-Cursor cursor = path.events();
-for each(Event event in cursor) {
-  Result result = data.get(event.actionId);
-  result.count = result.count + 1;
-}
-&lt;/pre&gt;
-
-&lt;h4&gt;Example Walkthrough&lt;/h4&gt;
-
-&lt;p&gt;Let&amp;#39;s take this example step by step:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;We declare a class called &lt;code&gt;Result&lt;/code&gt; that will store our data. We mark it as
-&lt;code&gt;Hashable&lt;/code&gt; so that we can store it in a hash map. The class contains an
-&lt;code&gt;actionId&lt;/code&gt; which stores which action we&amp;#39;re storing a hit count for and a
-&lt;code&gt;count&lt;/code&gt; property which stores the actual hit count.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Qip programs are executed within the context of a single path of events. A
-path is simply a list of ordered events that occur for, in our case, a user on
-our web site. The &lt;code&gt;path&lt;/code&gt; variable is passed to our program each time it
-executes and the program will execute once for each user on our web site. The
-result data is carried over across each iteration so we can maintain our hit
-count.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Once we have the &lt;code&gt;cursor&lt;/code&gt; we can use it to loop over the events in our
-&lt;code&gt;path&lt;/code&gt;. For each event in our cursor we grab a &lt;code&gt;Result&lt;/code&gt; from our hash map
-called &lt;code&gt;data&lt;/code&gt;. The &lt;code&gt;data&lt;/code&gt; variable is similar to &lt;code&gt;path&lt;/code&gt; in that it is passed
-in implicitly. The variable is of type &lt;code&gt;Map&amp;lt;Int,Result&amp;gt;&lt;/code&gt; meaning that it is a
-hash map with an integer key (we use &lt;code&gt;actionId&lt;/code&gt;) matching a &lt;code&gt;Result&lt;/code&gt; value.
-The Qip hash map will retrieve an existing &lt;code&gt;Result&lt;/code&gt; object if one already
-exists or will build a new one if it doesn&amp;#39;t.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Finally we simple increment the &lt;code&gt;count&lt;/code&gt; for each &lt;code&gt;actionId&lt;/code&gt; found.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4&gt;Where Does the Data Go?&lt;/h4&gt;
-
-&lt;p&gt;Below is a diagram of how queries and data flow through Sky. The client starts
-by sending a query to the server where it gets parsed and compiled by the
-Query Compiler. Next, the compiled module is passed to the Query Engine where
-it runs it for each path retrieved from the the Path Iterator. Finally, once
-all paths are exhausted, the results are passed to the serializer which
-converts everything to &lt;a href="http://msgpack.org/"&gt;MessagePack&lt;/a&gt; format and the data
-is returned to the client.&lt;/p&gt;
-
-&lt;p&gt;&lt;center&gt;
-  &lt;img src="/images/sky-v1.0.0-alpha-preview/qip_flow.png"&gt;
-&lt;/center&gt;&lt;/p&gt;
-
-&lt;p&gt;This flow allows you to easily integrate with any language that supports
-MessagePack (C, Java, PHP, JavaScript, Go, etc) and it ensures that you are
-not limited by any particular data structure provided by Sky.&lt;/p&gt;
-
-&lt;h4&gt;Plugin Architecture&lt;/h4&gt;
-
-&lt;p&gt;Because Qip is a fairly simple language it was an explicit goal to make
-integration of external code as easy as possible. There are so many great data
-processing libraries for machine learning and classification that I wanted to
-be able to pull from. To integrate an external call, simply add an
-&lt;code&gt;[External]&lt;/code&gt; metadata tag to the class method.&lt;/p&gt;
-
-&lt;pre class="prettyprint" style="margin-bottom:9px;"&gt;
-class SentimentAnalyzer {
-  [External(name="my_analyzer_function")]
-  public String analyze(String string);
-}
-
-SentimentAnalyzer analyzer;
-analyzer.analyze(some_text);
-&lt;/pre&gt;
-
-&lt;p&gt;This example here will call out to the following C function:&lt;/p&gt;
-
-&lt;pre class="prettyprint" style="margin-bottom:9px;"&gt;
-struct sentiment_analyzer_t {
-  ...
-};
-
-char *my_analyzer_function(struct sentiment_analyzer *analyzer, char *string);
-&lt;/pre&gt;
-
-&lt;h3&gt;Roadmap&lt;/h3&gt;
-
-&lt;p&gt;The alpha preview is still a rough cut. The next steps are to stabilize the
-server, API and the language. After that some additional language features
-will be added to make queries simpler and easier. A declarative syntax will be
-layered on top of the Qip procedural form that will change the web page hit
-query to this:&lt;/p&gt;
-
-&lt;pre class="prettyprint" style="margin-bottom:9px;"&gt;
-data.map(path, :count++);
-&lt;/pre&gt;
-
-&lt;p&gt;I&amp;#39;ll be writing more about the declarative syntax as it gets finalized.&lt;/p&gt;
-
-&lt;p&gt;After Qip improvements, Sky will be adding real-time queries meaning that you
-can submit the query above and retrieve not only the results back but also a
-continuous stream of delta updates as new events come into the server and
-match your query. This is useful not only in analytics but also can be used
-for real-time risk analysis or to analyze purchase intent of a customer while
-they&amp;#39;re clicking through your web site.&lt;/p&gt;
-
-&lt;p&gt;Finally, Sky will be adding multicore and multinode distributed processing. A
-single threaded Sky server can already analyze tens of millions of events per
-second. However, sometimes you need to analyze billions of events per second.&lt;/p&gt;
-
-&lt;p&gt;Some exciting things are coming.
-Please visit the &lt;a href="https://github.com/skydb/sky"&gt;Sky GitHub project page&lt;/a&gt; to contribute.
-Or join the mailing list by sending an e-mail to &lt;a href="mailto:sky@librelist.com"&gt;sky@librelist.com&lt;/a&gt; to get updates.&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://news.ycombinator.com/item?id=4409506"&gt;Discuss this post on Hacker News&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
