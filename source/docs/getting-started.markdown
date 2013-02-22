@@ -19,6 +19,7 @@ Currently Sky has been built and tested on the following platforms:
 
 * Max OS X 10.7 (LLVM 3.1)
 * Ubuntu 12.04 (GCC 4.6.3)
+* Ubuntu 12.10 (GCC 4.6.3)
 
 If you have Sky up and running on a different platform, please [e-mail the mailing list to let us know](mailto:sky@librelist.com) and we'll add it to the list.
 
@@ -45,9 +46,9 @@ On Ubuntu, you'll need to add `/usr/local/lib` to your `ldconfig`.
 Download the [latest version of Sky from GitHub](https://github.com/skydb/sky/downloads) and follow these instructions to build it:
 
 ```bash
-$ wget http://skydb.io/sky-0.2.2.tar.gz
-$ tar zxvf sky-0.2.2.tar.gz
-$ cd sky-0.2.2
+$ wget http://skydb.io/sky-0.2.3.tar.gz
+$ tar zxvf sky-0.2.3.tar.gz
+$ cd sky-0.2.3
 $ make
 $ sudo make install
 ```
@@ -56,7 +57,7 @@ To run the server, simply run the `skyd` program:
 
 ```bash
 $ sudo skyd
-Sky Server v0.2.2
+Sky Server v0.2.3
 Listening on 0.0.0.0:8585, CTRL+C to stop
 ```
 
@@ -67,7 +68,7 @@ You can use RubyGems to install it:
 
 ```bash
 $ gem install skydb
-Successfully installed skydb-0.2.2
+Successfully installed skydb-0.2.3
 1 gem installed
 ```
 

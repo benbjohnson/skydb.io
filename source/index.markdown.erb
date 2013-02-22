@@ -1,25 +1,24 @@
-### Introduction
+### What is Sky?
 
-Sky is an open source database used for high performance analysis of [behavioral data](/blog/introduction-to-behavioral-databases.html).
-This includes clickstream data, log data, sensor data, etc.
+Sky is an open source database used for flexible, high performance analysis of [behavioral data](/blog/introduction-to-behavioral-databases.html).
+For certain kinds of data such as clickstream data and log data, it can be several orders of magnitude faster than traditional approaches such as SQL databases or Hadoop.
 
-Sky's architecture is designed to address two use cases:
+The performance of Sky comes from optimized data organization, fast query execution, and the [embarrassingly parallel](http://en.wikipedia.org/wiki/Embarrassingly_parallel) nature of behavioral data.
+On a typical laptop you can expect to query *at least 10 million events per core per second*.
 
-1. Fast analysis of an entire dataset.
-1. Real-time analysis of a single object.
 
-The database works in the context of objects.
-An example of an object is a user of a web site or application.
-Objects can be anything that has state and performs actions over time.
-These actions and state changes are referred to as events within Sky.
-For a given object, Sky can analyze the actions the object performs or how the object's state changes over time.
+### Demo
 
-Operating in the context of a single object at a time has advantages and trade offs.
-It's advantages are speed and simplicity of code: Sky can easily aggregate tens of million of events per second per core.
-The tradeoff is that Sky is not general purpose.
-It's not relational, it's not good for graph analysis, it isn't mean to store documents.
-That's okay.
-It's not meant to replace those technologies.
+If you click the button below, you'll be able to interact with Sky using the UI called [Skybox](/docs/skybox.html).
+Skybox allows you to explore the behavioral flow of the objects you're tracking in your database.
+In this example, we've loaded a small amount of the [GitHub Archive's](http://www.githubarchive.org/) data set.
+
+In this demo you can view what actions GitHub users perform on public, open source projects.
+For example, you can step through and see what users do after a respository "push".
+Then you can drill down and see what users do after they do a "push" and then "create" a new repository.
+You can continue to drill down to any depth.
+
+<a class="btn btn-primary" href="http://demo.skydb.io">Open the Sky Demo</a>
 
 
 ### Getting Started
@@ -30,7 +29,7 @@ Sky only requires ZeroMQ as a dependency so it's easy to get up and running.
 
 ### Recent Posts
 
-<% page_articles.each_with_index do |article, i| %>
+<% page_articles[0..2].each_with_index do |article, i| %>
 ##### <%= link_to article.title, article %> <span><%= article.date.strftime('%b %e, %Y') %></span>
 <% end %>
 

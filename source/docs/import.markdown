@@ -92,3 +92,4 @@ If you write a file format for a common data format, please consider sending the
 
 <br/>
 <a href="query.html">« Prev <span class="hidden-phone">(Behavioral Query Language)</span></a>
+<span class="pull-right"><a href="skybox.html">Next <span class="hidden-phone">(Exploring Your Data with Skybox)</span> »</a></span>

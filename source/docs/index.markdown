@@ -8,11 +8,27 @@ In no time you'll see how you can load up data and build funnel analysis queries
 
 ### Table of Contents
 
-1. [Getting Started](getting-started.html)
-1. [The Sky Architecture](architecture.html)
-1. [The Basics](basics.html)
-1. [Behavioral Query Language](query.html)
-1. [Bulk Importing Data](import.html)
+<table class="table">
+  <tr>
+    <td>
+      <h4>Sky Server</h4>
+      <ol>
+        <li><a href="/docs/getting-started.html">Getting Started</li>
+        <li><a href="/docs/architecture.html">The Sky Architecture</a></li>
+        <li><a href="/docs/basics.html">The Basics</a></li>
+        <li><a href="/docs/query.html">Behavioral Query Language</a></li>
+        <li><a href="/docs/import.html">Bulk Importing Data</a></li>
+      </ol>
+    </td>
+    <td>
+      <h4>Sky Related Tools</h4>
+      <ol>
+        <li><a href="/docs/skybox.html">Exploring Your Data with Skybox</li>
+        <li><a href="/docs/skycap.html">Skycap: An HTTP Tracking Server</li>
+      </ol>
+    </td>
+  </tr>
+</table>
 
 
 ### Generated Documentation
