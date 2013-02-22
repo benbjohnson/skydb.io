@@ -5,12 +5,64 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-01-22T00:00:00Z</updated>
+  <updated>2013-02-22T00:00:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
   <entry>
-    <title>Sky v0.2.2 Released</title>
+    <title>Sky v0.2.3 Released</title>
+    <link rel="alternate" href="/blog/sky-v0-2-3.html"/>
+    <id>/blog/sky-v0-2-3.html</id>
+    <published>2013-02-22T00:00:00Z</published>
+    <updated>2013-02-22T00:00:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
+
+&lt;p&gt;Sky version 0.2.3 has been released.
+You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
+We&amp;#39;ve added a UI and a JavaScript tracker to the Sky ecosystem.&lt;/p&gt;
+
+&lt;p&gt;Major changes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The official Sky UI is called &lt;a href="/docs/skybox.html"&gt;Skybox&lt;/a&gt;.
+It&amp;#39;s a Sinatra + D3.js application that allows you to analyze the flow of actions.&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
+    <content type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
+
+&lt;p&gt;Sky version 0.2.3 has been released.
+You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
+We&amp;#39;ve added a UI and a JavaScript tracker to the Sky ecosystem.&lt;/p&gt;
+
+&lt;p&gt;Major changes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The official Sky UI is called &lt;a href="/docs/skybox.html"&gt;Skybox&lt;/a&gt;.
+It&amp;#39;s a Sinatra + D3.js application that allows you to analyze the flow of actions.
+It&amp;#39;s a first cut at the UI so it&amp;#39;s simple but big things are coming for Skybox!&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;A JavaScript tracking server called &lt;a href="/docs/skycap.html"&gt;Skycap&lt;/a&gt; has been added so you can directly track actions and state from a simple JavaScript import.
+Many thanks to the guys at &lt;a href="http://segment.io"&gt;Segment.IO&lt;/a&gt; for helping with the JavaScript API.
+Skycap&amp;#39;s interface is based on the &lt;a href="https://github.com/segmentio/analytics.js"&gt;Analytics.js&lt;/a&gt; API.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;What&amp;#39;s Next&lt;/h3&gt;
+
+&lt;p&gt;Sky v0.2.4 will be the last planned release before a large v0.3.0 release which will include multi-node distribution so you can cluster your Sky servers.
+The Sky server will see time-based sampling added so you can specify a query time (e.g. 500 ms) and Sky will query as much as it can within that time.
+We&amp;#39;ll also be adding worker pooling and some other performance improvements so you can scale Sky.&lt;/p&gt;
+
+&lt;p&gt;Skybox will see filtering, segmentation and back references added so you can drill into your data and break it up by different types of users.&lt;/p&gt;
+
+&lt;p&gt;There have also been many requests for more details about how Sky works and how the query engine works.
+I&amp;#39;ll be adding some D3.js visualizations to the Sky web site to help explain it.
+If you have any requests for blog post topics or you want to know more about Sky, &lt;a href="mailto:sky@librelist.com"&gt;e-mail the mailing list&lt;/a&gt; and suggest it.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Sky v0.2.3 Released</title>
     <link rel="alternate" href="/blog/sky-v0-2-2.html"/>
     <id>/blog/sky-v0-2-2.html</id>
     <published>2013-01-22T00:00:00Z</published>
@@ -20,7 +72,7 @@
     </author>
     <summary type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
 
-&lt;p&gt;Sky version 0.2.2 has been released.
+&lt;p&gt;Sky version 0.2.3 has been released.
 You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
 We&amp;#39;ve added a command line importer, overhauled the query system and fixed a bunch of bugs!&lt;/p&gt;
 
@@ -32,7 +84,7 @@ We&amp;#39;ve added a command line importer, overhauled the query system and fix
 </summary>
     <content type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
 
-&lt;p&gt;Sky version 0.2.2 has been released.
+&lt;p&gt;Sky version 0.2.3 has been released.
 You can download it from the main &lt;a href="/"&gt;Sky web site&lt;/a&gt;.
 We&amp;#39;ve added a command line importer, overhauled the query system and fixed a bunch of bugs!&lt;/p&gt;
 
@@ -282,62 +334,6 @@ If you have any suggestions for behavioral analytics you&amp;#39;d like to see (
 &lt;li&gt;&lt;a href="http://www.githubarchive.org/"&gt;The GitHub Archive&lt;/a&gt; from &lt;a href="http://www.igvita.com/"&gt;Ilya Grigorik&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://d3js.org/"&gt;D3.js Visualization Library&lt;/a&gt; from &lt;a href="http://bost.ocks.org/mike/"&gt;Mike Bostock&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Qip is Dead, Long Live Qip</title>
-    <link rel="alternate" href="/blog/qip-is-dead.html"/>
-    <id>/blog/qip-is-dead.html</id>
-    <published>2012-10-16T00:00:00Z</published>
-    <updated>2012-10-16T00:00:00Z</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <summary type="html">&lt;h3&gt;A Short History&lt;/h3&gt;
-
-&lt;p&gt;When I first started writing Sky I wanted to make a language that was as fast as C but was dynamic and integrated into the data model.
-So at the beginning of May 2012, I started writing a language called EQL (Event Query Language).&lt;/p&gt;
-</summary>
-    <content type="html">&lt;h3&gt;A Short History&lt;/h3&gt;
-
-&lt;p&gt;When I first started writing Sky I wanted to make a language that was as fast as C but was dynamic and integrated into the data model.
-So at the beginning of May 2012, I started writing a language called EQL (Event Query Language).
-As it turns out, there&amp;#39;s already a language with this name so the name was changed to Qip.&lt;/p&gt;
-
-&lt;p&gt;After five months of development, Qip turned out to be pretty awesome.
-By using LLVM it was as fast as C.
-It used metadata to dynamically generate things like MessagePack serialization methods for classes.
-And it integrated into Sky pretty nicely by binding structs directly to the underlying data file.&lt;/p&gt;
-
-&lt;p&gt;But last week I realized that I had to take Qip out of the first release of Sky.&lt;/p&gt;
-
-&lt;h3&gt;Too Much, Too Soon&lt;/h3&gt;
-
-&lt;p&gt;Two things made me realize that Qip need to be removed:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;80% of behavioral analysis can be rolled into prebuilt, parameterized functions.&lt;/li&gt;
-&lt;li&gt;Early releases need to focus on stability, not flexibility.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Behavioral analysis typically centers around understanding what someone is going to do next, how their actions flow over time and segmentation.
-People do this with DAGs, Sankey diagrams, cohort analysis, etc.
-These types of analysis are relatively easy to understand and don&amp;#39;t require a new language to compute.
-These generic features are being built directly in Sky as parameterized functions.&lt;/p&gt;
-
-&lt;p&gt;The other problem with Qip is complexity.
-Building a database from scratch is complex enough &amp;ndash; you don&amp;#39;t need to add anymore.
-Especially not for the initial release.&lt;/p&gt;
-
-&lt;h3&gt;The Future of Qip&lt;/h3&gt;
-
-&lt;p&gt;Qip is not dead.
-It&amp;#39;s just in an indefinite slumber.
-Once Sky stabilizes more and the module API gets fleshed out then I will reconsider integrating it.
-Qip is not the only option on the table though.
-Google&amp;#39;s V8 JavaScript engine could integrate well and Lua could be used instead.&lt;/p&gt;
-
-&lt;p&gt;However, for now, Sky is moving forward with a simpler API and no Qip.&lt;/p&gt;
 </content>
   </entry>
 </feed>

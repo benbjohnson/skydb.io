@@ -35,7 +35,7 @@
 
   
 
-  <body class="blog blog_sky-v0-2-2">
+  <body class="blog blog_sky-v0-2-3">
     <div class="container">
       <div class="row">
         <div class="span8 offset2">
@@ -71,25 +71,30 @@
 
 <p>Sky version 0.2.3 has been released.
 You can download it from the main <a href="/">Sky web site</a>.
-We&#39;ve added a command line importer, overhauled the query system and fixed a bunch of bugs!</p>
+We&#39;ve added a UI and a JavaScript tracker to the Sky ecosystem.</p>
 
 <p>Major changes:</p>
 
 <ul>
-<li><p>A new query interface has been added!
-The Lua API is still in the server but the preferred way to query for data is using the new ActiveRecord-style query interface in the Ruby gem.
-Check out the <a href="/docs/query.html">Behavioral Query Language</a> docs for more information.</p></li>
-<li><p>A flexible command line data importer has been added.
-It can load CSV and tab-delimited formats into the database using a simple transform definition.
-JSON and server log formats will be added in the near future.
-You can find out more about how to use it by looking at the <a href="/docs/import.html">Bulk Importing Data</a> docs.</p></li>
+<li><p>The official Sky UI is called <a href="/docs/skybox.html">Skybox</a>.
+It&#39;s a Sinatra + D3.js application that allows you to analyze the flow of actions.
+It&#39;s a first cut at the UI so it&#39;s simple but big things are coming for Skybox!</p></li>
+<li><p>A JavaScript tracking server called <a href="/docs/skycap.html">Skycap</a> has been added so you can directly track actions and state from a simple JavaScript import.
+Many thanks to the guys at <a href="http://segment.io">Segment.IO</a> for helping with the JavaScript API.
+Skycap&#39;s interface is based on the <a href="https://github.com/segmentio/analytics.js">Analytics.js</a> API.</p></li>
 </ul>
 
 <h3>What&#39;s Next</h3>
 
-<p>The next version of Sky will include additional query and importer features.
-Also expect to see the Sky front-end called <strong>Skybox</strong> being released in the near future.
-It&#39;ll give you the ability to explore the behavior of your users with an easy to use web-based interface.</p>
+<p>Sky v0.2.4 will be the last planned release before a large v0.3.0 release which will include multi-node distribution so you can cluster your Sky servers.
+The Sky server will see time-based sampling added so you can specify a query time (e.g. 500 ms) and Sky will query as much as it can within that time.
+We&#39;ll also be adding worker pooling and some other performance improvements so you can scale Sky.</p>
+
+<p>Skybox will see filtering, segmentation and back references added so you can drill into your data and break it up by different types of users.</p>
+
+<p>There have also been many requests for more details about how Sky works and how the query engine works.
+I&#39;ll be adding some D3.js visualizations to the Sky web site to help explain it.
+If you have any requests for blog post topics or you want to know more about Sky, <a href="mailto:sky@librelist.com">e-mail the mailing list</a> and suggest it.</p>
 
         </div>
       </div>

@@ -52,6 +52,7 @@
             <li class="active">
               <a href="/">Home</a>
             </li>
+            <li><a class="disable hidden-phone" href="http://demo.skydb.io">Demo</a></li>
             <li class="">
               <a href="/docs">
                 <span class="hidden-phone">Documentation</span>
@@ -61,7 +62,7 @@
             <li class="">
               <a href="/blog">Blog</a>
             </li>
-            <li><a class="disable hidden-phone" href="/sky-0.2.2.tar.gz">Download</a></li>
+            <li><a class="disable hidden-phone" href="/sky-0.2.3.tar.gz">Download</a></li>
             <li>
               <a href="https://github.com/skydb/sky">
                 <span class="hidden-phone">Repository</span>
@@ -79,30 +80,26 @@
       <div class="row">
         <div class="span8 offset2">
           
-          <h3>Introduction</h3>
+          <h3>What is Sky?</h3>
 
-<p>Sky is an open source database used for high performance analysis of <a href="/blog/introduction-to-behavioral-databases.html">behavioral data</a>.
-This includes clickstream data, log data, sensor data, etc.</p>
+<p>Sky is an open source database used for flexible, high performance analysis of <a href="/blog/introduction-to-behavioral-databases.html">behavioral data</a>.
+For certain kinds of data such as clickstream data and log data, it can be several orders of magnitude faster than traditional approaches such as SQL databases or Hadoop.</p>
 
-<p>Sky&#39;s architecture is designed to address two use cases:</p>
+<p>The performance of Sky comes from optimized data organization, fast query execution, and the <a href="http://en.wikipedia.org/wiki/Embarrassingly_parallel">embarrassingly parallel</a> nature of behavioral data.
+On a typical laptop you can expect to query <em>at least 10 million events per core per second</em>.</p>
 
-<ol>
-<li>Fast analysis of an entire dataset.</li>
-<li>Real-time analysis of a single object.</li>
-</ol>
+<h3>Demo</h3>
 
-<p>The database works in the context of objects.
-An example of an object is a user of a web site or application.
-Objects can be anything that has state and performs actions over time.
-These actions and state changes are referred to as events within Sky.
-For a given object, Sky can analyze the actions the object performs or how the object&#39;s state changes over time.</p>
+<p>If you click the button below, you&#39;ll be able to interact with Sky using the UI called <a href="/docs/skybox.html">Skybox</a>.
+Skybox allows you to explore the behavioral flow of the objects you&#39;re tracking in your database.
+In this example, we&#39;ve loaded a small amount of the <a href="http://www.githubarchive.org/">GitHub Archive&#39;s</a> data set.</p>
 
-<p>Operating in the context of a single object at a time has advantages and trade offs.
-It&#39;s advantages are speed and simplicity of code: Sky can easily aggregate tens of million of events per second per core.
-The tradeoff is that Sky is not general purpose.
-It&#39;s not relational, it&#39;s not good for graph analysis, it isn&#39;t mean to store documents.
-That&#39;s okay.
-It&#39;s not meant to replace those technologies.</p>
+<p>In this demo you can view what actions GitHub users perform on public, open source projects.
+For example, you can step through and see what users do after a respository &ldquo;push&rdquo;.
+Then you can drill down and see what users do after they do a &ldquo;push&rdquo; and then &ldquo;create&rdquo; a new repository.
+You can continue to drill down to any depth.</p>
+
+<p><a class="btn btn-primary" href="http://demo.skydb.io">Open the Sky Demo</a></p>
 
 <h3>Getting Started</h3>
 
@@ -111,21 +108,11 @@ Sky only requires ZeroMQ as a dependency so it&#39;s easy to get up and running.
 
 <h3>Recent Posts</h3>
 
-<h5><a href="/blog/sky-v0-2-2.html">Sky v0.2.2 Released</a> <span>Jan 22, 2013</span></h5>
+<h5><a href="/blog/sky-v0-2-3.html">Sky v0.2.3 Released</a> <span>Feb 22, 2013</span></h5>
+
+<h5><a href="/blog/sky-v0-2-2.html">Sky v0.2.3 Released</a> <span>Jan 22, 2013</span></h5>
 
 <h5><a href="/blog/sky-v0-2-1.html">Sky v0.2.1 Released</a> <span>Jan  4, 2013</span></h5>
-
-<h5><a href="/blog/sky-v0-2-0.html">Sky v0.2.0 Released</a> <span>Dec 12, 2012</span></h5>
-
-<h5><a href="/blog/sky-roadmap-2012.html">Sky Roadmap 2012</a> <span>Nov 13, 2012</span></h5>
-
-<h5><a href="/blog/github-archive-visualizer.html">GitHub Archive Visualizer</a> <span>Oct 17, 2012</span></h5>
-
-<h5><a href="/blog/qip-is-dead.html">Qip is Dead, Long Live Qip</a> <span>Oct 16, 2012</span></h5>
-
-<h5><a href="/blog/sky-v0-1-0-alpha-preview.html">Sky v0.1.0 Alpha Preview</a> <span>Aug 20, 2012</span></h5>
-
-<h5><a href="/blog/introduction-to-behavioral-databases.html">Introduction to Behavioral Databases</a> <span>Apr 30, 2012</span></h5>
 
 <h3>More Information</h3>
 
