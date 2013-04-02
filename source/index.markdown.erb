@@ -4,7 +4,7 @@ Sky is an open source database used for flexible, high performance analysis of [
 For certain kinds of data such as clickstream data and log data, it can be several orders of magnitude faster than traditional approaches such as SQL databases or Hadoop.
 
 The performance of Sky comes from optimized data organization, fast query execution, and the [embarrassingly parallel](http://en.wikipedia.org/wiki/Embarrassingly_parallel) nature of behavioral data.
-On a typical laptop you can expect to query *at least 10 million events per core per second*.
+On commodity hardware you can expect to query *about 10 million events per core per second*.
 
 
 ### Demo
@@ -14,9 +14,9 @@ Skybox allows you to explore the behavioral flow of the objects you're tracking 
 In this example, we've loaded a small amount of the [GitHub Archive's](http://www.githubarchive.org/) data set.
 
 In this demo you can view what actions GitHub users perform on public, open source projects.
-For example, you can step through and see what users do after a respository "push".
+For example, you can step through and see what users do immediately after a repository "push".
 Then you can drill down and see what users do after they do a "push" and then "create" a new repository.
-You can continue to drill down to any depth.
+You can continue to drill down to any depth since results are computed on the fly.
 
 <a class="btn btn-primary" href="http://demo.skydb.io">Open the Sky Demo</a>
 
@@ -24,7 +24,6 @@ You can continue to drill down to any depth.
 ### Getting Started
 
 The best way to get up and running with Sky is to read through the [Documentation](/docs) and [Getting Started](/docs/getting-started.html) pages.
-Sky only requires ZeroMQ as a dependency so it's easy to get up and running.
 
 
 ### Recent Posts
