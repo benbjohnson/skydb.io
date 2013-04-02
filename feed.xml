@@ -5,10 +5,45 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2013-02-22T00:00:00Z</updated>
+  <updated>2013-04-02T00:00:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Sky v0.3.0 Released</title>
+    <link rel="alternate" href="/blog/sky-v0-3-0.html"/>
+    <id>/blog/sky-v0-3-0.html</id>
+    <published>2013-04-02T00:00:00Z</published>
+    <updated>2013-04-02T00:00:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <summary type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
+
+&lt;p&gt;To say that Sky v0.3.0 is an upgrade is an understatement.
+About 95% of the codebase has been converted to &lt;a href="http://golang.org/"&gt;Go&lt;/a&gt; and the API to the database is now RESTful JSON over HTTP.
+Look through &lt;a href="/guide"&gt;The Guide&lt;/a&gt; and the &lt;a href="https://github.com/skydb/sky"&gt;Sky README&lt;/a&gt; on GitHub for more details.&lt;/p&gt;
+</summary>
+    <content type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
+
+&lt;p&gt;To say that Sky v0.3.0 is an upgrade is an understatement.
+About 95% of the codebase has been converted to &lt;a href="http://golang.org/"&gt;Go&lt;/a&gt; and the API to the database is now RESTful JSON over HTTP.
+Look through &lt;a href="/guide"&gt;The Guide&lt;/a&gt; and the &lt;a href="https://github.com/skydb/sky"&gt;Sky README&lt;/a&gt; on GitHub for more details.&lt;/p&gt;
+
+&lt;p&gt;During this rewrite, I took the opportunity to simplify the structure of the database.
+The underlying format is just straight MessagePack so it&amp;#39;s easy to work with.
+There&amp;#39;s also no longer a concept of an action.
+The database stores partially transient hashes (e.g. hashes where some properties persist their values over time and others don&amp;#39;t).
+Check out &lt;a href="/guide"&gt;the guide&lt;/a&gt; for more details about it.&lt;/p&gt;
+
+&lt;h3&gt;What&amp;#39;s Next&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/skydb/sky/issues?milestone=8"&gt;Sky v0.3.1&lt;/a&gt; is the next version and will include distributed computing so you can run Sky across multiple nodes and scale linearly.
+It will also include a few additional features such as sampling, query bookmarking and reverse timeline queries.&lt;/p&gt;
+
+&lt;p&gt;If you want to keep up to date please &lt;a href="https://groups.google.com/d/forum/skydb"&gt;join the mailing list&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Sky v0.2.3 Released</title>
     <link rel="alternate" href="/blog/sky-v0-2-3.html"/>
@@ -27,8 +62,7 @@ We&amp;#39;ve added a UI and a JavaScript tracker to the Sky ecosystem.&lt;/p&gt
 &lt;p&gt;Major changes:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;The official Sky UI is called &lt;a href="/docs/skybox.html"&gt;Skybox&lt;/a&gt;.
-It&amp;#39;s a Sinatra + D3.js application that allows you to analyze the flow of actions.&lt;/li&gt;
+&lt;li&gt;The official Sky UI is called &lt;a href="https://github.com/skydb/skybox"&gt;Skybox&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 </summary>
     <content type="html">&lt;h3&gt;What&amp;#39;s New?&lt;/h3&gt;
@@ -40,10 +74,10 @@ We&amp;#39;ve added a UI and a JavaScript tracker to the Sky ecosystem.&lt;/p&gt
 &lt;p&gt;Major changes:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;The official Sky UI is called &lt;a href="/docs/skybox.html"&gt;Skybox&lt;/a&gt;.
+&lt;li&gt;&lt;p&gt;The official Sky UI is called &lt;a href="https://github.com/skydb/skybox"&gt;Skybox&lt;/a&gt;.
 It&amp;#39;s a Sinatra + D3.js application that allows you to analyze the flow of actions.
 It&amp;#39;s a first cut at the UI so it&amp;#39;s simple but big things are coming for Skybox!&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;A JavaScript tracking server called &lt;a href="/docs/skycap.html"&gt;Skycap&lt;/a&gt; has been added so you can directly track actions and state from a simple JavaScript import.
+&lt;li&gt;&lt;p&gt;A JavaScript tracking server called Skycap has been added so you can directly track actions and state from a simple JavaScript import.
 Many thanks to the guys at &lt;a href="http://segment.io"&gt;Segment.IO&lt;/a&gt; for helping with the JavaScript API.
 Skycap&amp;#39;s interface is based on the &lt;a href="https://github.com/segmentio/analytics.js"&gt;Analytics.js&lt;/a&gt; API.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -58,7 +92,7 @@ We&amp;#39;ll also be adding worker pooling and some other performance improveme
 
 &lt;p&gt;There have also been many requests for more details about how Sky works and how the query engine works.
 I&amp;#39;ll be adding some D3.js visualizations to the Sky web site to help explain it.
-If you have any requests for blog post topics or you want to know more about Sky, &lt;a href="mailto:sky@librelist.com"&gt;e-mail the mailing list&lt;/a&gt; and suggest it.&lt;/p&gt;
+If you have any requests for blog post topics or you want to know more about Sky, &lt;a href="https://groups.google.com/d/forum/skydb"&gt;join the mailing list&lt;/a&gt; and suggest it.&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -252,88 +286,8 @@ analysis and more.&lt;/p&gt;
 &lt;p&gt;I’d love to hear some suggestions as to what other features you’d like
 to see in Sky or the new Sky analytics tool. There are also tentative
 plans for &lt;a href="http://code.google.com/p/v8/"&gt;V8&lt;/a&gt; to query using JavaScript and &lt;a href="http://julialang.org/"&gt;Julia&lt;/a&gt; to query using
-statistical computing. Feel free to add a comment below or e-mail the
-mailing list at &lt;a href="mailto:sky@librelist.com"&gt;sky@librelist.com&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>GitHub Archive Visualizer</title>
-    <link rel="alternate" href="/blog/github-archive-visualizer.html"/>
-    <id>/blog/github-archive-visualizer.html</id>
-    <published>2012-10-17T00:00:00Z</published>
-    <updated>2012-10-17T00:00:00Z</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <summary type="html">&lt;h3&gt;Overview&lt;/h3&gt;
-
-&lt;p&gt;Today I&amp;#39;m releasing code and a video for the first &lt;a href="/"&gt;Sky&lt;/a&gt; demo app.
-Sky is built to aggregate user actions and state over time so I wanted to find a data set and a visualization that fellow developers would relate to.
-And so was born: &lt;strong&gt;The GitHub Archive Visualizer!&lt;/strong&gt;&lt;/p&gt;
-</summary>
-    <content type="html">&lt;h3&gt;Overview&lt;/h3&gt;
-
-&lt;p&gt;Today I&amp;#39;m releasing code and a video for the first &lt;a href="/"&gt;Sky&lt;/a&gt; demo app.
-Sky is built to aggregate user actions and state over time so I wanted to find a data set and a visualization that fellow developers would relate to.
-And so was born: &lt;strong&gt;The GitHub Archive Visualizer!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class="row"&gt;
-  &lt;div class="span4"&gt;
-    The visualizer uses Sky to step through aggregate paths of user actions.
-    So you can walk through and see what users do immediately following an action such as &lt;code&gt;Create Repository&lt;/code&gt;.
-    The &lt;a href="http://en.wikipedia.org/wiki/Sankey_diagram"&gt;Sankey diagram&lt;/a&gt; shows the total number of users who performed each particular path.
-    It&amp;rsquo;s also interactive so you can drill down to as many levels deep as you want.
-  &lt;/div&gt;
-  
-  &lt;div class="span4" style="margin:10px 0px"&gt;
-    &lt;a class="thumbnail" href="/images/github-archive-visualizer/githubarchiveviz.png"&gt;
-      &lt;img src="/images/github-archive-visualizer/githubarchiveviz_thumb.png"&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;It&amp;#39;s important to note that all the results are computed in real-time.
-There&amp;#39;s no aggregation happening.
-Every click on the UI recomputes the entire dataset.
-In the demo, Sky maxes out at about &lt;strong&gt;60MM events per second&lt;/strong&gt;.
-That&amp;#39;s fast enough to crunch through the &lt;a href="http://highscalability.com/blog/2011/3/3/stack-overflow-architecture-update-now-at-95-million-page-vi.html"&gt;monthly pages views of StackOverflow&lt;/a&gt; in about a second and a half.
-On my laptop.
-On a single thread.&lt;/p&gt;
-
-&lt;h3&gt;Video Walkthrough&lt;/h3&gt;
-
-&lt;p&gt;Sky is built to import a lot of events per second but to only allow a handful of large queries at a time.
-That&amp;#39;s typically how analytics are used within organizations.
-The downside of this is that putting a public demo up and having tens of thousands of people querying tens of millions of events each is just not feasible.&lt;/p&gt;
-
-&lt;p&gt;So I created a short walkthrough of the demo app that you can view below.&lt;/p&gt;
-
-&lt;div class="row" style="margin:18px 0"&gt;
-  &lt;div class="span6 offset1"&gt;
-    &lt;a target="_blank" href="https://vimeo.com/51629936"&gt;&lt;img src="/images/github-archive-visualizer/video_thumb.png"/&gt;&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The video is six and a half minutes but the first half is a short history on Sky and some information on the dataset.
-If you don&amp;#39;t have time to spare, you can skip to 3:20 to actually see the visualizer in action.&lt;/p&gt;
-
-&lt;h3&gt;Installing the Demo&lt;/h3&gt;
-
-&lt;p&gt;If the video does satisfy you need for data crunching, you can install the app locally on your machine.
-The &lt;a href="https://github.com/skydb/sky-d3-demo"&gt;sky-d3-demo project&lt;/a&gt; project on GitHub has details on how to get up and running.
-If you have any issues getting it installed, feel free to add an &lt;a href="https://github.com/skydb/sky-d3-demo/issues"&gt;issue on GitHub&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I&amp;#39;ll be adding more demos in the future.
-If you have any suggestions for behavioral analytics you&amp;#39;d like to see (like &lt;em&gt;dynamic cohort analysis&lt;/em&gt; or &lt;em&gt;predictive behavioral analytics&lt;/em&gt;), add a comment below to suggest it.&lt;/p&gt;
-
-&lt;h3&gt;Special Thanks&lt;/h3&gt;
-
-&lt;p&gt;The demo wouldn&amp;#39;t be possible without these awesome tools and services:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.githubarchive.org/"&gt;The GitHub Archive&lt;/a&gt; from &lt;a href="http://www.igvita.com/"&gt;Ilya Grigorik&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://d3js.org/"&gt;D3.js Visualization Library&lt;/a&gt; from &lt;a href="http://bost.ocks.org/mike/"&gt;Mike Bostock&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+statistical computing. Feel free to add a comment below or join the
+&lt;a href="https://groups.google.com/d/forum/skydb"&gt;Google Group&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>

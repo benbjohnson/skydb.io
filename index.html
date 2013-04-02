@@ -54,15 +54,12 @@
             </li>
             <li><a class="disable hidden-phone" href="http://demo.skydb.io">Demo</a></li>
             <li class="">
-              <a href="/docs">
-                <span class="hidden-phone">Documentation</span>
-                <span class="visible-phone">Docs</span>
-              </a>
+              <a href="/guide">Guide</a>
             </li>
             <li class="">
               <a href="/blog">Blog</a>
             </li>
-            <li><a class="disable hidden-phone" href="/sky-0.2.3.tar.gz">Download</a></li>
+            <li><a class="disable hidden-phone" href="/sky-0.3.0.tar.gz">Download</a></li>
             <li>
               <a href="https://github.com/skydb/sky">
                 <span class="hidden-phone">Repository</span>
@@ -86,37 +83,37 @@
 For certain kinds of data such as clickstream data and log data, it can be several orders of magnitude faster than traditional approaches such as SQL databases or Hadoop.</p>
 
 <p>The performance of Sky comes from optimized data organization, fast query execution, and the <a href="http://en.wikipedia.org/wiki/Embarrassingly_parallel">embarrassingly parallel</a> nature of behavioral data.
-On a typical laptop you can expect to query <em>at least 10 million events per core per second</em>.</p>
+On commodity hardware you can expect to query <em>several million events per core per second</em>.</p>
 
 <h3>Demo</h3>
 
-<p>If you click the button below, you&#39;ll be able to interact with Sky using the UI called <a href="/docs/skybox.html">Skybox</a>.
+<p>If you click the button below, you&#39;ll be able to interact with Sky using the UI called <a href="https://github.com/skydb/skybox">Skybox</a>.
 Skybox allows you to explore the behavioral flow of the objects you&#39;re tracking in your database.
 In this example, we&#39;ve loaded a small amount of the <a href="http://www.githubarchive.org/">GitHub Archive&#39;s</a> data set.</p>
 
-<p>In this demo you can view what actions GitHub users perform on public, open source projects.
-For example, you can step through and see what users do after a respository &ldquo;push&rdquo;.
+<p>In this demo you can view what actions GitHub users perform on public open source projects.
+For example, you can step through and see what users do immediately after a repository &ldquo;push&rdquo;.
 Then you can drill down and see what users do after they do a &ldquo;push&rdquo; and then &ldquo;create&rdquo; a new repository.
-You can continue to drill down to any depth.</p>
+You can continue to drill down to any depth since results are computed on the fly.</p>
 
 <p><a class="btn btn-primary" href="http://demo.skydb.io">Open the Sky Demo</a></p>
 
 <h3>Getting Started</h3>
 
-<p>The best way to get up and running with Sky is to read through the <a href="/docs">Documentation</a> and <a href="/docs/getting-started.html">Getting Started</a> pages.
-Sky only requires ZeroMQ as a dependency so it&#39;s easy to get up and running.</p>
+<p>The best way to get up and running with Sky is to read through the <a href="/guide">Guide</a> and the <a href="https://github.com/skydb/sky">Sky README</a>.
+Also check out the <a href="/guide#client-libraries">client libraries and tools</a>.</p>
 
 <h3>Recent Posts</h3>
+
+<h5><a href="/blog/sky-v0-3-0.html">Sky v0.3.0 Released</a> <span>Apr  2, 2013</span></h5>
 
 <h5><a href="/blog/sky-v0-2-3.html">Sky v0.2.3 Released</a> <span>Feb 22, 2013</span></h5>
 
 <h5><a href="/blog/sky-v0-2-2.html">Sky v0.2.3 Released</a> <span>Jan 22, 2013</span></h5>
 
-<h5><a href="/blog/sky-v0-2-1.html">Sky v0.2.1 Released</a> <span>Jan  4, 2013</span></h5>
-
 <h3>More Information</h3>
 
-<p>If you have questions about Sky, feel free to visit the <a href="https://github.com/skydb/sky">Github repository</a>, <a href="mailto:sky@librelist.com">e-mail the mailing list</a> or <a href="https://twitter.com/benbjohnson">find me on Twitter</a>.</p>
+<p>If you have questions about Sky, feel free to visit the <a href="https://github.com/skydb/sky">Github repository</a>, <a href="https://groups.google.com/d/forum/skydb">join the mailing list</a> or <a href="https://twitter.com/benbjohnson">find me on Twitter</a>.</p>
 
         </div>
       </div>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="/stylesheets/all.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', "UA-34296486-1"]);
+
+
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></head>
+
+  
+  
+
+  <body class="guide guide_index">
+    <div class="container">
+      <div class="row">
+        <div class="span8 offset2">
+          <header>
+            <h1>
+              <a href="/">Sky</a>
+              <br class="visible-phone"/>
+              <small><span class="hidden-phone">Open Source, </span>Behavioral Database</small>
+            </h1>
+          </header>
+
+          <ul class="nav nav-pills">
+            <li class="">
+              <a href="/">Home</a>
+            </li>
+            <li><a class="disable hidden-phone" href="http://demo.skydb.io">Demo</a></li>
+            <li class="">
+              <a href="/guide">Guide</a>
+            </li>
+            <li class="">
+              <a href="/blog">Blog</a>
+            </li>
+            <li><a class="disable hidden-phone" href="/sky-0.3.0.tar.gz">Download</a></li>
+            <li>
+              <a href="https://github.com/skydb/sky">
+                <span class="hidden-phone">Repository</span>
+                <span class="visible-phone">Repo</span>
+              </a>
+            </li>
+          </ul>
+
+          <hr class="soften">
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="span8 offset2">
+          
+            <h2>The Guide</h2>
+          
+          <h3><a name="overview" href="#overview">Overview</a></h3>
+
+<p>This guide is meant to give you an understanding of how Sky works and how you can use it.
+It covers the basics of how data is stored and how you can use Sky&#39;s query engine for advanced analytics.</p>
+
+<h4>Partially Transient Hashes</h4>
+
+<p>Sky is a database for tracking the state of partially transient hashes over time.
+These hashes are partially transient because the individual properties of the hash can be set to persist values over time or only hold the value for a particular moment.
+These data structures are especially useful for tracking the behavior of things.</p>
+
+<p>Let&#39;s look at an example.
+Say you want to know what users are doing on your e-commerce web site.
+First you want to track properties about these users such as gender and place of residence.
+These are called <em>permanent properties</em> and their value will persist from the time it is set until it is changed.</p>
+
+<p>Next you want to track properties about actions that these users are doing such as visiting your home page, adding a product to a cart and checking out.
+These properties are called <em>transient properties</em> and their value will only exist for a single moment in time.</p>
+
+<p>Each time you update the value of one or more properties it is called an <em>event</em> which as an associated timestamp and these events are all combined into a <em>timeline</em> for each hash.
+Hashes are also referred to as <em>objects</em> in Sky.
+Because these events are all organized into a single timeline for each user, Sky can query over this data extremely fast.</p>
+
+<h4>Internal Representation &amp; Data Types</h4>
+
+<p>Sky is composed of <em>tables</em> which are just collections of <em>objects</em> that adhere to an ad hoc schema that is defined by <em>properties</em>.
+Properties can be defined as transient or permanent and have a data type associated with them.
+There are five data types currently supported: <code>string</code>, <code>integer</code>, <code>float</code>, <code>boolean</code>, &amp; <code>factor</code>.</p>
+
+<p>Factor types work the same as strings except that they are represented more efficiently when the property has a limited number of possible values.
+They work great for categorical data such as gender, state or action names.</p>
+
+<h3><a name="query-system" href="#query-system">The Query System</a></h3>
+
+<p>Because Sky stores non-relational data, SQL doesn&#39;t make sense as a query language.
+Instead Sky has a simple query language composed of a few basic primitives: <em>queries</em>, <em>selections</em> &amp; <em>conditions</em>.
+Sky uses a RESTful JSON over HTTP API so we&#39;ll show queries in their JSON format.</p>
+
+<h4>Query</h4>
+
+<p>The <em>query</em> primitive is the root of all queries and contains a list of <code>steps</code> (either conditions or selections).
+The query engine works by iterating over each event for each object in chronological order like a cursor in a database.
+At each event, all the steps in the query are executed.</p>
+
+<p>If you want to break timelines into sessions you can use <code>sessionIdleTime</code> to specify the number of seconds between two contiguous events to delineate a session.</p>
+
+<h4>Selections</h4>
+
+<p>A selection is simply a sample that is taken whenever the query engine reaches it.
+The selection can specify an optional name, optional dimensions and one or more fields.
+The selection fields are named and have an expression using one of the aggregation functions: <code>count()</code>, <code>sum(field)</code>, <code>min(field)</code>, <code>max(field)</code>.</p>
+
+<h5>Simple Count Query</h5>
+
+<p>Here&#39;s an example of a simple query to count every event in a table:</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;steps&quot;</span><span class="p">:[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;selection&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;fields&quot;</span><span class="p">:[</span>
+        <span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;count()&quot;</span><span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<p>Running this query will output the following result (assuming you have 381,293 events in your table):</p>
+<div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">381293</span><span class="p">}</span>
+</pre></div>
+<h5>Multi-Dimensional Query</h5>
+
+<p>A more complicated query involves breaking out these sample by a dimension of each object.
+For example, let&#39;s assume you want to see the breakdown events that occur by <code>gender</code> and <code>country</code>.
+We&#39;ll also name our selection &ldquo;myStats&rdquo;:</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;steps&quot;</span><span class="p">:[</span>
+    <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;selection&quot;</span><span class="p">,</span> <span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;myStats&quot;</span><span class="p">,</span> <span class="nt">&quot;dimensions&quot;</span><span class="p">:[</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span><span class="s2">&quot;country&quot;</span><span class="p">],</span> <span class="nt">&quot;fields&quot;</span><span class="p">:[</span>
+      <span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;count()&quot;</span><span class="p">}</span>
+    <span class="p">]}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<p>This query would return the following results:</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;myStats&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;gender&quot;</span><span class="p">:{</span>
+      <span class="nt">&quot;male&quot;</span><span class="p">:{</span>
+        <span class="nt">&quot;country&quot;</span><span class="p">:{</span>
+          <span class="nt">&quot;US&quot;</span><span class="p">:{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">19382</span>
+          <span class="p">},</span>
+          <span class="nt">&quot;Mexico&quot;</span><span class="p">:{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">10302</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;female&quot;</span><span class="p">:{</span>
+        <span class="nt">&quot;country&quot;</span><span class="p">:{</span>
+          <span class="nt">&quot;US&quot;</span><span class="p">:{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">20183</span>
+          <span class="p">},</span>
+          <span class="nt">&quot;England&quot;</span><span class="p">:{</span>
+            <span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">3023</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<h4>Conditions</h4>
+
+<p>Basic aggregation is not too interesting so that&#39;s why we have conditions.
+Conditions are like mini-queries that will execute only if a given expression evaluates to true.
+Conditions are also a way to move the query system&#39;s cursor forward by using the <code>within</code> property.
+Another useful feature of conditions is that they can be nested inside each other.</p>
+
+<h5>Simple Conditioned Selection</h5>
+
+<p>Here&#39;s an example query to count the number of events where the &ldquo;action&rdquo; property is equal to &ldquo;checkout&rdquo; and sum the total purchase price property at each checkout:</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;steps&quot;</span><span class="p">:[</span>
+    <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span> <span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;action == &#39;checkout&#39;&quot;</span><span class="p">,</span> <span class="nt">&quot;steps&quot;</span><span class="p">:[</span>
+      <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;selection&quot;</span><span class="p">,</span> <span class="nt">&quot;fields&quot;</span><span class="p">:[</span>
+        <span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;count()&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;sum(purchaseAmount)&quot;</span><span class="p">}</span>
+      <span class="p">]}</span>
+    <span class="p">]}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<p>Result:</p>
+<div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">128712</span><span class="p">,</span> <span class="nt">&quot;total&quot;</span><span class="p">:</span><span class="mf">2910232.23</span><span class="p">}</span>
+</pre></div>
+<h5>Funnel Analysis</h5>
+
+<p>The real power of the Sky query system is when you combine and nest these primitives.
+In this example, we&#39;ll use the <code>within</code> property which is a range that specifies the number of steps that a condition must occur within in order for it to execute.
+For example, specifying a <code>within</code> of <code>[0,1]</code> means the condition must evaluate to true in the current event or in the next event.
+A <code>within</code> of <code>[1,1]</code> means that the condition must evaluate true in the next event.</p>
+
+<p>By nesting conditions, each subcondition only executes if its parent executes.
+We can perform a funnel analysis by combining nested conditions and selections.
+Let&#39;s say we want to track the number of users who visit our home page, go to our pricing page and finally go to our sign up page.
+We also want to count the number of users who make it to each step.</p>
+
+<p>We&#39;ll number each step of the way (&ldquo;0&rdquo;, &ldquo;1&rdquo;, &ldquo;2&rdquo;).
+Finally we want to breakdown what action users performed immediately after the sign up so we&#39;ll dimension our final selection.</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;sessionIdleTime&quot;</span><span class="p">:</span><span class="mi">7200</span><span class="p">,</span>
+  <span class="nt">&quot;steps&quot;</span><span class="p">:[</span>
+    <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span> <span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;action == &#39;/index.html&#39;&quot;</span><span class="p">,</span> <span class="nt">&quot;steps&quot;</span><span class="p">:[</span>
+      <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;selection&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="nt">&quot;fields&quot;</span><span class="p">:[{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span><span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;count()&quot;</span><span class="p">}]},</span>
+      <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span> <span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;action == &#39;/pricing.html&#39;&quot;</span><span class="p">,</span> <span class="nt">&quot;within&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="nt">&quot;steps&quot;</span><span class="p">:[</span>
+        <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;selection&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="nt">&quot;fields&quot;</span><span class="p">:[{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span><span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;count()&quot;</span><span class="p">}]},</span>
+        <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span> <span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;action == &#39;/signup.html&#39;&quot;</span><span class="p">,</span> <span class="nt">&quot;within&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="nt">&quot;steps&quot;</span><span class="p">:[</span>
+          <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;selection&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="nt">&quot;fields&quot;</span><span class="p">:[{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span><span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;count()&quot;</span><span class="p">}]},</span>
+          <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;condition&quot;</span><span class="p">,</span> <span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="nt">&quot;within&quot;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="nt">&quot;steps&quot;</span><span class="p">:[</span>
+            <span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;selection&quot;</span><span class="p">,</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="nt">&quot;dimensions&quot;</span><span class="p">:[</span><span class="s2">&quot;action&quot;</span><span class="p">],</span><span class="nt">&quot;fields&quot;</span><span class="p">:[{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;count&quot;</span><span class="p">,</span><span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="s2">&quot;count()&quot;</span><span class="p">}]}</span>
+          <span class="p">]}</span>
+        <span class="p">]}</span>
+      <span class="p">]}</span>
+    <span class="p">]}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<p>This query will result in a nice set of steps so we can see how our funnel breaks down:</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;0&quot;</span><span class="p">:{</span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">10292</span><span class="p">},</span>
+  <span class="nt">&quot;1&quot;</span><span class="p">:{</span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">7382</span><span class="p">},</span>
+  <span class="nt">&quot;2&quot;</span><span class="p">:{</span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">2731</span><span class="p">},</span>
+  <span class="nt">&quot;3&quot;</span><span class="p">:{</span>
+    <span class="nt">&quot;/welcome.html&quot;</span><span class="p">:{</span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">726</span><span class="p">},</span>
+    <span class="nt">&quot;/contact_us.html&quot;</span><span class="p">:{</span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">529</span><span class="p">},</span>
+    <span class="nt">&quot;/index.html&quot;</span><span class="p">:{</span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="mi">128</span><span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>We read these results like this:</p>
+
+<ol>
+<li>10,292 users made it to the home page.</li>
+<li>7,382 of those users then clicked through to the pricing page.</li>
+<li>2,731 of those users then went to the sign up page.</li>
+<li>Finally, only 726 of those users actually signed up and made it to our welcome page. 529 users went to our contact page and then 128 users went back to our home page.</li>
+<li>We can also deduce that any user who didn&#39;t make it to a next step must have left the web site. That means 1,348 users left the site (<code>2731-(726+529+128)</code>).</li>
+</ol>
+
+<h3><a name="clients" href="#clients">Client Libraries & Tools</a></h3>
+
+<h4>Client Libraries</h4>
+
+<p>Sky uses a simple RESTful JSON over HTTP API so it&#39;s easy to interact with the server from any language.
+However, there are also several client libraries that are available:</p>
+
+<ul>
+<li>Go - <a href="https://github.com/skydb/sky.go">https://github.com/skydb/sky.go</a></li>
+<li>Ruby - <a href="https://github.com/skydb/sky.rb">https://github.com/skydb/sky.rb</a></li>
+<li>Node.js - <a href="https://github.com/sandfox/skynode">https://github.com/sandfox/skynode</a></li>
+</ul>
+
+<h4>Tools</h4>
+
+<p>Below is a list of open source tools built to be used with Sky:</p>
+
+<ul>
+<li><a href="https://github.com/skydb/skybox">Skybox</a> - A frontend for visualizing Sky data.</li>
+<li><a href="https://github.com/skydb/sky-gharchive-importer">Sky GitHub Archive Importer</a> - Import public GitHub events into Sky for analysis.</li>
+</ul>
+
+<p>Please let us know if you create any tools for Sky and we&#39;ll add them here.</p>
+
+<h3><a name="help" href="#help">Additional Help & Questions</a></h3>
+
+<p>Please join the <a href="https://groups.google.com/d/forum/skydb">skydb Google Group</a> if you have questions or want to keep up on the latest Sky news.</p>
+
+<p>If you are experience bugs in Sky or Sky-related projects you can also submit issues to the central <a href="https://github.com/skydb/sky/issues">Sky GitHub Issues</a> page.</p>
+
+        </div>
+      </div>
+    </div><!-- /container -->
+    
+    
+    
+    <footer>
+    </footer>
+  </body>
+</html>

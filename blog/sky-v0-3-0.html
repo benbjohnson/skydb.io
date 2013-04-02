@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sky v0.2.3 Released</title>
+    <title>Sky v0.3.0 Released</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="description" content="">
@@ -35,7 +35,7 @@
 
   
 
-  <body class="blog blog_sky-v0-2-3">
+  <body class="blog blog_sky-v0-3-0">
     <div class="container">
       <div class="row">
         <div class="span8 offset2">
@@ -65,36 +65,26 @@
       <div class="row">
         <div class="span8 offset2">
           
-            <h2>Sky v0.2.3 Released</h2>
+            <h2>Sky v0.3.0 Released</h2>
           
           <h3>What&#39;s New?</h3>
 
-<p>Sky version 0.2.3 has been released.
-You can download it from the main <a href="/">Sky web site</a>.
-We&#39;ve added a UI and a JavaScript tracker to the Sky ecosystem.</p>
+<p>To say that Sky v0.3.0 is an upgrade is an understatement.
+About 95% of the codebase has been converted to <a href="http://golang.org/">Go</a> and the API to the database is now RESTful JSON over HTTP.
+Look through <a href="/guide">The Guide</a> and the <a href="https://github.com/skydb/sky">Sky README</a> on GitHub for more details.</p>
 
-<p>Major changes:</p>
-
-<ul>
-<li><p>The official Sky UI is called <a href="https://github.com/skydb/skybox">Skybox</a>.
-It&#39;s a Sinatra + D3.js application that allows you to analyze the flow of actions.
-It&#39;s a first cut at the UI so it&#39;s simple but big things are coming for Skybox!</p></li>
-<li><p>A JavaScript tracking server called Skycap has been added so you can directly track actions and state from a simple JavaScript import.
-Many thanks to the guys at <a href="http://segment.io">Segment.IO</a> for helping with the JavaScript API.
-Skycap&#39;s interface is based on the <a href="https://github.com/segmentio/analytics.js">Analytics.js</a> API.</p></li>
-</ul>
+<p>During this rewrite, I took the opportunity to simplify the structure of the database.
+The underlying format is just straight MessagePack so it&#39;s easy to work with.
+There&#39;s also no longer a concept of an action.
+The database stores partially transient hashes (e.g. hashes where some properties persist their values over time and others don&#39;t).
+Check out <a href="/guide">the guide</a> for more details about it.</p>
 
 <h3>What&#39;s Next</h3>
 
-<p>Sky v0.2.4 will be the last planned release before a large v0.3.0 release which will include multi-node distribution so you can cluster your Sky servers.
-The Sky server will see time-based sampling added so you can specify a query time (e.g. 500 ms) and Sky will query as much as it can within that time.
-We&#39;ll also be adding worker pooling and some other performance improvements so you can scale Sky.</p>
+<p><a href="https://github.com/skydb/sky/issues?milestone=8">Sky v0.3.1</a> is the next version and will include distributed computing so you can run Sky across multiple nodes and scale linearly.
+It will also include a few additional features such as sampling, query bookmarking and reverse timeline queries.</p>
 
-<p>Skybox will see filtering, segmentation and back references added so you can drill into your data and break it up by different types of users.</p>
-
-<p>There have also been many requests for more details about how Sky works and how the query engine works.
-I&#39;ll be adding some D3.js visualizations to the Sky web site to help explain it.
-If you have any requests for blog post topics or you want to know more about Sky, <a href="https://groups.google.com/d/forum/skydb">join the mailing list</a> and suggest it.</p>
+<p>If you want to keep up to date please <a href="https://groups.google.com/d/forum/skydb">join the mailing list</a>.</p>
 
         </div>
       </div>
