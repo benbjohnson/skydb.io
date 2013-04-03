@@ -167,6 +167,6 @@ second. However, sometimes you need to analyze billions of events per second.
 
 Some exciting things are coming.
 Please visit the [Sky GitHub project page](https://github.com/skydb/sky) to contribute.
-Or join the mailing list by sending an e-mail to [sky@librelist.com](mailto:sky@librelist.com) to get updates.<br/><br/>
+Or [join the mailing list](https://groups.google.com/d/forum/skydb) to get updates.<br/><br/>
 
 [Discuss this post on Hacker News](http://news.ycombinator.com/item?id=4409506)

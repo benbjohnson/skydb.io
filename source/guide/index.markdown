@@ -2,19 +2,12 @@
 title: The Guide
 ---
 
-### Table of Contents
+<h3><a name="overview" href="#overview">Overview</a></h3>
 
 This guide is meant to give you an understanding of how Sky works and how you can use it.
 It covers the basics of how data is stored and how you can use Sky's query engine for advanced analytics.
 
-<ol>
-  <li><a href="#partially-transient-hashes">Partially Transient Hashes</a></li>
-  <li><a href="#query-system">The Query System</a></li>
-  <li><a href="#libraries">Client Libraries & Tools</a></li>
-  <li><a href="#help">Additional Help & Questions</a></li>
-</ol>
-
-<h3><a name="partially-transient-hashes">Partially Transient Hashes</a></h3>
+#### Partially Transient Hashes
 
 Sky is a database for tracking the state of partially transient hashes over time.
 These hashes are partially transient because the individual properties of the hash can be set to persist values over time or only hold the value for a particular moment.
@@ -29,15 +22,24 @@ Next you want to track properties about actions that these users are doing such 
 These properties are called *transient properties* and their value will only exist for a single moment in time.
 
 Each time you update the value of one or more properties it is called an *event* which as an associated timestamp and these events are all combined into a *timeline* for each hash.
-Hashes are also referrer to as *objects* in Sky.
-Once these events are all organized into a single timeline for each user, Sky can query over this data extremely fast.
+Hashes are also referred to as *objects* in Sky.
+Because these events are all organized into a single timeline for each user, Sky can query over this data extremely fast.
+
+#### Internal Representation & Data Types
+
+Sky is composed of *tables* which are just collections of *objects* that adhere to an ad hoc schema that is defined by *properties*.
+Properties can be defined as transient or permanent and have a data type associated with them.
+There are five data types currently supported: `string`, `integer`, `float`, `boolean`, & `factor`.
+
+Factor types work the same as strings except that they are represented more efficiently when the property has a limited number of possible values.
+They work great for categorical data such as gender, state or action names.
 
 
-<h3><a name="query-system">The Query System</a></h3>
+<h3><a name="query-system" href="#query-system">The Query System</a></h3>
 
 Because Sky stores non-relational data, SQL doesn't make sense as a query language.
 Instead Sky has a simple query language composed of a few basic primitives: *queries*, *selections* & *conditions*.
-Because Sky uses a RESTful JSON over HTTP API, we'll show queries in their JSON format.
+Sky uses a RESTful JSON over HTTP API so we'll show queries in their JSON format.
 
 #### Query
 
@@ -46,13 +48,6 @@ The query engine works by iterating over each event for each object in chronolog
 At each event, all the steps in the query are executed.
 
 If you want to break timelines into sessions you can use `sessionIdleTime` to specify the number of seconds between two contiguous events to delineate a session.
-Here is an example of an empty query that separates sessions by a 2 hour idle time:
-
-```json
-{"sessionIdleTime":7200, "steps":[]}
-```
-
-Note that this is not useful at all.
 
 
 #### Selections
@@ -63,7 +58,7 @@ The selection fields are named and have an expression using one of the aggregati
 
 ##### Simple Count Query
 
-Here's an example of a simple query to count every event in the system:
+Here's an example of a simple query to count every event in a table:
 
 ```json
 {
@@ -146,7 +141,7 @@ Here's an example query to count the number of events where the "action" propert
 ```json
 {
   "steps":[
-    {"type":"condition", "expression":"action == 'checkout'", steps:[
+    {"type":"condition", "expression":"action == 'checkout'", "steps":[
       {"type":"selection", "fields":[
         {"name":"count", "expression":"count()"},
         {"name":"total", "expression":"sum(purchaseAmount)"}
@@ -166,8 +161,8 @@ Result:
 
 The real power of the Sky query system is when you combine and nest these primitives.
 In this example, we'll use the `within` property which is a range that specifies the number of steps that a condition must occur within in order for it to execute.
-For example, specifying a within of `[0,1]` means the condition must evaluate to true in the current event or in the next event.
-A within of `[1,1]` means that the condition must evaluate true in the next event.
+For example, specifying a `within` of `[0,1]` means the condition must evaluate to true in the current event or in the next event.
+A `within` of `[1,1]` means that the condition must evaluate true in the next event.
 
 By nesting conditions, each subcondition only executes if its parent executes.
 We can perform a funnel analysis by combining nested conditions and selections.
@@ -189,9 +184,9 @@ Finally we want to breakdown what action users performed immediately after the s
           {"type":"selection","name":"2","fields":[{"name":"count","expression":"count()"}]},
           {"type":"condition", "expression":"true", "within":[1,1], "steps":[
             {"type":"selection","name":"3","dimensions":["action"],"fields":[{"name":"count","expression":"count()"}]}
-          }]
-        }]
-      }]
+          ]}
+        ]}
+      ]}
     ]}
   ]
 }
@@ -221,7 +216,7 @@ We read these results like this:
 5. We can also deduce that any user who didn't make it to a next step must have left the web site. That means 1,348 users left the site (`2731-(726+529+128)`).
 
 
-<h3><a name="clients">Client Libraries & Tools</a></h3>
+<h3><a name="clients" href="#clients">Client Libraries & Tools</a></h3>
 
 #### Client Libraries
 
@@ -237,12 +232,13 @@ However, there are also several client libraries that are available:
 
 Below is a list of open source tools built to be used with Sky:
 
-* [Skybox](https://github.com/skydb/skybox) - A frontend for analyzing Sky data.
-* [Skycap](https://github.com/skydb/skycap) - A proxy for using Sky from a web page.
+* [Skybox](https://github.com/skydb/skybox) - A frontend for visualizing Sky data.
 * [Sky GitHub Archive Importer](https://github.com/skydb/sky-gharchive-importer) - Import public GitHub events into Sky for analysis.
 
+Please let us know if you create any tools for Sky and we'll add them here.
 
-<h3><a name="clients">Additional Help & Questions</a></h3>
+
+<h3><a name="help" href="#help">Additional Help & Questions</a></h3>
 
 Please join the [skydb Google Group](https://groups.google.com/d/forum/skydb) if you have questions or want to keep up on the latest Sky news.
 
